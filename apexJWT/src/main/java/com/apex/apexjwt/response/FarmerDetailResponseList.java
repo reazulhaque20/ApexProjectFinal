@@ -1,0 +1,18 @@
+package com.apex.apexjwt.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class FarmerDetailResponseList {
+
+    private List<FarmerDetailResponse> farmerDetailResponseList;
+    private String message;
+    private String messageType;
+}
