@@ -1,0 +1,553 @@
+<!-- Header page -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Apex Purchase manager">
+    <meta name="author" content="Rifat Tanjir">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png">
+    <title>Agro ERP System</title>
+
+    <!-- DataTables -->
+    <link href="../../assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="../../assets/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- choices css -->
+    <link href="../../assets/css/choices.min.css" rel="stylesheet" type="text/css" />
+    <!--<link href="assets/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />-->
+    <!-- datepicker css -->
+    <link rel="stylesheet" href="../../assets/css/flatpickr.min.css">
+    <!-- FullCalender Css -->
+    <link href="../../assets/js/vendors/fullcalendar/core/main.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/js/vendors/fullcalendar/daygrid/main.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/js/vendors/fullcalendar/bootstrap/main.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/js/vendors/fullcalendar/timegrid/main.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/toastr.min.css" rel="stylesheet" type="text/css">
+    <link href="../../assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css" <!-- Bootstrap Css -->
+    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="../../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Select 2 Css -->
+    <link href="../../assets/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/select2-bootstrap-5-theme.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="../../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="../../assets/js/angularjs/dependency/sweet-alert.css" />
+    <!-- Custom Css-->
+    <link href="../../assets/css/style.css" rel="stylesheet" type="text/css" />
+
+    <link href="../../assets/css/ng-table/ng-table.min.css" rel="stylesheet" type="text/css" />
+    
+            <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+        <link href="../assets/css/datepicker/datepicker.css" rel="stylesheet" type="text/css">
+        <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body data-sidebar-size="lg" data-topbar="dark" ng-app="myApp" ng-controller="divisionCtrl"
+    ng-init="checkSessionData()">
+    <!-- <div class="main-content" ng-app="myApp" ng-controller="dashCtrl" ng-init="checkSessionData()">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row dashboard-page">
+                    Dashboard: {{ dashBoad }}<br>
+
+                    User Token: {{ token }}<br>
+
+                    User Name: {{ userName }}<br>
+                    User Role: {{ userRole }}<br>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div id="layout-wrapper">
+        <header id="page-topbar">
+            <div class="navbar-header">
+
+                <!-- Top Left Logo & Short Menu -->
+
+                <div class="d-flex">
+                    <div class="navbar-brand-box">
+                        <a href="dashboard" class="logo logo-dark">
+                            <span class="logo-sm">
+                                <img src="../assets/images/logo-g-sm.png" alt="" height="24">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="../../assets/images/logo-g-sm.png" alt="" height="24"> <span
+                                    class="logo-txt">Agro ERP</span>
+                            </span>
+                        </a>
+                        <a href="dashboard" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="../../assets/images/agro_logo.png" alt="" height="24">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="../../assets/images/agro_logo.png" alt="" height="24"> <span
+                                    class="logo-txt">AGRO-ERP</span>
+                            </span>
+                        </a>
+                    </div>
+                    <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                        <i class="mdi mdi-format-align-justify"></i>
+                    </button>
+                </div>
+
+                <!-- Top Left Logo & Short Menu -->
+
+                <div class="d-flex">
+                    <div class="dropdown d-none d-sm-inline-block">
+                        <button type="button" class="btn header-item" id="mode-setting-btn">
+                            <i class="mdi mdi-lightbulb-on-outline"></i>
+                        </button>
+                    </div>
+
+                    <!-- <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item noti-icon position-relative"
+                            id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <i class="mdi mdi-bell-outline"></i>
+                            <span class="badge bg-danger rounded-pill">0</span>
+                        </button>
+                    </div> -->
+
+                    <!-- <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item right-bar-toggle me-2">
+                            <i class="mdi mdi-cog-transfer-outline"></i>
+                        </button>
+                    </div> -->
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item bg-soft-light border-start border-end"
+                            id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ userName }}</span>
+                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a class="dropdown-item" href="javascript.void(0)" data-bs-toggle="modal"
+                                data-bs-target="#ChangePassword"><i
+                                    class="mdi mdi-account-key-outline align-middle"></i> Change Password</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" ng-click="logout()"><i
+                                    class="mdi mdi-logout font-size-16 align-middle me-1"></i>
+                                Logout</a>
+                            <!-- <form id="logOutForm" method="post" action="<%= root%>/UserController">
+                                <input type="hidden" name="REQ" value="LogoutUser" />
+                            </form> -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="vertical-menu">
+            <div data-simplebar class="h-100">
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li>
+                            <a href="../../views/dashboard.html"><i class="mdi mdi-monitor-dashboard"></i><span
+                                    data-key="t-dashboard">Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-account-cowboy-hat-outline"></i><span data-key="t-pages">Farmer
+                                    Profile</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="../farmer.html" data-key="t-starter-page">Farmers List</a></li>
+                                <li><a href="../farmer.html" data-key="t-maintenance">Farmer Enrollment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-map-outline"></i><span
+                                    data-key="t-pages">Farmland Profile</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="../farm_land.html" data-key="t-starter-page">Farmland List</a></li>
+                                <li><a href="../farm_land.html" data-key="t-maintenance">Farmland Enrollment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-handshake-outline"></i><span data-key="t-pages">Contract
+                                    Farming</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="contracts_list" data-key="t-starter-page">Contracts List</a></li>
+                                <li><a href="new_contract" data-key="t-maintenance">Create Contract</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-clipboard-list"></i><span
+                                    data-key="t-pages">Planning</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-tractor"></i><span
+                                    data-key="t-pages">Production</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-cart-plus"></i><span
+                                    data-key="t-pages">Procurement</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-warehouse"></i><span
+                                    data-key="t-pages">Warehouse</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-clipboard-search-outline"></i><span
+                                    data-key="t-pages">Monitoring</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-certificate-outline"></i><span
+                                    data-key="t-pages">Certifications</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-flask-plus-outline"></i><span data-key="t-pages">R&D &
+                                    Biotech</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-file-multiple-outline"></i><span
+                                    data-key="t-pages">MIS/Analytics</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-cog-outline"></i><span
+                                    data-key="t-pages">Master Data</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="location.html" data-key="t-starter-page">Location List</a></li>
+                                <li><a href="officeList.html">Reporting Office</a></li>
+                                <li><a href="officeList.html">Reporting Officer</a></li>
+                                <li><a href="divisionList.html" data-key="t-starter-page">Division List</a></li>
+                                <li><a href="districtList.html">District List</a></li>
+                                <li><a href="upazillaList.html"></a>Upazila List</li>
+                                <li><a href="unionList.html"></a>Union List</li>
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-account-cog-outline"></i><span data-key="t-System Users">System
+                                    Users</span></a>
+                            <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                <li><a href="applied_users" data-key="t-applied_users">Applied Users</a></li>
+                                <li><a href="../../views/users/users_list.html" data-key="t-users_list">Users List</a>
+                                </li>
+                                <li><a href="user_groups" data-key="t-user_groups">User Groups</a></li>
+                                <li><a href="menu_list" data-key="t-menu_list">Menu List</a></li>
+                                <li><a href="menu_permission" data-key="t-menu_permission">Menu Permission</a></li>
+                                <li><a href="approval_permissions" data-key="t-approval_permissions">Approval
+                                        Permission</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-monitor-dashboard"></i><span data-key="t-multi-level">Extras</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="calender" data-key="t-level-1-1">Calender</a></li>
+                                <li><a href="mdi" data-key="t-level-1-1">Icons</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- ========== Left Sidebar End ========== -->
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- MAIN CONTENT============================================================== -->
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">        
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Buyer Master Details List</h4>
+                                </div>
+                                <div class="card-body">
+                                    <table id="buyer-list-details" class="table cus-datatable table-striped dt-responsive w-100">
+                                        <thead>
+                                            <tr>
+                                                <th width="4%">CODE</th>
+                                                <th width="10%">SHORT NAME</th>
+                                                <th width="20%">FULL NAME</th>
+                                                <th width="20%">ADDRESS</th>
+                                                <th width="9%">PHONE</th>
+                                                <th width="14%">EMAIL</th>
+                                                <th width="12%">CONTACT PERSON</th>
+                                                <th width="5%">EDIT</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->            
+        </div>
+        <!-- end main content-->  
+        
+
+              
+        <!-- Static Backdrop Modal -->
+        <div class="modal fade" id="addNewBuyerDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Add New Buyer Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form class="modal-body row" id="AddNewSupplierDetails" method="POST" action="PdmController">   
+                        <input type="hidden" name="REQ" value="setNewSupplierDetails" >   
+                        
+                        <div class="col-md-12">
+                            <div class="col-lg-12 mb-2 select2-sm">
+                                <label class="form-label label-sm">BUYER CODE</label>
+                                <input class="form-control input-sm" type="text" name="buyer_code" value="001" required readonly>
+                            </div>
+                            <div class="col-lg-12 mb-2 select2-sm">
+                                <label class="form-label label-sm">SHORT NAME</label>
+                                <input class="form-control input-sm" type="text" name="short_name" value="" maxlength="15" required>
+                            </div>
+                            <div class="col-lg-12 mb-2">
+                                <label class="form-label label-sm">BUYER FULL NAME</label>
+                                <input class="form-control input-sm" type="text" name="full_name" value="" maxlength="80" required>
+                            </div>
+                            <div class="col-lg-12 mb-2">
+                                <label class="form-label label-sm">ADDRESS</label>
+                                <input class="form-control input-sm" type="text" name="address" value="" required>
+                            </div>
+                            <div class="col-lg-12 mb-2">
+                                <label class="form-label label-sm">PHONE</label>
+                                <input class="form-control input-sm" type="text" name="phone" value="" required>
+                            </div>
+                            <div class="col-lg-12 mb-2">
+                                <label class="form-label label-sm">EMAIL</label>
+                                <input class="form-control input-sm" type="text" name="email" value="" required>
+                            </div>
+                            <div class="col-lg-12 mb-2">
+                                <label class="form-label label-sm">CONTACT PERSON</label>
+                                <input class="form-control input-sm" type="text" name="person" value="" required>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <div class="col-lg-12 text-right">
+                            <button type="reset" class="btn btn-soft-danger w-sm waves-effect waves-light" data-bs-dismiss="modal" aria-label="Close"><i class="mdi mdi-close-box-outline"></i> CANCEL</button>
+                            <button type="submit" form="AddNewSupplierDetails" class="btn btn-success w-sm waves-effect waves-light"><i class="mdi mdi-cash-check"></i> SEND REQUEST</button>
+                        </div>                                        
+                    </div>
+                </div>
+            </div>
+        </div>
+              
+        <!-- Static Backdrop Modal -->
+        <div class="modal fade" id="EditSupplierDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Update Buyer Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form class="modal-body row" id="UpdateSupplierDetails" method="POST" action="PdmController">   
+                        <input type="hidden" name="REQ" value="updateSupplierDetails" >   
+                        <input type="hidden" name="supplier_code" id="supplier_code" value="" >   
+                        
+                        <div class="col-md-12">
+                            <div class="col-lg-12 mb-2 select2-sm">
+                                <label class="form-label label-sm">SHORT NAME</label>
+                                <input class="form-control input-sm" type="text" name="u_short_name" id="u_short_name" value="" maxlength="15" required>
+                            </div>
+                            <div class="col-lg-12 mb-2">
+                                <label class="form-label label-sm">BUYER FULL NAME</label>
+                                <input class="form-control input-sm" type="text" name="u_full_name" id="u_full_name" value="" maxlength="80" required>
+                            </div>
+                            <div class="col-lg-12 mb-2">
+                                <label class="form-label label-sm">ADDRESS</label>
+                                <input class="form-control input-sm" type="text" name="u_address" id="u_address" value="" required>
+                            </div>
+                            <div class="col-lg-12 mb-2">
+                                <label class="form-label label-sm">PHONE</label>
+                                <input class="form-control input-sm" type="text" name="u_phone" id="u_phone" value="" required>
+                            </div>
+                            <div class="col-lg-12 mb-2">
+                                <label class="form-label label-sm">EMAIL</label>
+                                <input class="form-control input-sm" type="text" name="u_email" id="u_email" value="" required>
+                            </div>
+                            <div class="col-lg-12 mb-2">
+                                <label class="form-label label-sm">ATTENTION PERSON</label>
+                                <input class="form-control input-sm" type="text" name="u_person" id="u_person" value="" required>
+                            </div>
+                            <div class="col-lg-12 mb-2">
+                                <label class="form-label label-sm">STATUS</label>
+                                <select class="form-select form-control" name="u_supplier_status" id="u_supplier_status" required>
+                                    <option value="Y">Active</option>
+                                    <option value="N">Deleted</option>
+                                    <option value="P">Pending</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <div class="col-lg-12 text-right">
+                            <button type="reset" class="btn btn-soft-danger w-sm waves-effect waves-light" data-bs-dismiss="modal" aria-label="Close"><i class="mdi mdi-close-box-outline"></i> CANCEL</button>
+                            <button type="submit" form="UpdateSupplierDetails" class="btn btn-warning w-sm waves-effect waves-light"><i class="mdi mdi-cash-check"></i> UPDATE DETAILS</button>
+                        </div>                                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- END layout-wrapper -->
+    
+    <!-- Footer page -->
+    <%@include file="../footer.jsp" %>
+    <!-- Footer Libraries page -->
+    <%@include file="../footer_libs.jsp" %>
+    <script>
+        $(document).ready(function () {
+            document.title = "Buyer Master Details-";
+            
+            $("#buyer-list-details").DataTable({
+                responsive: true,
+                stateSave: true,
+                ordering: false,
+                pageLength: 15,
+                pagingType: "full_numbers",
+                dom: 'Bfrtip',
+                bDestroy: true,
+                buttons: [
+                    'pageLength',
+                    {
+                        extend: 'collection',
+                        text: 'Export Data',
+                        buttons: [ 'pdfHtml5', 'excelHtml5', 'csvHtml5', 'copyHtml5' ]
+                    },{
+                        text: '<i class="mdi mdi-layers-plus"></i> Add New Buyer',
+                        className: 'cus-btn-primary',
+                        action: function ( e, dt, node, config ) {
+                            $('#addNewBuyerDetails').modal('show');
+                        }
+                    }
+                ],
+                lengthMenu: [ [ 15, 50, 200, 300, -1 ], [ '15 Rows', '50 Rows', '200 Rows', '300 Rows', 'Show All Rows' ] ],
+                bPaginate: true,
+                order: [ 0, 'desc' ]
+//                bInfo: true,
+//                iDisplayStart:0,
+//                bProcessing : true,
+//                bServerSide : true,
+//                sAjaxSource : "MasterDataListDT",
+//                fnServerData: function (sSource, aoData, fnCallback, oSettings) {
+//                    aoData.push({ "name": "REQ", "value": "getCompanyMasterList" });
+//                    oSettings.jqXHR = $.ajax({
+//                        "dataType": 'json',
+//                        "type": "POST",
+//                        "url": sSource,
+//                        "data": aoData,
+//                        "success": fnCallback
+//                    }); 
+//                },
+//                sServerMethod : "POST"
+            });
+        });
+    </script>
+    </body>
+    <script src="../../assets/js/jquery.min.js"></script>
+<script src="../../assets/js/jquery.form.js"></script>
+<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/metisMenu.min.js"></script>
+<script src="../../assets/js/simplebar.min.js"></script>
+<script src="../../assets/js/waves.min.js"></script>
+<script src="../../assets/js/feather.min.js"></script>
+<script src="../../assets/js/pace.min.js"></script>
+<script src="../../assets/js/apexcharts.min.js"></script>
+<script src="../../assets/js/dashboard.init.js"></script>
+<script src="../../assets/js/angular.min.js"></script>
+<!-- choices js -->
+<script src="../../assets/js/choices.min.js"></script>
+<script src="../../assets/js/select2.min.js"></script>
+<!-- Required datatable js -->
+<script src="../../assets/js/jquery.dataTables.min.js"></script>
+<script src="../../assets/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../assets/js/dataTables.responsive.min.js"></script>
+<script src="../../assets/js/responsive.bootstrap4.min.js"></script>
+<script src="../../assets/js/dataTables.buttons.min.js"></script>
+<script src="../../assets/js/dataTables.select.min.js"></script>
+<script src="../../assets/js/jszip.min.js"></script>
+<script src="../../assets/js/buttons.html5.min.js"></script>
+<script src="../../assets/js/buttons.colVis.min.js"></script>
+<!-- Buttons examples -->
+<script src="../../assets/js/buttons.bootstrap4.min.js"></script>
+<script src="../../assets/js/buttons.print.min.js"></script>
+<!-- datepicker js -->
+<script src="../../assets/js/flatpickr.min.js"></script>
+<!-- Select 2 js -->
+<script src="../../assets/js/toastr.min.js"></script>
+<script src="../../assets/js/sweetalert2.min.js"></script>
+<!-- Datatable init js -->
+<script src="../../assets/js/dummy/datatables.init.js"></script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/angularjs/angular.min.js"></script>
+<script src="../../assets/js/angularjs/dependency/ng-table.min.js"></script>
+    <script src="../assets/js/angularjs/dependency/smart-table.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/locale/bootstrap-table-en-US.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/extensions/angular/bootstrap-table-angular.min.js"></script>
+<!-- Sweet Alert -->
+<script src="../../assets/js/angularjs/dependency/sweetalert.min.js"></script>
+<script src="../../assets/js/angularjs/dependency/sweetAlert.js"></script>
+<!-- Sweet Alert -->
+<script src="../../assets/js/angularjs/app.js"></script>
+<script src="../../assets/js/angularjs/service/jwtService.js"></script>
+<script src="../../assets/js/angularjs/controller/divisionListController.js"></script>
+</html>
