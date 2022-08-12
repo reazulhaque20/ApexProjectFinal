@@ -6,27 +6,20 @@ import com.apex.apexjwt.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-<<<<<<< HEAD
 import java.util.List;
 
-=======
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
 @RequiredArgsConstructor
 @RestController
 @PreAuthorize("hasRole('Admin')")
 public class RoleController {
 
     private final RoleService roleService;
-<<<<<<< HEAD
 
     @GetMapping("getAllRoles")
     public List<Role> getAllRoles(){
         List<Role> roles = roleService.findAllRoles();
         return roles;
     }
-=======
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
 
     @PostMapping({"/createNewRole"})
     public Response createNewRole(@RequestBody Role role){

@@ -4,26 +4,19 @@ import com.apex.apexjwt.model.ReportingUser;
 import com.apex.apexjwt.model.User;
 import com.apex.apexjwt.request.AddUserRequest;
 import com.apex.apexjwt.request.ChangePasswordRequest;
-<<<<<<< HEAD
 import com.apex.apexjwt.request.UserUpdateRequest;
-=======
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
 import com.apex.apexjwt.response.Response;
 import com.apex.apexjwt.response.UserListResponse;
 import com.apex.apexjwt.service.ReportingUserService;
 import com.apex.apexjwt.service.UserService;
 import lombok.RequiredArgsConstructor;
-<<<<<<< HEAD
 import lombok.extern.log4j.Log4j2;
-=======
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -31,21 +24,12 @@ import java.util.ListIterator;
 @RequiredArgsConstructor
 @RestController
 @Log4j2
-=======
-import java.util.List;
-
-@RequiredArgsConstructor
-@RestController
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
 @RequestMapping("/api/user")
 public class UserController {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
-<<<<<<< HEAD
     private final ReportingUserService reportingUserService;
-=======
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
 
     @GetMapping("/logout")
     public Response logOut(){
@@ -63,11 +47,7 @@ public class UserController {
     }
 
     @GetMapping("/forUser")
-<<<<<<< HEAD
     @PreAuthorize("hasAnyRole('User')")
-=======
-    @PreAuthorize("hasAnyRole('Admin', 'User')")
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
     public String forUser(){
         return "Only for User";
     }
@@ -75,7 +55,6 @@ public class UserController {
     @GetMapping("/getAllUser")
     @PreAuthorize("hasRole('Admin')")
     public List<User> getAllUser(){
-<<<<<<< HEAD
         List<User> userList = userService.findUserList();
 //        UserListResponse userListResponse = new UserListResponse();
 //        List<UserListResponse> userListResponseList = new ArrayList<>();
@@ -90,9 +69,6 @@ public class UserController {
 //        }
 
         return userList;
-=======
-        return userService.findUserList();
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
     }
 
     @PutMapping("/updateUser")
@@ -133,7 +109,6 @@ public class UserController {
         return response;
     }
 
-<<<<<<< HEAD
     @PostMapping("/addBulkUser")
     @PreAuthorize("hasRole('Admin')")
     public Response addBulkUser(){
@@ -159,8 +134,6 @@ public class UserController {
         return response;
     }
 
-=======
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
 
     @PostMapping("/changePassword")
     public Response changePassword(@RequestBody ChangePasswordRequest changePasswordRequest){
@@ -193,7 +166,6 @@ public class UserController {
         response.setMessageType("SUCCESS");
         return response;
     }
-<<<<<<< HEAD
 
     @GetMapping("/getReportingUsers/{department}")
     @PreAuthorize("hasAnyRole('User','Admin')")
@@ -247,6 +219,4 @@ public class UserController {
 
         return response;
     }
-=======
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
 }

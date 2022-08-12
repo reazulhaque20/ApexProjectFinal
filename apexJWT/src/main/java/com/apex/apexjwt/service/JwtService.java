@@ -44,11 +44,7 @@ public class JwtService implements UserDetailsService {
 
         String newGeneratedToken = jwtUtil.generateToken(userDetails);
 
-<<<<<<< HEAD
         User user = userRepo.findUserByUsername(userName);
-=======
-        User user = userDAO.findUserByUsername(userName);
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
 
         return new JwtResponse(user, newGeneratedToken, "");
 
@@ -56,11 +52,7 @@ public class JwtService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-<<<<<<< HEAD
         User user = userRepo.findUserByUsername(userName);
-=======
-        User user = userDAO.findUserByUsername(userName);
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
 
         if(user != null){
             return new org.springframework.security.core.userdetails.User(
@@ -69,10 +61,7 @@ public class JwtService implements UserDetailsService {
                     getAuthorities(user)
             );
         }else {
-<<<<<<< HEAD
             log.error("Date: " + new Date() + " LoadUserByUserName: " + "User Name is not valid.");
-=======
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
             throw new UsernameNotFoundException("User Name is not valid.");
         }
     }
@@ -88,10 +77,7 @@ public class JwtService implements UserDetailsService {
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName, password));
         }catch (DisabledException e){
-<<<<<<< HEAD
             log.error("Date: " + new Date() + " Authenticate: " + "User is disabled");
-=======
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
             throw new Exception("User is disabled");
         }catch (BadCredentialsException e){
             log.error("Date: " + new Date() + " Authenticate: " + "Bad Credential.");
@@ -102,7 +88,6 @@ public class JwtService implements UserDetailsService {
 
     public User findUserByUserNameAndPassword(String userName, String password){
         try{
-<<<<<<< HEAD
             return userRepo.findUserByUserNameAndPassword(userName, password);
         }catch (Exception e){
             return null;
@@ -112,9 +97,6 @@ public class JwtService implements UserDetailsService {
     public User findUserByUserName(String userName){
         try{
             return userRepo.findUserByUsername(userName);
-=======
-            return userDAO.findUserByUsername(userName);
->>>>>>> 20ae9b4261f05f9d671a12232440f25889ab8819
         }catch (Exception e){
             return null;
         }
