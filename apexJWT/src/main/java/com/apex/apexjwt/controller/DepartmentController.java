@@ -17,7 +17,6 @@ import java.util.List;
 @RequestMapping("/api/dept")
 @PreAuthorize("hasRole('Admin')")
 public class DepartmentController {
-
     private final DepartmentService departmentService;
 
     @GetMapping("/findByName/{deptName}")
