@@ -1,15 +1,10 @@
 package com.apex.apexjwt.controller;
 
-import com.apex.apexjwt.model.District;
-import com.apex.apexjwt.model.Division;
-import com.apex.apexjwt.model.Union;
-import com.apex.apexjwt.model.Upazila;
+import com.apex.apexjwt.model.*;
 import com.apex.apexjwt.response.Response;
-import com.apex.apexjwt.service.DistrictService;
-import com.apex.apexjwt.service.DivisionService;
-import com.apex.apexjwt.service.UnionService;
-import com.apex.apexjwt.service.UpazilaService;
+import com.apex.apexjwt.service.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.PublicKey;
@@ -18,11 +13,13 @@ import java.util.List;
 @RestController
 @RequestMapping("api/masterData")
 @RequiredArgsConstructor
+@Log4j2
 public class MasterDataController {
     private final DivisionService divisionService;
     private final DistrictService districtService;
     private final UpazilaService upazilaService;
     private final UnionService unionService;
+    private final BuyerService buyerService;
 
     @GetMapping("/getAllDivision")
     public List<Division> getAllDivision(){
@@ -96,5 +93,46 @@ public class MasterDataController {
     @PutMapping("/updateUnion")
     public Response updateUnion(@RequestBody Union union){
         return unionService.updateUnion(union);
+    }
+
+    @GetMapping("/getAllBuyer")
+    public List<Buyer> getAllBuyer(){
+        return buyerService.getAllBuyer();
+    }
+
+    @GetMapping("/getAllActiveBuyer")
+    public List<Buyer> getAllActiveBuyer(){
+        return buyerService.getAllActiveBuyer();
+    }
+
+    @GetMapping("/getBuyerByBuyerCode/buyerCode")
+    public Buyer getBuyerByBuyerCode(@PathVariable("buyerCode") String buyerCode){
+        return buyerService.getBuyerByBuyerCode(buyerCode);
+    }
+
+    @GetMapping("/getBuyerByBuyerName/buyerName")
+    public Buyer getBuyerByBuyerName(@PathVariable("buyerName") String buyerName){
+        return buyerService.getBuyerByBuyerName(buyerName);
+    }
+
+    @PostMapping("/addBuyer")
+    public Response addBuyer(@RequestBody Buyer buyer){
+        Response response;
+        response = buyerService.addBuyer(buyer);
+        return response;
+    }
+
+    @PutMapping("/updateBuyer")
+    public Response updateBuyer(@RequestBody Buyer buyer){
+        Response response;
+        response = buyerService.updateBuyer(buyer);
+        return response;
+    }
+
+    @PutMapping("/deleteBuyer")
+    public Response deleteBuyer(@RequestBody Buyer buyer){
+        Response response;
+        response = buyerService.deleteBuyer(buyer);
+        return response;
     }
 }
