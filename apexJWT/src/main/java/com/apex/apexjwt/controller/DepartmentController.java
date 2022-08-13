@@ -25,6 +25,7 @@ public class DepartmentController {
         return departmentService.findDepartmentByName(deptName);
     }
 
+    
     @GetMapping("/findAllActive")
     public List<Department> findAllActiveDepartment(){
         return departmentService.findAllActiveDepartment();
