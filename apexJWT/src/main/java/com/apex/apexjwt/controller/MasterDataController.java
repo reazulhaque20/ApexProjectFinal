@@ -20,6 +20,7 @@ public class MasterDataController {
     private final UpazilaService upazilaService;
     private final UnionService unionService;
     private final BuyerService buyerService;
+    private final CropListService cropListService;
 
     @GetMapping("/getAllDivision")
     public List<Division> getAllDivision(){
@@ -133,6 +134,38 @@ public class MasterDataController {
     public Response deleteBuyer(@RequestBody Buyer buyer){
         Response response;
         response = buyerService.deleteBuyer(buyer);
+        return response;
+    }
+
+    @GetMapping("/getAllActiveCrops")
+    public List<CropList> getAllActiveCrops(){
+        return cropListService.getAllActiveCrops();
+    }
+
+    @GetMapping("/getAllCrops")
+    public List<CropList> getAllCrops(){
+        return cropListService.getAllCrops();
+    }
+
+    @GetMapping("/getCropByCropCode/{cropCode}")
+    public CropList getCropByCropCode(@PathVariable("cropCode") String cropCode){
+        return cropListService.getCropByCropCode(cropCode);
+    }
+
+    @GetMapping("/getCropByCropName/{cropName}")
+    public CropList getCropByCropName(@PathVariable("cropName") String cropName){
+        return cropListService.getCropByCropName(cropName);
+    }
+
+    @PostMapping("/addCrop")
+    public Response addCrop(@RequestBody CropList cropList){
+        Response response = cropListService.addCropList(cropList);
+        return response;
+    }
+
+    @PutMapping("/updateCrop")
+    public Response updateCrop(@RequestBody CropList cropList){
+        Response response = cropListService.updateCropList(cropList);
         return response;
     }
 }
