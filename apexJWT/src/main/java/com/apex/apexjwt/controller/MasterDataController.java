@@ -5,6 +5,7 @@ import com.apex.apexjwt.response.Response;
 import com.apex.apexjwt.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import net.bytebuddy.build.Plugin;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.PublicKey;
@@ -21,6 +22,7 @@ public class MasterDataController {
     private final UnionService unionService;
     private final BuyerService buyerService;
     private final CropListService cropListService;
+    private final CropVarietyDetailService cropVarietyDetailService;
 
     @GetMapping("/getAllDivision")
     public List<Division> getAllDivision(){
@@ -167,5 +169,20 @@ public class MasterDataController {
     public Response updateCrop(@RequestBody CropList cropList){
         Response response = cropListService.updateCropList(cropList);
         return response;
+    }
+
+    @GetMapping("/getAllCropVariety")
+    List<CropVarietyDetail> getAllCropVariety(){
+        return cropVarietyDetailService.getAllCropVariety();
+    }
+
+    @PostMapping(value = "/addCropVariety", consumes = "application/json")
+    Response addCropVariety(@RequestBody CropVarietyDetail cropVarietyDetail){
+        return cropVarietyDetailService.addCropVariety(cropVarietyDetail);
+    }
+
+    @PutMapping("/updateCropVariety")
+    Response updateCropVariety(@RequestBody CropVarietyDetail cropVarietyDetail){
+        return cropVarietyDetailService.updateCropVariety(cropVarietyDetail);
     }
 }
