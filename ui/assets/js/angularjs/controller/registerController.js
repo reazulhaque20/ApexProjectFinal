@@ -1,4 +1,4 @@
-app.controller('registerCtrl', function ($scope, $http, $window, SweetAlert) {
+app.controller('registerCtrl', function (serverURL, $scope, $http, $window, SweetAlert) {
 
     $scope.message = function (title, msg, type) {
         SweetAlert.swal(title, msg, type);
@@ -13,7 +13,7 @@ app.controller('registerCtrl', function ($scope, $http, $window, SweetAlert) {
         var hostPort = arr[2].split(":");
         var host = hostPort[0];
         var port = hostPort[1];
-        $scope.urlServer = protocol + "//" + host + ":" + "8081" + "/";
+        $scope.urlServer = serverURL;//protocol + "//" + host + ":" + "8081" + "/";
     }
 
     $scope.getUiURL = function () {

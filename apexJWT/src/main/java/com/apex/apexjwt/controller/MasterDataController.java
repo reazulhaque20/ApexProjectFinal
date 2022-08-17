@@ -5,10 +5,8 @@ import com.apex.apexjwt.response.Response;
 import com.apex.apexjwt.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import net.bytebuddy.build.Plugin;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.PublicKey;
 import java.util.List;
 
 @RestController
@@ -162,14 +160,12 @@ public class MasterDataController {
 
     @PostMapping("/addCrop")
     public Response addCrop(@RequestBody CropList cropList){
-        Response response = cropListService.addCropList(cropList);
-        return response;
+        return cropListService.addCropList(cropList);
     }
 
     @PutMapping("/updateCrop")
     public Response updateCrop(@RequestBody CropList cropList){
-        Response response = cropListService.updateCropList(cropList);
-        return response;
+        return cropListService.updateCropList(cropList);
     }
 
     @GetMapping("/getAllCropVariety")
