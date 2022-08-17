@@ -1,4 +1,4 @@
-app.controller('cropCtrl', function ($scope, $http, NgTableParams, $window, SweetAlert) {
+app.controller('cropCtrl', function (serverURL, $scope, $http, NgTableParams, $window, SweetAlert) {
 
     $scope.urlServer = "";
     $scope.urlUI = "";
@@ -10,7 +10,7 @@ app.controller('cropCtrl', function ($scope, $http, NgTableParams, $window, Swee
         var hostPort = arr[2].split(":");
         var host = hostPort[0];
         var port = hostPort[1];
-        $scope.urlServer = protocol + "//" + host + ":" + "8081" + "/";
+        $scope.urlServer = serverURL;//protocol + "//" + host + ":" + "8081" + "/";
     }
 
     $scope.getUiURL = function () {

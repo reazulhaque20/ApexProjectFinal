@@ -1,6 +1,7 @@
-app.controller('appliedUserCtrl', function ($scope, $http, NgTableParams) {
+app.controller('appliedUserCtrl', function (serverURL, $scope, $http, NgTableParams) {
 
     $scope.getAppliedUserData = function () {
+        $scope.urlServer = serverURL;//protocol + "//" + host + ":" + "8081" + "/";
         $http.get("http://localhost:8080/api/v1/user/getInactiveUsers").then(
             function (response) {
                 console.log(response);

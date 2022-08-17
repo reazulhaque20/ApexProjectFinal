@@ -1,4 +1,4 @@
-app.controller('loginCtrl', function ($scope, $http, $window, SweetAlert) {
+app.controller('loginCtrl', function (serverURL, $scope, $http, $window, SweetAlert) {
 
 
     $scope.message = function (title, msg, type) {
@@ -11,11 +11,11 @@ app.controller('loginCtrl', function ($scope, $http, $window, SweetAlert) {
         var fullURL = window.location.href;
         var arr = fullURL.split("/");
         var protocol = arr[0];
-
+console.log(serverURL);
         var hostPort = arr[2].split(":");
         var host = hostPort[0];
         var port = hostPort[1];
-        $scope.urlServer = protocol + "//" + host + ":" + "8081" + "/";
+        $scope.urlServer = serverURL;//protocol + "//" + host + ":" + "8081" + "/";
     }
 
     $scope.getUiURL = function () {
