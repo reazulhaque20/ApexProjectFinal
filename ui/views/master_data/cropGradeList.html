@@ -49,7 +49,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body data-sidebar-size="lg" data-topbar="dark" ng-app="myApp" ng-controller="cropVarietyCtrl"
+<body data-sidebar-size="lg" data-topbar="dark" ng-app="myApp" ng-controller="cropGradeCtrl"
     ng-init="checkSessionData()">
     <!-- <div class="main-content" ng-app="myApp" ng-controller="dashCtrl" ng-init="checkSessionData()">
         <div class="page-content">
@@ -309,7 +309,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Crop Variety Deatil</h4>
+                                <h4 class="mb-sm-0 font-size-18">Crop Grade Detail</h4>
                             </div>
                         </div>
                     </div>
@@ -319,46 +319,46 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Crop Variety Detail List</h4>
+                                    <h4 class="card-title">Crop Grade Detail List</h4>
                                     <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
-                                            data-bs-target="#addOrEditCropVariety" ng-click="addCropVarietyClick()">Add
-                                        Crop Variety</button>
+                                            data-bs-target="#addOrEditCropGrade" ng-click="addCropGradeClick()">Add
+                                        Crop Grade</button>
                                 </div>
                                 <div class="card-body">
 
                                     <table ng-table="tableParams" class="table" show-filter="true">
-                                        <tr ng-repeat="cropVD in $data">
+                                        <tr ng-repeat="cropGD in $data">
                                             <td align="center" data-title="'SN'">{{ (tableParams.page() - 1) *
                                                 tableParams.count() +
                                                 $index + 1 }}</td>
                                             <td align="center" data-title="'Crop Code'"
                                                 filter="{ cropCode : 'text' }" sortable="cropCode">
-                                                {{ cropVD.crop.cropCode }}</td>
+                                                {{ cropGD.crop.cropCode }}</td>
                                             <td align="center" data-title="'Crop Name'"
                                                 filter="{ cropName : 'text' }" sortable="cropName">
-                                                {{ cropVD.crop.cropName }}</td>
+                                                {{ cropGD.crop.cropName }}</td>
                                             <td align="center" data-title="'Variety Code'"
                                                 filter="{ varietyCode : 'text' }" sortable="varietyCode">
-                                                {{ cropVD.varietyCode }}</td>
+                                                {{ cropGD.variety.varietyCode }}</td>
                                             <td align="center" data-title="'Variety Name'"
                                                 filter="{ varietyName : 'text' }" sortable="varietyName">
-                                                {{ cropVD.varietyName }}</td>
-                                            <td align="center" data-title="'Crop Cycle'"
-                                                filter="{ cropCycle : 'text' }" sortable="cropCyclce">
-                                                {{ cropVD.cropCycle }}</td>
-                                            <td align="center" data-title="'Expected Yield (KGS)/DCE'"
-                                                filter="{ expectedYield : 'text' }" sortable="expectedYield">
-                                                {{ cropVD.expectedYield }}</td>
-                                            <td align="center" data-title="'Initial Harvest (Days)'"
-                                                filter="{ initialHarvest : 'text' }" sortable="initialHarvest">
-                                                {{ cropVD.initialHarvest }}</td>
+                                                {{ cropGD.variety.varietyName }}</td>
+                                            <td align="center" data-title="'Grade Code'"
+                                                filter="{ gradeCode : 'text' }" sortable="gradeCode">
+                                                {{ cropGD.gradeCode }}</td>
+                                            <td align="center" data-title="'Grade Name'"
+                                                filter="{ gradeName : 'text' }" sortable="gradeName">
+                                                {{ cropGD.gradeName }}</td>
+                                            <td align="center" data-title="'Price'"
+                                                filter="{ price : 'number' }" sortable="price">
+                                                {{ cropGD.price }}</td>
                                             <td align="center" data-title="'Status'"
                                                 filter="{ status: 'text' }" sortable="status">
-                                                {{ cropVD.status }}</td>
+                                                {{ cropGD.status }}</td>
 
                                             <td align="center" data-title="'Action'"><button type="button"
-                                                    ng-click="editCropVariety(cropVD)" data-bs-toggle="modal"
-                                                    data-bs-target="#addOrEditCropVariety"
+                                                    ng-click="editCropGrade(cropGD)" data-bs-toggle="modal"
+                                                    data-bs-target="#addOrEditCropGrade"
                                                     class="btn btn-success">Edit</button>&nbsp;<button type="button"
                                                     class="btn btn-danger">Delete</button></td>
                                         </tr>
@@ -450,73 +450,75 @@
         <!-- Change Password Modal End -->
 
 
-        <!-- Add or Edit Crop Variety Modal Start -->
-        <div class="modal fade" id="addOrEditCropVariety" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <!-- Add or Edit Crop Grade Modal Start -->
+        <div class="modal fade" id="addOrEditCropGrade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel" ng-if="!cropVariety.id">Add Crop Variety</h5>
-                        <h5 class="modal-title" id="staticBackdropLabel" ng-if="cropVariety.id">Update Crop Variety</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel" ng-if="!cropGrade.id">Add Crop Grade</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel" ng-if="cropGrade.id">Update Crop Grade</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form id="addCropVarietyForm" class="modal-body">
                         <div class="mb-1">
                             <label class="form-label label-sm">Crop Code</label>
-                            <select class="form-select form-control GlobalSelect" ng-model="cropVariety.crop">
-                                <option ng-repeat="crop in cropList" ng-value="crop" ng-selected="cropVariety.crop.cropCode === crop.cropCode">{{crop.cropCode}}</option>
+                            <select class="form-select form-control GlobalSelect" ng-model="cropGrade.crop">
+                                <option ng-repeat="crop in cropList" ng-value="crop" ng-selected="cropGrade.crop.cropCode === crop.cropCode">{{crop.cropCode}}</option>
                             </select>
                         </div>
                         <div class="mb-1">
                             <label class="form-label label-sm">Crop Name</label>
-                            <select class="form-select form-control GlobalSelect" ng-model="cropVariety.crop">
-                                <option ng-repeat="crop in cropList" ng-value="crop" ng-selected="cropVariety.crop.cropName === crop.cropName" >{{crop.cropName}}</option>
+                            <select class="form-select form-control GlobalSelect" ng-model="cropGrade.crop">
+                                <option ng-repeat="crop in cropList" ng-value="crop" ng-selected="cropGrade.crop.cropName === crop.cropName" >{{crop.cropName}}</option>
                             </select>
                         </div>
                         <div class="mb-1">
                             <label class="form-label label-sm">Variety Code</label>
-                            <input class="form-control" type="text" placeholder="Enter Variety Code"
-                                ng-model="cropVariety.varietyCode" required>
+                            <select class="form-select form-control GlobalSelect" ng-model="cropGrade.variety">
+                                <option ng-repeat="variety in varietyList" ng-value="variety" ng-selected="cropGrade.variety.varietyCode === variety.varietyCode">{{variety.varietyCode}}</option>
+                            </select>
                         </div>
                         <div class="mb-1">
                             <label class="form-label label-sm">Variety Name</label>
-                            <input class="form-control" type="text" placeholder="Enter Variety Name"
-                                ng-model="cropVariety.varietyName" required>
+                            <select class="form-select form-control GlobalSelect" ng-model="cropGrade.variety">
+                                <option ng-repeat="variety in varietyList" ng-value="variety" ng-selected="cropGrade.variety.varietyName === variety.varietyName" >{{variety.varietyName}}</option>
+                            </select>
                         </div>
                         <div class="mb-1">
-                            <label class="form-label label-sm">Crop Cycle</label>
-                            <input class="form-control" type="text" placeholder="Enter Crop Cycle"
-                                ng-model="cropVariety.cropCycle" required>
+                            <label class="form-label label-sm">Grade Code</label>
+                            <input class="form-control" type="text" placeholder="Enter Grade Code"
+                                ng-model="cropGrade.gradeCode" required>
                         </div>
                         <div class="mb-1">
-                            <label class="form-label label-sm">Expected Yield</label>
-                            <input class="form-control" type="text" placeholder="Enter Expected Yield"
-                                ng-model="cropVariety.expectedYield" required>
+                            <label class="form-label label-sm">Grade Name</label>
+                            <input class="form-control" type="text" placeholder="Enter Grade Name"
+                                ng-model="cropGrade.gradeName" required>
                         </div>
                         <div class="mb-1">
-                            <label class="form-label label-sm">Initial Harvest</label>
-                            <input class="form-control" type="text" placeholder="Enter Initial Harvest"
-                                ng-model="cropVariety.initialHarvest" required>
+                            <label class="form-label label-sm">Price</label>
+                            <input class="form-control" type="text" placeholder="Enter Price"
+                                ng-model="cropGrade.price" required>
                         </div>
                         
-                        <div class="mb-1" ng-if="cropVariety.id">
+                        <div class="mb-1" ng-if="cropGrade.id">
                             <label class="form-label label-sm">Status</label>
-                            <select class="form-control form-select" ng-model="cropVariety.status">
+                            <select class="form-control form-select" ng-model="cropGrade.status">
                                 <option value="active">Active</option>
                                 <option value="inActive">InActive</option>
                             </select>
                         </div>
-                        CV: {{cropVariety}}
+                        CG: {{cropGrade}}
                     </form>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i
                                 class="mdi mdi-close"></i> Close</button>
-                        <button type="button" class="btn btn-success" ng-if="!cropVariety.id"
-                            ng-click="addCropVariety(cropVariety)"><i class="mdi mdi-check-decagram-outline"></i> ADD
-                            CROP VARIETY</button>
-                        <button type="button" class="btn btn-success" ng-click="updateCropVariety(cropVariety)"
-                            ng-if="cropVariety.id"><i class="mdi mdi-check-decagram-outline"></i> UPDATE
-                            CROP VARIETY</button>
+                        <button type="button" class="btn btn-success" ng-if="!cropGrade.id"
+                            ng-click="addCropGrade(cropGrade)"><i class="mdi mdi-check-decagram-outline"></i> ADD
+                            CROP GRADE</button>
+                        <button type="button" class="btn btn-success" ng-click="updateCropGrade(cropGrade)"
+                            ng-if="cropGrade.id"><i class="mdi mdi-check-decagram-outline"></i> UPDATE
+                            CROP GRADE</button>
                     </div>
                 </div>
             </div>
@@ -623,5 +625,5 @@
 <!-- Sweet Alert -->
 <script src="../../assets/js/angularjs/app.js"></script>
 <script src="../../assets/js/angularjs/service/jwtService.js"></script>
-<script src="../../assets/js/angularjs/controller/cropVarietyDetail.js"></script>
+<script src="../../assets/js/angularjs/controller/cropGradeController.js"></script>
 </html>

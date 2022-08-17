@@ -162,7 +162,7 @@ app.controller('cropCtrl', function ($scope, $http, NgTableParams, $window, Swee
                     case 'success':
                         $scope.message("SUCCESS", response.data.message, "success");
                         $('#addOrEditCrop').modal('hide');
-                        $scope.loadAllcrops();
+                        $scope.loadAllCrops();
                         break;
                     case 'error':
                         $scope.message("!ERROR!", response.data.message, "error");

@@ -23,6 +23,7 @@ public class MasterDataController {
     private final BuyerService buyerService;
     private final CropListService cropListService;
     private final CropVarietyDetailService cropVarietyDetailService;
+    private final CropGradeListService cropGradeListService;
 
     @GetMapping("/getAllDivision")
     public List<Division> getAllDivision(){
@@ -172,17 +173,32 @@ public class MasterDataController {
     }
 
     @GetMapping("/getAllCropVariety")
-    List<CropVarietyDetail> getAllCropVariety(){
+    public List<CropVarietyDetail> getAllCropVariety(){
         return cropVarietyDetailService.getAllCropVariety();
     }
 
     @PostMapping(value = "/addCropVariety", consumes = "application/json")
-    Response addCropVariety(@RequestBody CropVarietyDetail cropVarietyDetail){
+    public Response addCropVariety(@RequestBody CropVarietyDetail cropVarietyDetail){
         return cropVarietyDetailService.addCropVariety(cropVarietyDetail);
     }
 
     @PutMapping("/updateCropVariety")
-    Response updateCropVariety(@RequestBody CropVarietyDetail cropVarietyDetail){
+    public Response updateCropVariety(@RequestBody CropVarietyDetail cropVarietyDetail){
         return cropVarietyDetailService.updateCropVariety(cropVarietyDetail);
+    }
+
+    @GetMapping("/getAllCropGrade")
+    public List<CropGradeList> getAllCropGrade(){
+        return cropGradeListService.getAllCropGrade();
+    }
+
+    @PostMapping("/addCropGrade")
+    public Response addCropGrade(@RequestBody CropGradeList cropGradeList){
+        return cropGradeListService.addCropGradeList(cropGradeList);
+    }
+
+    @PutMapping("/updateCropGrade")
+    public Response updateCropGrade(@RequestBody CropGradeList cropGradeList){
+        return cropGradeListService.updateCropGradeList(cropGradeList);
     }
 }

@@ -1,4 +1,4 @@
-app.controller('cropVarietyCtrl', function ($scope, $http, NgTableParams, $window, SweetAlert) {
+app.controller('cropGradeCtrl', function ($scope, $http, NgTableParams, $window, SweetAlert) {
 
     $scope.urlServer = "";
     $scope.urlUI = "";
@@ -55,7 +55,7 @@ app.controller('cropVarietyCtrl', function ($scope, $http, NgTableParams, $windo
 
     }
 
-    $scope.loadAllCropVariety = function () {
+    $scope.loadAllCropGrade = function () {
         
         var config = {
             headers: {
@@ -64,7 +64,7 @@ app.controller('cropVarietyCtrl', function ($scope, $http, NgTableParams, $windo
                 'Authorization': 'Bearer ' + $scope.token
             }
         }
-        $http.get($scope.urlServer + "api/masterData/getAllCropVariety", config).then(
+        $http.get($scope.urlServer + "api/masterData/getAllCropGrade", config).then(
             function (response) {
                 console.log(response);
                 var data = response.data;
@@ -119,13 +119,33 @@ app.controller('cropVarietyCtrl', function ($scope, $http, NgTableParams, $windo
             }
         );
     }
-
-    $scope.loadInitData = function () {
-        $scope.loadAllCropVariety();
-        $scope.loadAllCrop();
+    
+    $scope.loadAllCropVariety = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        }
+        
+        $http.get($scope.urlServer + "api/masterData/getAllCropVariety", config).then(
+            function(response){
+                $scope.varietyList = response.data;
+            },
+            function(errResponse){
+                
+            }
+        );
     }
 
-    $scope.addCropVariety = function (cropVariety) {
+    $scope.loadInitData = function () {
+        $scope.loadAllCropGrade();
+        $scope.loadAllCrop();
+        $scope.loadAllCropVariety();
+    }
+
+    $scope.addCropGrade = function (cropGrade) {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -134,15 +154,15 @@ app.controller('cropVarietyCtrl', function ($scope, $http, NgTableParams, $windo
             }
         }
 
-        cropVariety.status = 'active';
-        console.log(cropVariety);
-        $http.post($scope.urlServer + "api/masterData/addCropVariety", cropVariety, config).then(
+        cropGrade.status = 'active';
+        console.log(cropGrade);
+        $http.post($scope.urlServer + "api/masterData/addCropGrade", cropGrade, config).then(
             function (response) {
                 console.log(response);
                 switch (response.data.messageType) {
                     case 'success':
                         $scope.message("SUCCESS", response.data.message, "success");
-                        $("#addOrEditCropVariety").modal("hide");
+                        $("#addOrEditCropGrade").modal("hide");
                         $scope.loadAllCropVariety();
                         break;
                     case 'error':
@@ -159,14 +179,14 @@ app.controller('cropVarietyCtrl', function ($scope, $http, NgTableParams, $windo
         );
     }
 
-    $scope.editCropVariety = function (cropVariety) {
-        $scope.cropVariety = cropVariety; 
+    $scope.editCropGrade = function (cropGrade) {
+        $scope.cropGrade = cropGrade; 
     }
-    $scope.addCropVarietyClick = function(){
-        $scope.cropVariety = {};
+    $scope.addCropGradeClick = function(){
+        $scope.cropGrade = {};
     }
 
-    $scope.updateCropVariety = function (cropVariety) {
+    $scope.updateCropGrade = function (cropGrade) {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -175,14 +195,14 @@ app.controller('cropVarietyCtrl', function ($scope, $http, NgTableParams, $windo
             }
         }
 
-        $http.put($scope.urlServer + "api/masterData/updateCropVariety", cropVariety, config).then(
+        $http.put($scope.urlServer + "api/masterData/updateCropGrade", cropGrade, config).then(
             function (response) {
                 console.log(response);
                 switch (response.data.messageType) {
                     case 'success':
                         $scope.message("SUCCESS", response.data.message, "success");
-                        $('#addOrEditCropVariety').modal('hide');
-                        $scope.loadAllCropVariety();
+                        $('#addOrEditCropGrade').modal('hide');
+                        $scope.loadAllCropCrade();
                         break;
                     case 'error':
                         $scope.message("!ERROR!", response.data.message, "error");
@@ -194,7 +214,7 @@ app.controller('cropVarietyCtrl', function ($scope, $http, NgTableParams, $windo
             },
             function (errResponse) {
                 $scope.message("!ERROR!", "Unknown Error", "warning");
-                $('#addOrEditCropVariety').modal('hide');
+                $('#addOrEditCropGrade').modal('hide');
             }
         );
     }
