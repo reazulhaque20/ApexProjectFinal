@@ -22,6 +22,9 @@ public class MasterDataController {
     private final CropListService cropListService;
     private final CropVarietyDetailService cropVarietyDetailService;
     private final CropGradeListService cropGradeListService;
+    private final FarmInputCategoryService farmInputCategoryService;
+    private final SeasonListService seasonListService;
+    private final SupplierListService supplierListService;
 
     @GetMapping("/getAllDivision")
     public List<Division> getAllDivision(){
@@ -196,5 +199,50 @@ public class MasterDataController {
     @PutMapping("/updateCropGrade")
     public Response updateCropGrade(@RequestBody CropGradeList cropGradeList){
         return cropGradeListService.updateCropGradeList(cropGradeList);
+    }
+
+    @GetMapping("/getAllInputCategory")
+    public List<FarmInputCategory> getAllInputCategory(){
+        return farmInputCategoryService.getAllInputCategory();
+    }
+
+    @PostMapping("/addInputCategory")
+    public Response addInputCategory(@RequestBody FarmInputCategory farmInputCategory){
+        return farmInputCategoryService.addInputCategory(farmInputCategory);
+    }
+
+    @PutMapping("/updateInputCategory")
+    public Response updateInputCategory(@RequestBody FarmInputCategory farmInputCategory){
+        return farmInputCategoryService.updateInputCategory(farmInputCategory);
+    }
+
+    @GetMapping("/getAllSeasonList")
+    public List<SeasonList> getAllSeasonList(){
+        return seasonListService.getAllSeasonList();
+    }
+
+    @PostMapping("/addSeasonList")
+    public Response addSeasonList(@RequestBody SeasonList seasonList){
+        return seasonListService.addSeasonList(seasonList);
+    }
+
+    @PutMapping("/updateSeasonList")
+    public Response updateSeasonList(@RequestBody SeasonList seasonList){
+        return seasonListService.updateSeasonList(seasonList);
+    }
+
+    @GetMapping("/getAllSupplierList")
+    public List<SupplierList> getAllSupplierList(){
+        return supplierListService.getAllSupplierList();
+    }
+
+    @PostMapping("/addSupplierList")
+    public Response addSupplierList(@RequestBody SupplierList supplierList){
+        return supplierListService.addSupplierList(supplierList);
+    }
+
+    @PutMapping("/updateSupplierList")
+    public Response updateSupplierList(@RequestBody SupplierList supplierList){
+        return  supplierListService.updateSupplierList(supplierList);
     }
 }
