@@ -25,6 +25,8 @@ public class MasterDataController {
     private final FarmInputCategoryService farmInputCategoryService;
     private final SeasonListService seasonListService;
     private final SupplierListService supplierListService;
+    private final WarehouseListService warehouseListService;
+    private final ZoneListService zoneListService;
 
     @GetMapping("/getAllDivision")
     public List<Division> getAllDivision(){
@@ -244,5 +246,35 @@ public class MasterDataController {
     @PutMapping("/updateSupplierList")
     public Response updateSupplierList(@RequestBody SupplierList supplierList){
         return  supplierListService.updateSupplierList(supplierList);
+    }
+
+    @GetMapping("/getAllWarehouseList")
+    public List<WarehouseList> getAllWarehouseList(){
+        return warehouseListService.getAllWarehouseList();
+    }
+
+    @PostMapping("/addWarehouseList")
+    public Response addWarehouseList(@RequestBody WarehouseList warehouseList){
+        return warehouseListService.addWarehouseList(warehouseList);
+    }
+
+    @PutMapping("/updateWarehouseList")
+    public Response updateWarehouseList(@RequestBody WarehouseList warehouseList){
+        return warehouseListService.updateWarehouseList(warehouseList);
+    }
+
+    @GetMapping("/getAllZoneList")
+    public List<ZoneList> getAllZoneList(){
+        return zoneListService.getAllZoneList();
+    }
+
+    @PostMapping("/addZoneList")
+    public Response addZoneList(@RequestBody ZoneList zoneList){
+        return zoneListService.addZoneList(zoneList);
+    }
+
+    @PutMapping("/updateZoneList")
+    public Response updateZoneList(@RequestBody ZoneList zoneList){
+        return zoneListService.updateZoneList(zoneList);
     }
 }
