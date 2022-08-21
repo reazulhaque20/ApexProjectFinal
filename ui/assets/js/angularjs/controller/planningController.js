@@ -1,4 +1,4 @@
-app.controller('zoneListCtrl', function (serverURL, $scope, $http, NgTableParams, $window, SweetAlert) {
+app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams, $window, SweetAlert) {
 
     $scope.urlServer = "";
     $scope.urlUI = "";
@@ -55,7 +55,7 @@ app.controller('zoneListCtrl', function (serverURL, $scope, $http, NgTableParams
 
     }
 
-    $scope.loadAllZoneList = function () {
+    $scope.loadAllCropGrade = function () {
         
         var config = {
             headers: {
@@ -64,7 +64,7 @@ app.controller('zoneListCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         }
-        $http.get($scope.urlServer + "api/masterData/getAllZoneList", config).then(
+        $http.get($scope.urlServer + "api/masterData/getAllCropGrade", config).then(
             function (response) {
                 console.log(response);
                 var data = response.data;
@@ -77,46 +77,6 @@ app.controller('zoneListCtrl', function (serverURL, $scope, $http, NgTableParams
                 });
             },
             function (errResponse) {
-                    console.log(errResponse);
-            }
-        );
-    };
-    
-    $scope.loadAllDivisionList = function(){
-        var config = {
-            headers: {
-                'NO-AUTH': 'True',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + $scope.token
-            }
-        };
-            
-            $http.get($scope.urlServer + "api/masterData/getAllDivision", config).then(
-                function(response){
-                    $scope.divList = response.data;
-                },
-                function(errResponse){
-                    console.log(errResponse);
-                }
-            );
-    };
-    
-    $scope.loadDistrictByDivision = function(div){
-        $scope.showDisInput = false;
-        $scope.showDisDD = true;
-        var config = {
-            headers: {
-                'NO-AUTH': 'True',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + $scope.token
-            }
-        }
-        
-        $http.get($scope.urlServer + "api/masterData/getDistrictByDivision/" + div.id, config).then(
-            function(response){
-                $scope.disList = response.data;
-            },
-            function(errResponse){
                     console.log(errResponse);
             }
         );
@@ -140,13 +100,52 @@ app.controller('zoneListCtrl', function (serverURL, $scope, $http, NgTableParams
     $scope.goToLogin = function () {
         $window.location.href = $scope.urlUI + 'ui/views/login.html';
     }
-
-    $scope.loadInitData = function () {
-        $scope.loadAllZoneList();
-        $scope.loadAllDivisionList();
+    
+    $scope.loadAllCrop = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        }
+        
+        $http.get($scope.urlServer + "api/masterData/getAllActiveCrops", config).then(
+            function(response){
+                $scope.cropList = response.data;
+            },
+            function(errResponse){
+                console.log(errResponse);
+            }
+        );
+    }
+    
+    $scope.loadAllCropVariety = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        }
+        
+        $http.get($scope.urlServer + "api/masterData/getAllCropVariety", config).then(
+            function(response){
+                $scope.varietyList = response.data;
+            },
+            function(errResponse){
+                
+            }
+        );
     }
 
-    $scope.addZoneList = function (zoneList) {
+    $scope.loadInitData = function () {
+        $scope.loadAllCropGrade();
+        $scope.loadAllCrop();
+        $scope.loadAllCropVariety();
+    }
+
+    $scope.addCropGrade = function (cropGrade) {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -155,16 +154,16 @@ app.controller('zoneListCtrl', function (serverURL, $scope, $http, NgTableParams
             }
         }
 
-        zoneList.status = 'active';
-        
-        $http.post($scope.urlServer + "api/masterData/addZoneList", zoneList, config).then(
+        cropGrade.status = 'active';
+        console.log(cropGrade);
+        $http.post($scope.urlServer + "api/masterData/addCropGrade", cropGrade, config).then(
             function (response) {
                 console.log(response);
                 switch (response.data.messageType) {
                     case 'success':
                         $scope.message("SUCCESS", response.data.message, "success");
-                        $("#addOrEditZoneList").modal("hide");
-                        $scope.loadAllZoneList();
+                        $("#addOrEditCropGrade").modal("hide");
+                        $scope.loadAllCropVariety();
                         break;
                     case 'error':
                         $scope.message("!ERRRO!", response.data.message, "error");
@@ -180,22 +179,14 @@ app.controller('zoneListCtrl', function (serverURL, $scope, $http, NgTableParams
         );
     }
 
-    $scope.editZoneList = function (zoneList) {
-        $scope.showDisInput = true;
-        $scope.showDisDD = false;
-        $scope.zoneList = zoneList;
-//        $scope.loadDistrictByDivision(zoneList.division);
+    $scope.editCropGrade = function (cropGrade) {
+        $scope.cropGrade = cropGrade; 
     }
-    $scope.addZoneListClick = function(){
-        $scope.showDisInput = false;
-        $scope.showDisDD = true;
-        $scope.zoneList = {};
+    $scope.addCropGradeClick = function(){
+        $scope.cropGrade = {};
     }
-    
-    $scope.showDisInput = true;
-    $scope.showDisDD = false;
 
-    $scope.updateZoneList = function (zoneList) {
+    $scope.updateCropGrade = function (cropGrade) {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -204,14 +195,14 @@ app.controller('zoneListCtrl', function (serverURL, $scope, $http, NgTableParams
             }
         }
 
-        $http.put($scope.urlServer + "api/masterData/updateZoneList", zoneList, config).then(
+        $http.put($scope.urlServer + "api/masterData/updateCropGrade", cropGrade, config).then(
             function (response) {
                 console.log(response);
                 switch (response.data.messageType) {
                     case 'success':
                         $scope.message("SUCCESS", response.data.message, "success");
-                        $('#addOrEditZoneList').modal('hide');
-                        $scope.loadAllZoneList();
+                        $('#addOrEditCropGrade').modal('hide');
+                        $scope.loadAllCropCrade();
                         break;
                     case 'error':
                         $scope.message("!ERROR!", response.data.message, "error");
@@ -223,7 +214,7 @@ app.controller('zoneListCtrl', function (serverURL, $scope, $http, NgTableParams
             },
             function (errResponse) {
                 $scope.message("!ERROR!", "Unknown Error", "warning");
-                $('#addOrEditZoneList').modal('hide');
+                $('#addOrEditCropGrade').modal('hide');
             }
         );
     }

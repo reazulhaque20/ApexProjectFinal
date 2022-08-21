@@ -332,7 +332,7 @@
                                 <div class="card-body">
 
                                     <table ng-table="tableParams" class="table" show-filter="true">
-                                        <tr ng-repeat="wList in $data">
+                                        <tr ng-repeat="zList in $data">
                                             <td align="center" data-title="'SN'">{{ (tableParams.page() - 1) *
                                                 tableParams.count() +
                                                 $index + 1 }}</td>
@@ -343,17 +343,17 @@
                                                 filter="{ zoneName : 'text' }" sortable="zoneName">
                                                 {{ zList.zoneName }}</td>
                                             <td align="center" data-title="'Division'"
-                                                filter="{ division.divName : 'text' }" sortable="division.divName">
+                                                filter="{ divName : 'text' }" sortable="divName">
                                                 {{ zList.division.divName }}</td>
                                             <td align="center" data-title="'District'"
-                                                filter="{ district.disName : 'text' }" sortable="district.disName">
-                                                {{ zList.district.divName }}</td>
+                                                filter="{ disName : 'text' }" sortable="disName">
+                                                {{ zList.district.disName }}</td>
                                             <td align="center" data-title="'Status'"
                                                 filter="{ status: 'text' }" sortable="status">
                                                 {{ zList.status }}</td>
 
                                             <td align="center" data-title="'Action'"><button type="button"
-                                                    ng-click="editZoneList(wList)" data-bs-toggle="modal"
+                                                    ng-click="editZoneList(zList)" data-bs-toggle="modal"
                                                     data-bs-target="#addOrEditZoneList"
                                                     class="btn btn-success">Edit</button>&nbsp;<button type="button"
                                                     class="btn btn-danger">Delete</button></td>
@@ -471,14 +471,15 @@
                             <label class="form-label label-sm">Division</label>
 <!--                            <input class="form-control" type="text" id="address" placeholder="Enter Division"
                                 ng-model="zoneList.division.divName" required>-->
-<select class="form-select form-control" ng-model="zoneList.division" ng-change="loadDistrictByDivision(zoneList.division)">
-    <option ng-repeat="division as divList" ng-value="division">{{division.divName}}</option>
-</select>
+                            <select class="form-select form-control" ng-model="zoneList.division" ng-change="loadDistrictByDivision(zoneList.division)">
+                                <option ng-repeat="div in divList" ng-value="div" ng-selected="zoneList.division.divName === div.divName" >{{div.divName}}</option>
+                            </select>
                         </div>
                         <div class="mb-1">
                             <label class="form-label label-sm">District</label>
-                            <select class="form-control form-select" ng-model="zoneList.district">
-                                <option ng-repeat="district as disList" ng-value="district">{{district.disName}}</option>
+                            <input class="form-control" type="text" ng-show="showDisInput" ng-model="zoneList.district.disName" > 
+                            <select class="form-control form-select" ng-model="zoneList.district" ng-show="showDisDD">
+                                <option ng-repeat="district in disList" ng-value="district" ng-selected="zoneList.district.disName === district.disName" >{{district.disName}}</option>
                             </select>
                         </div>
                         <div class="mb-1" ng-if="zoneList.id">

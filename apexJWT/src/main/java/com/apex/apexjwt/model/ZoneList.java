@@ -26,8 +26,8 @@ public class ZoneList {
     private String zoneName;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "dividion_id")
-    private Division dividion;
+    @JoinColumn(name = "division_id")
+    private Division division;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "district_id")

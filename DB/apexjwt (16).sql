@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 18, 2022 at 02:52 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.20
+-- Host: 127.0.0.1
+-- Generation Time: Aug 21, 2022 at 12:37 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -537,6 +537,13 @@ CREATE TABLE `farm_input_category` (
   `status` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `farm_input_category`
+--
+
+INSERT INTO `farm_input_category` (`id`, `input_cat_code`, `input_cat_name`, `status`) VALUES
+(1, 'FI-CAT-001', 'Farm Input Category 1', 'active');
+
 -- --------------------------------------------------------
 
 --
@@ -875,12 +882,19 @@ INSERT INTO `role` (`id`, `role_description`, `role_name`) VALUES
 
 CREATE TABLE `season_list` (
   `id` bigint(20) NOT NULL,
-  `seson_code` varchar(45) DEFAULT NULL,
+  `season_code` varchar(45) DEFAULT NULL,
   `season_name` varchar(45) DEFAULT NULL,
   `season_start` date DEFAULT NULL,
   `season_end` date DEFAULT NULL,
   `status` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `season_list`
+--
+
+INSERT INTO `season_list` (`id`, `season_code`, `season_name`, `season_start`, `season_end`, `status`) VALUES
+(1, 'S001', 'Season 1', '2022-08-17', '2022-08-30', 'active');
 
 -- --------------------------------------------------------
 
@@ -929,6 +943,7 @@ CREATE TABLE `stock` (
 
 CREATE TABLE `supplier_list` (
   `id` bigint(20) NOT NULL,
+  `code` varchar(45) DEFAULT NULL,
   `short_name` varchar(45) DEFAULT NULL,
   `full_name` varchar(45) DEFAULT NULL,
   `address` varchar(200) DEFAULT NULL,
@@ -937,6 +952,13 @@ CREATE TABLE `supplier_list` (
   `contact_person` varchar(45) DEFAULT NULL,
   `status` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `supplier_list`
+--
+
+INSERT INTO `supplier_list` (`id`, `code`, `short_name`, `full_name`, `address`, `phone`, `email`, `contact_person`, `status`) VALUES
+(1, 'SUP001', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'active');
 
 -- --------------------------------------------------------
 
@@ -3278,6 +3300,13 @@ CREATE TABLE `warehouse_list` (
   `status` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `warehouse_list`
+--
+
+INSERT INTO `warehouse_list` (`id`, `warehouse_code`, `warehouse_name`, `address`, `location`, `incharge_name`, `capacity`, `status`) VALUES
+(1, 'WH-001', 'Warehouse-1', 'Dhaka', 'Dhaka', 'None', '10', 'active');
+
 -- --------------------------------------------------------
 
 --
@@ -3323,10 +3352,17 @@ CREATE TABLE `zone_list` (
   `id` bigint(20) NOT NULL,
   `zone_code` varchar(45) DEFAULT NULL,
   `zone_name` varchar(45) DEFAULT NULL,
-  `dividion_id` bigint(20) DEFAULT NULL,
+  `division_id` bigint(20) DEFAULT NULL,
   `district_id` bigint(20) DEFAULT NULL,
   `status` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `zone_list`
+--
+
+INSERT INTO `zone_list` (`id`, `zone_code`, `zone_name`, `division_id`, `district_id`, `status`) VALUES
+(2, 'Z001', 'Zone1', 1, 2, 'active');
 
 --
 -- Indexes for dumped tables
@@ -3671,7 +3707,7 @@ ALTER TABLE `wflines`
 --
 ALTER TABLE `zone_list`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `zone_division_fk` (`dividion_id`),
+  ADD KEY `zone_division_fk` (`division_id`),
   ADD KEY `zone_district_fk` (`district_id`);
 
 --
@@ -3796,7 +3832,7 @@ ALTER TABLE `farm_details`
 -- AUTO_INCREMENT for table `farm_input_category`
 --
 ALTER TABLE `farm_input_category`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `farm_land_detail`
@@ -3886,7 +3922,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `season_list`
 --
 ALTER TABLE `season_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `seed_master`
@@ -3904,7 +3940,7 @@ ALTER TABLE `stock`
 -- AUTO_INCREMENT for table `supplier_list`
 --
 ALTER TABLE `supplier_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `union`
@@ -3934,7 +3970,7 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `warehouse_list`
 --
 ALTER TABLE `warehouse_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wfheader`
@@ -3946,7 +3982,7 @@ ALTER TABLE `wfheader`
 -- AUTO_INCREMENT for table `zone_list`
 --
 ALTER TABLE `zone_list`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -4123,7 +4159,7 @@ ALTER TABLE `wflines`
 --
 ALTER TABLE `zone_list`
   ADD CONSTRAINT `zone_district_fk` FOREIGN KEY (`district_id`) REFERENCES `district` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `zone_division_fk` FOREIGN KEY (`dividion_id`) REFERENCES `division` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `zone_division_fk` FOREIGN KEY (`division_id`) REFERENCES `division` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
