@@ -1,7 +1,7 @@
 var app = angular.module('myApp', ['ngTable', 'oitozero.ngSweetAlert']);
 
 
-app.value('serverURL', 'http://localhost:8081/');
+app.value('serverURL', 'http://localhost:8082/');
 app.value('uiURL','http://localhost/');
 
 // .config(function ($httpProvider) {
