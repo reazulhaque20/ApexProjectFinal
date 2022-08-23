@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 22, 2022 at 07:07 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.20
+-- Host: 127.0.0.1
+-- Generation Time: Aug 23, 2022 at 12:45 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -3485,7 +3485,8 @@ ALTER TABLE `contract_season`
   ADD KEY `contract_season_fk` (`season_id`),
   ADD KEY `contract_crop_fk` (`crop_id`),
   ADD KEY `contract_crop_variety_fk` (`crop_variety_id`),
-  ADD KEY `contract_land_fk` (`land_id`);
+  ADD KEY `contract_land_fk` (`land_id`),
+  ADD KEY `contract_season_contract_fk` (`contract_id`);
 
 --
 -- Indexes for table `contruct_cash_details`
@@ -4142,6 +4143,7 @@ ALTER TABLE `contract_season`
   ADD CONSTRAINT `contract_crop_fk` FOREIGN KEY (`crop_id`) REFERENCES `crop_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `contract_crop_variety_fk` FOREIGN KEY (`crop_variety_id`) REFERENCES `crop_variety_detail` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `contract_land_fk` FOREIGN KEY (`land_id`) REFERENCES `land_details` (`land_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `contract_season_contract_fk` FOREIGN KEY (`contract_id`) REFERENCES `contract_details` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `contract_season_fk` FOREIGN KEY (`season_id`) REFERENCES `season_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

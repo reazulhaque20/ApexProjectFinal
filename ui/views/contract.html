@@ -460,7 +460,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <label class="form-label label-sm">LAND : </label>
+                                                            <label class="form-label label-sm">LAND NAME: </label>
                                                             <select class="form-control form-select" ng-model="land">
                                                                 <option ng-repeat="land in landList" ng-value="land">{{land.landName}}</option>
                                                             </select>
@@ -513,21 +513,23 @@
                                                         <table id="addContractSeasion" class="table table-bordered">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Member Name</th>
-                                                                    <th>Relationship</th>
-                                                                    <th>Contact Number</th>
-                                                                    <th>Date of Birth</th>
+                                                                    <th>Land Name</th>
+                                                                    <th>Land Area</th>
+                                                                    <th>Season Name</th>
+                                                                    <th>Crop Name</th>
+                                                                    <th>Crop Variety</th>
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody id="tbl_family_member">
-                                                                <tr ng-repeat="f_member in f_members track by $index"
-                                                                    ng-show="f_member.memberName != null">
-                                                                    <td style="display:none;">{{ f_member.id}}</td>
-                                                                    <td>{{ f_member.memberName}}</td>
-                                                                    <td>{{ f_member.relationWithMember}}</td>
-                                                                    <td>{{ f_member.contactNumber}}</td>
-                                                                    <td>{{ f_member.memberDob}}</td>
+                                                            <tbody id="tbl_season_details">
+                                                                <tr ng-repeat="season in seasonDetails track by $index"
+                                                                    ng-show="season.contract.id != null">
+                                                                    <td style="display:none;">{{ season.id}}</td>
+                                                                    <td>{{ season.land.landName}}</td>
+                                                                    <td>{{ season.land.landSize}}</td>
+                                                                    <td>{{ season.seasonList.seasonName}}</td>
+                                                                    <td>{{ season.cropList.cropName}}</td>
+                                                                    <td>{{ season.cropVarietyDetail.varietyName }}</td>
                                                                     <td><a class="btn btn-xs delete-record"
                                                                            ng-click="removeRow($index)"><i
                                                                                 class="fa fa-trash"

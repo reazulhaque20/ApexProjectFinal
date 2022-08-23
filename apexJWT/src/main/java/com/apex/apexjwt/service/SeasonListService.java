@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface SeasonListService {
 
+    SeasonList getSeasonByID(Long id);
     List<SeasonList> getAllSeasonList();
     Response addSeasonList(SeasonList seasonList);
     Response updateSeasonList(SeasonList seasonList);

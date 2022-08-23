@@ -16,6 +16,11 @@ public class CropVarietyDetailServiceImpl implements CropVarietyDetailService{
 
 
     @Override
+    public CropVarietyDetail getCropVarietyDetailById(Long id) {
+        return cropVarietyDetailRepo.getCropVarietyDetailsById(id);
+    }
+
+    @Override
     public List<CropVarietyDetail> getAllCropVariety() {
         return cropVarietyDetailRepo.findAll();
     }

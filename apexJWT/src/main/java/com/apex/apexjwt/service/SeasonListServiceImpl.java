@@ -15,6 +15,11 @@ public class SeasonListServiceImpl implements SeasonListService {
     private final SeasonListRepo seasonListRepo;
 
     @Override
+    public SeasonList getSeasonByID(Long id) {
+        return seasonListRepo.getById(id);
+    }
+
+    @Override
     public List<SeasonList> getAllSeasonList() {
         return seasonListRepo.findAll();
     }
