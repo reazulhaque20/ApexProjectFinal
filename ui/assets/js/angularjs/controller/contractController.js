@@ -237,7 +237,7 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
 
     
     $scope.seasonDetails = [
-        
+        "land" = {}
     ];
     
     $scope.addContractSeasion = function(){
