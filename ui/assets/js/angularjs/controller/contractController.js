@@ -168,6 +168,62 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 }
         );
     };
+    
+    $scope.loadAllLandDetails = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        
+        $http.get($scope.urlServer + "api/masterData/getAllLandDetails", config).then(
+            function(response){
+                $scope.landList = response.data;
+            },
+            function(errResponse){
+                console.log(errResponse);
+            }
+        );
+    };
+    
+    $scope.loadAllActiveSeasonList = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        $http.get($scope.urlServer + "api/masterData/getAllActiveSeasonList", config).then(
+                function(response){
+                    $scope.seasonList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    };
+    
+    $scope.loadCropVarietyByCrop = function(crop){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        
+        $http.get($scope.urlServer + "api/masterData/getCropVarietyByCropName/" + crop.cropName, config).then(
+                function(response){
+                    $scope.cropVarietyList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    };
 
     $scope.loadInitData = function () {
         $scope.loadAllCrop();
@@ -175,7 +231,9 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
         $scope.loadAllReportingOffice();
         $scope.loadAllReportingFieldOfficer();
         $scope.loadAllWarehouseList();
-    }
+        $scope.loadAllLandDetails();
+        $scope.loadAllActiveSeasonList();
+    };
 
     
     $scope.seasonDetails = [
@@ -183,7 +241,7 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
     ];
     
     $scope.addContractSeasion = function(){
-        
+        $scope.seasonDetails.push($scope.land);
     };
 
 });

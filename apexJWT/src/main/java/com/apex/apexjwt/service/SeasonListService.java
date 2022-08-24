@@ -9,6 +9,7 @@ public interface SeasonListService {
 
     SeasonList getSeasonByID(Long id);
     List<SeasonList> getAllSeasonList();
+    List<SeasonList> getAllActiveSeasonList();
     Response addSeasonList(SeasonList seasonList);
     Response updateSeasonList(SeasonList seasonList);
 }

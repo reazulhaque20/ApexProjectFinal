@@ -9,6 +9,7 @@ public interface CropVarietyDetailService {
 
     CropVarietyDetail getCropVarietyDetailById(Long id);
     List<CropVarietyDetail> getAllCropVariety();
+    List<CropVarietyDetail> getCropVarietyDetailByCropName(String cropName);
     Response addCropVariety(CropVarietyDetail cropVarietyDetail);
     Response updateCropVariety(CropVarietyDetail cropVarietyDetail);
 }

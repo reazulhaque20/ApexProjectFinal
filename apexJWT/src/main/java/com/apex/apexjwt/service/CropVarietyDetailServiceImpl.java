@@ -26,6 +26,11 @@ public class CropVarietyDetailServiceImpl implements CropVarietyDetailService{
     }
 
     @Override
+    public List<CropVarietyDetail> getCropVarietyDetailByCropName(String cropName) {
+        return cropVarietyDetailRepo.getAllVarietyByCropName(cropName);
+    }
+
+    @Override
     public Response addCropVariety(CropVarietyDetail cropVarietyDetail) {
         Response response;
         cropVarietyDetailRepo.save(cropVarietyDetail);

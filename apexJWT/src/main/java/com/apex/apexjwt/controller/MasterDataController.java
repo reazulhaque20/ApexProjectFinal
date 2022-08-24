@@ -27,6 +27,7 @@ public class MasterDataController {
     private final SupplierListService supplierListService;
     private final WarehouseListService warehouseListService;
     private final ZoneListService zoneListService;
+    private final LandDetailService landDetailService;
 
     @GetMapping("/getAllDivision")
     public List<Division> getAllDivision(){
@@ -281,5 +282,20 @@ public class MasterDataController {
     @PutMapping("/updateZoneList")
     public Response updateZoneList(@RequestBody ZoneList zoneList){
         return zoneListService.updateZoneList(zoneList);
+    }
+
+    @GetMapping("/getAllLandDetails")
+    public List<LandDetail> getAllLandDetails(){
+        return landDetailService.getAllLandDetails();
+    }
+
+    @GetMapping("/getAllActiveSeasonList")
+    public List<SeasonList> getAllActiveSeasonList(){
+        return seasonListService.getAllActiveSeasonList();
+    }
+
+    @GetMapping("/getCropVarietyByCropName/{cropName}")
+    public List<CropVarietyDetail> getCropVarietyByCropName(@PathVariable("cropName") String cropName){
+        return cropVarietyDetailService.getCropVarietyDetailByCropName(cropName);
     }
 }

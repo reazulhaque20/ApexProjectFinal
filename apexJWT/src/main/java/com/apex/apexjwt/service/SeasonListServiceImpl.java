@@ -25,6 +25,11 @@ public class SeasonListServiceImpl implements SeasonListService {
     }
 
     @Override
+    public List<SeasonList> getAllActiveSeasonList() {
+        return seasonListRepo.getAllActiveSeasonList();
+    }
+
+    @Override
     public Response addSeasonList(SeasonList seasonList) {
         seasonListRepo.save(seasonList);
         Response response = new Response("Season List Successfully Added.", "success", 0L);
