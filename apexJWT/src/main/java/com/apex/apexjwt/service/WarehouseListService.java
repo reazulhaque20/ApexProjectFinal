@@ -8,6 +8,7 @@ import java.util.List;
 public interface WarehouseListService {
 
     List<WarehouseList> getAllWarehouseList();
+    List<WarehouseList> getAllActiveWarehouseList();
     Response addWarehouseList(WarehouseList warehouseList);
     Response updateWarehouseList(WarehouseList warehouseList);
 }

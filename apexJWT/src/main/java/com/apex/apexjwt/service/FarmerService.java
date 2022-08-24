@@ -11,6 +11,7 @@ import java.util.List;
 public interface FarmerService {
 
     List<FarmerDetailResponse> getAllFarmer();
+    List<FarmerDetail> getAllActiveFarmers();
     FarmerDetail createFarmer(FarmerDetail farmerDetail);
     Response updateFarmer(FarmerAddRequest farmerAddRequest);
     FarmerDetail getFarmerById(Long farmerId);

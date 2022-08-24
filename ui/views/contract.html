@@ -325,29 +325,28 @@
                                         <h4 class="card-title">New Contract Details</h4>
                                     </div>
                                     <div class="card-body">
-                                        <form id="setNewFarmerDetails" class="form-horizontal row" method="POST"
-                                              action="GlobalController" enctype="multipart/form-data">
-                                            <input type="hidden" name="REQ" value="addNewFarmerDetails">
-
+                                        <form id="setNewContractSeasonDetails" class="form-horizontal row" method="POST"
+                                              action="GlobalController">
                                             <div class="col-md-12">
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group select2-sm">
-                                                            <label class="form-label label-sm">Select Farmer Name : </label>
+                                                            <label class="form-label label-sm">Select Farmer Name : </label>Farmer: {{farmer}}
                                                             <select name="zone_name" id="zone_name"
-                                                                    class="form-control GlobalSelect" required>
+                                                                    class="form-control form-select" required ng-model="farmer">
                                                                 <option value="">Select Farmer Name</option>
+                                                                <option ng-repeat="farmer in farmerList" ng-value="farmer">{{farmer.farmerName}}</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group select2-sm">
                                                             <label class="form-label label-sm">Reporting Office Name :
-                                                            </label>
+                                                            </label>Office: {{office}}
                                                             <select name="reporting_office" id="reporting_office"
-                                                                    class="form-control GlobalSelect" required>
+                                                                    class="form-control form-select" required ng-model="office">
                                                                 <option value="">Select Office Name</option>
-                                                                <option value="1">CORPORATE OFFICES</option>
+                                                                <option ng-repeat="office in officeList" ng-value="office">{{office.officeName}}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -362,19 +361,21 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group select2-sm">
                                                             <label class="form-label label-sm">Reporting Field Officer :
-                                                            </label>
+                                                            </label> officer: {{officer}}
                                                             <select name="reporting_officer" id="reporting_officer"
-                                                                    class="form-control GlobalSelect" required>
+                                                                    class="form-control form-select" required ng-model="officer">
                                                                 <option value="">Select Field Officer</option>
+                                                                <option ng-repeat="officer in officerList" ng-value="officer">{{officer.officerName}}</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group select2-sm">
-                                                            <label class="form-label label-sm">Warehouse Name : </label>
+                                                            <label class="form-label label-sm">Warehouse Name : </label>warehouse{{warehouse}}
                                                             <select name="reporting_officer" id="warehouse_name"
-                                                                    class="form-control GlobalSelect" required>
+                                                                    class="form-control form-select" required ng-model="warehouse">
                                                                 <option value="">Select Warehouse</option>
+                                                                <option ng-repeat="warehouse in warehouseList" ng-value="warehouse">{{warehouse.warehouseName}}</option>
                                                             </select>
                                                         </div>
                                                     </div>

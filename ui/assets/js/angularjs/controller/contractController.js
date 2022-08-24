@@ -55,33 +55,6 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
 
     }
 
-    $scope.loadAllCropGrade = function () {
-        
-        var config = {
-            headers: {
-                'NO-AUTH': 'True',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + $scope.token
-            }
-        }
-        $http.get($scope.urlServer + "api/masterData/getAllCropGrade", config).then(
-            function (response) {
-                console.log(response);
-                var data = response.data;
-                $scope.tableParams = new NgTableParams({
-                    page: 1,            // show first page
-                    count: 5           // count per page
-                }, {
-                    total: data.length, // length of data
-                    dataset: data
-                });
-            },
-            function (errResponse) {
-                    console.log(errResponse);
-            }
-        );
-    }
-
     $scope.checkSessionData = function () {
         $scope.getJWTToken();
         if ($scope.token == '' || $scope.userName == '' || $scope.userRole == '' || $scope.token == null || $scope.userName == null || $scope.userRole == null) {
@@ -118,105 +91,99 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 console.log(errResponse);
             }
         );
-    }
+    };
     
-    $scope.loadAllCropVariety = function(){
+    $scope.loadAllFarmers = function(){
         var config = {
             headers: {
                 'NO-AUTH': 'True',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + $scope.token
             }
-        }
+        };
         
-        $http.get($scope.urlServer + "api/masterData/getAllCropVariety", config).then(
-            function(response){
-                $scope.varietyList = response.data;
-            },
-            function(errResponse){
-                
-            }
+        $http.get($scope.urlServer + 'api/farmer/getALLActiveFarmer', config).then(
+                function(response){
+                    $scope.farmerList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
         );
-    }
+    };
+    
+    $scope.loadAllReportingOffice = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        
+        $http.get($scope.urlServer + "api/reportingOffice/getAllActiveReportingOffice", config).then(
+                function(response){
+                    $scope.officeList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    };
+    
+    $scope.loadAllReportingFieldOfficer = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        
+        $http.get($scope.urlServer + "api/reportingFieldOfficer/getAllActiveReportingFieldOfficer", config).then(
+                function(response){
+                    $scope.officerList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    };
+    
+    $scope.loadAllWarehouseList = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        
+        $http.get($scope.urlServer + "api/masterData/getAllActiveWarehouseList", config).then(
+                function(response){
+                    $scope.warehouseList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    };
 
     $scope.loadInitData = function () {
-        $scope.loadAllCropGrade();
         $scope.loadAllCrop();
-        $scope.loadAllCropVariety();
+        $scope.loadAllFarmers();
+        $scope.loadAllReportingOffice();
+        $scope.loadAllReportingFieldOfficer();
+        $scope.loadAllWarehouseList();
     }
 
-    $scope.addCropGrade = function (cropGrade) {
-        var config = {
-            headers: {
-                'NO-AUTH': 'True',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + $scope.token
-            }
-        }
-
-        cropGrade.status = 'active';
-        console.log(cropGrade);
-        $http.post($scope.urlServer + "api/masterData/addCropGrade", cropGrade, config).then(
-            function (response) {
-                console.log(response);
-                switch (response.data.messageType) {
-                    case 'success':
-                        $scope.message("SUCCESS", response.data.message, "success");
-                        $("#addOrEditCropGrade").modal("hide");
-                        $scope.loadAllCropVariety();
-                        break;
-                    case 'error':
-                        $scope.message("!ERRRO!", response.data.message, "error");
-                        break;
-                    default:
-                        $scope.message("WARNING", "Unknown Error", "warning");
-                        break;
-                }
-            },
-            function (errResponse) {
-                console.log(errResponse);
-            }
-        );
-    }
-
-    $scope.editCropGrade = function (cropGrade) {
-        $scope.cropGrade = cropGrade; 
-    }
-    $scope.addCropGradeClick = function(){
-        $scope.cropGrade = {};
-    }
-
-    $scope.updateCropGrade = function (cropGrade) {
-        var config = {
-            headers: {
-                'NO-AUTH': 'True',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + $scope.token
-            }
-        }
-
-        $http.put($scope.urlServer + "api/masterData/updateCropGrade", cropGrade, config).then(
-            function (response) {
-                console.log(response);
-                switch (response.data.messageType) {
-                    case 'success':
-                        $scope.message("SUCCESS", response.data.message, "success");
-                        $('#addOrEditCropGrade').modal('hide');
-                        $scope.loadAllCropCrade();
-                        break;
-                    case 'error':
-                        $scope.message("!ERROR!", response.data.message, "error");
-                        break;
-                    default:
-                        $scope.message("WARNING", "Unknown Error", "warning");
-                        break;
-                }
-            },
-            function (errResponse) {
-                $scope.message("!ERROR!", "Unknown Error", "warning");
-                $('#addOrEditCropGrade').modal('hide');
-            }
-        );
-    }
+    
+    $scope.seasonDetails = [
+        
+    ];
+    
+    $scope.addContractSeasion = function(){
+        
+    };
 
 });

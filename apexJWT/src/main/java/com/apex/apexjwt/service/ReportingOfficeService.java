@@ -8,6 +8,7 @@ import java.util.List;
 public interface ReportingOfficeService {
 
     List<ReportingOffice> getAllReportingOffice();
+    List<ReportingOffice> getAllActiveReportingOffice();
     List<String> getAllReportingOfficeName();
     ReportingOffice getReportingOfficeByOfficeName(String officeName);
     Response addOffice(ReportingOffice reportingOffice);

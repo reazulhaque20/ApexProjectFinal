@@ -49,6 +49,11 @@ public class FarmerServiceImpl implements FarmerService{
     }
 
     @Override
+    public List<FarmerDetail> getAllActiveFarmers() {
+        return farmerRepo.getAllActiveFarmers();
+    }
+
+    @Override
     public FarmerDetail createFarmer(FarmerDetail farmerDetail) {
         Response response = new Response();
 

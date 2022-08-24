@@ -20,6 +20,11 @@ public class ReportingFieldOfficerServiceImpl implements ReportingFieldOfficerSe
     }
 
     @Override
+    public List<ReportingFieldOfficer> getAllActiveReportingFieldOfficer() {
+        return reportingFieldOfficerRepo.getAllActiveReportingFieldOfficeName();
+    }
+
+    @Override
     public List<String> getAllReportingFieldOfficerName() {
         return reportingFieldOfficerRepo.getAllReportingFieldOfficeName();
     }

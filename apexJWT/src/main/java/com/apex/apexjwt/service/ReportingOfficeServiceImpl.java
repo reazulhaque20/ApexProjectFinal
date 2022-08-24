@@ -20,6 +20,11 @@ public class ReportingOfficeServiceImpl implements ReportingOfficeService{
     }
 
     @Override
+    public List<ReportingOffice> getAllActiveReportingOffice() {
+        return reportingOfficeRepo.getAllActiveReportingOffice();
+    }
+
+    @Override
     public List<String> getAllReportingOfficeName() {
         return reportingOfficeRepo.getAllReportingOfficeName();
     }

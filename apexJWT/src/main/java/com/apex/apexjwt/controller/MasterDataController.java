@@ -253,6 +253,11 @@ public class MasterDataController {
         return warehouseListService.getAllWarehouseList();
     }
 
+    @GetMapping("/getAllActiveWarehouseList")
+    public List<WarehouseList> getAllActiveWarehouseList(){
+        return warehouseListService.getAllActiveWarehouseList();
+    }
+
     @PostMapping("/addWarehouseList")
     public Response addWarehouseList(@RequestBody WarehouseList warehouseList){
         return warehouseListService.addWarehouseList(warehouseList);

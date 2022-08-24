@@ -24,6 +24,9 @@ public interface FarmerRepo extends JpaRepository<FarmerDetail, Long> {
     @Query("SELECT u FROM FarmerDetail u where u.status='active'")
     List<FarmerDetail> getAllFarmers();
 
+    @Query("SELECT u FROM FarmerDetail u")
+    List<FarmerDetail> getAllActiveFarmers();
+
     @Query("SELECT u FROM FarmerDetail u WHERE u.farmerName=:farmerName")
     FarmerDetail getFarmerByFarmerName(@Param("farmerName") String farmerName);
 }

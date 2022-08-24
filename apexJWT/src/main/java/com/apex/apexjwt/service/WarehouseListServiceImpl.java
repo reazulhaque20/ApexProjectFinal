@@ -21,6 +21,11 @@ public class WarehouseListServiceImpl implements WarehouseListService {
     }
 
     @Override
+    public List<WarehouseList> getAllActiveWarehouseList() {
+        return warehouseListRepo.getAllActiveWarehouseList();
+    }
+
+    @Override
     public Response addWarehouseList(WarehouseList warehouseList) {
         warehouseListRepo.save(warehouseList);
         Response response = new Response("Warehouse Successfully Added.", "success", 0L);

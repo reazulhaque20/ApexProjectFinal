@@ -15,6 +15,9 @@ public interface ReportingFieldOfficerRepo extends JpaRepository<ReportingFieldO
     @Query("SELECT u.officerName FROM ReportingFieldOfficer u WHERE u.status='active'")
     List<String> getAllReportingFieldOfficeName();
 
+    @Query("SELECT u FROM ReportingFieldOfficer u WHERE u.status='active'")
+    List<ReportingFieldOfficer> getAllActiveReportingFieldOfficeName();
+
     @Query("SELECT u FROM ReportingFieldOfficer u WHERE u.officerName=:officerName AND u.status='active'")
     ReportingFieldOfficer getReportingFieldOfficerByOfficerName(@Param("officerName") String officerName);
 

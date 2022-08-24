@@ -50,7 +50,11 @@ public class FarmerController {
 
     private final Path root = Paths.get("F://XAMPP7.4//htdocs//apexJWT//farmerImages//");
     
-    
+    @GetMapping("/getALLActiveFarmer")
+    public List<FarmerDetail> getALLActiveFarmer(){
+        return farmerService.getAllActiveFarmers();
+    }
+
     @GetMapping("/getAllFarmers")
     public List<FarmerDetailResponse> getAllFarmers(){
         return farmerService.getAllFarmer();

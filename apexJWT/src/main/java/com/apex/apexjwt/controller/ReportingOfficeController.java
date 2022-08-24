@@ -20,6 +20,11 @@ public class ReportingOfficeController {
         return reportingOfficeService.getAllReportingOffice();
     }
 
+    @GetMapping("/getAllActiveReportingOffice")
+    public List<ReportingOffice> getAllActiveReportingOffice(){
+        return reportingOfficeService.getAllActiveReportingOffice();
+    }
+
     @GetMapping("/getAllReportingOfficeName")
     public List<String> getAllReportingOfficeName(){
         return reportingOfficeService.getAllReportingOfficeName();

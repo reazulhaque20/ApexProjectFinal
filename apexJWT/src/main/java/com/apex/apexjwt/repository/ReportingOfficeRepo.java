@@ -14,6 +14,9 @@ public interface ReportingOfficeRepo extends JpaRepository<ReportingOffice, Long
     @Query("SELECT u.officeName FROM ReportingOffice u WHERE u.status='active'")
     List<String> getAllReportingOfficeName();
 
+    @Query("SELECT u FROM ReportingOffice u WHERE u.status='active'")
+    List<ReportingOffice> getAllActiveReportingOffice();
+
     @Query("SELECT u FROM ReportingOffice u WHERE u.officeName=:officeName AND u.status='active'")
     ReportingOffice getReportingOfficeByOfficeName(@Param("officeName") String officeName);
 }

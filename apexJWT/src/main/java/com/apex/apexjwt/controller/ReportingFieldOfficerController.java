@@ -21,6 +21,11 @@ public class ReportingFieldOfficerController {
         return reportingFieldOfficerService.getAllReportingFieldOfficer();
     }
 
+    @GetMapping("/getAllActiveReportingFieldOfficer")
+    public List<ReportingFieldOfficer> getAllActiveReportingFieldOfficer(){
+        return reportingFieldOfficerService.getAllActiveReportingFieldOfficer();
+    }
+
     @GetMapping("/getAllReportingFieldOfficerName")
     public List<String> getAllReportingFieldOfficerName(){
         return reportingFieldOfficerService.getAllReportingFieldOfficerName();

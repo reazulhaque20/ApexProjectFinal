@@ -8,6 +8,7 @@ import java.util.List;
 public interface ReportingFieldOfficerService {
 
     List<ReportingFieldOfficer> getAllReportingFieldOfficer();
+    List<ReportingFieldOfficer> getAllActiveReportingFieldOfficer();
     List<String> getAllReportingFieldOfficerName();
     ReportingFieldOfficer getReportingFieldOfficerByOfficerName(String officerName);
     Response addOfficer(ReportingFieldOfficer reportingFieldOfficer);
