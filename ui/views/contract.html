@@ -461,7 +461,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <label class="form-label label-sm">LAND NAME: </label>
+                                                            <label class="form-label label-sm">LAND NAME: </label>land: {{land}}
                                                             <select class="form-control form-select" ng-model="land">
                                                                 <option value="">Select a Land</option>
                                                                 <option ng-repeat="land in landList" ng-value="land">{{land.landName}}</option>
@@ -477,7 +477,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <label class="form-label label-sm">SEASON NAME : </label>
+                                                            <label class="form-label label-sm">SEASON NAME : </label>season: {{season}}
                                                             <select class="form-control form-select" ng-model="season">
                                                                 <option value="">Select a Season</option>
                                                                 <option ng-repeat="season in seasonList" ng-value="season">{{season.seasonName}}</option>
@@ -486,7 +486,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <label class="form-label label-sm">CROP NAME : </label>
+                                                            <label class="form-label label-sm">CROP NAME : </label>crop: {{crop}}
                                                             <select class="form-control form-select" ng-model="crop" ng-change="loadCropVarietyByCrop(crop)">
                                                                 <option value="">Select a Crop</option>
                                                                 <option ng-repeat="crop in cropList" ng-value="crop">{{crop.cropName}}</option>
@@ -495,7 +495,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <label class="form-label label-sm">CROP VARIETY : </label>
+                                                            <label class="form-label label-sm">CROP VARIETY : </label>cropVariety: {{cropVariety}}
                                                             <select class="form-control form-select" ng-model="cropVariety">
                                                                 <option value="">Select a Crop Variety</option>
                                                                 <option ng-repeat="cropVariety in cropVarietyList" ng-value="cropVariety">{{cropVariety.varietyName}}</option>
@@ -512,7 +512,7 @@
                                                                 More</button>
                                                         </div>
                                                     </div>
-
+seasonDetails: {{seasonDetails}}
                                                     <div class="col-md-12">
                                                         &nbsp;
                                                         <table id="addContractSeasion" class="table table-bordered">

@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "landName": "Land-1",
+        "landType": "Plain",
+        "landSize": "3",
+        "landCurrentStatus": "Used",
+        "landDesc": "Rice Land",
+        "landLocation": {
+            "locationId": 1,
+            "locationCode": "L001",
+            "locationName": "Location-1",
+            "status": "active"
+        }
+    },
+    {
+        "id": 1,
+        "seasonCode": "S001",
+        "seasonName": "Season 1",
+        "seasonStart": "2022-08-17",
+        "seasonEnd": "2022-08-30",
+        "status": "active"
+    },
+    {
+        "id": 2,
+        "landName": "Land-2",
+        "landType": "Plain",
+        "landSize": "5",
+        "landCurrentStatus": "Used",
+        "landDesc": "Farm land",
+        "landLocation": {
+            "locationId": 1,
+            "locationCode": "L001",
+            "locationName": "Location-1",
+            "status": "active"
+        }
+    },
+    {
+        "id": 1,
+        "seasonCode": "S001",
+        "seasonName": "Season 1",
+        "seasonStart": "2022-08-17",
+        "seasonEnd": "2022-08-30",
+        "status": "active"
+    }
+]

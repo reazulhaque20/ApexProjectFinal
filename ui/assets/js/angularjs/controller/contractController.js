@@ -237,11 +237,20 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
 
     
     $scope.seasonDetails = [
-        "land" = {}
+        {
+            "land":[]
+        }
     ];
     
+    $scope.landData = [];
+    
     $scope.addContractSeasion = function(){
-        $scope.seasonDetails.push($scope.land);
+        $scope.landData.push($scope.land);
+        $scope.seasonDetails.land.push( $scope.landData);
+//        $scope.seasonDetails.land.push($scope.land);
+//        $scope.seasonDetails.season.push($scope.season);
+//        $scope.seasonDetails.crop.push($scope.crop);
+//        $scope.seasonDetails.cropVariety.push($scope.cropVariety);
     };
 
 });
