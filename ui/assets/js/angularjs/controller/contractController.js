@@ -21,15 +21,15 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
         var hostPort = arr[2].split(":");
         var host = hostPort[0];
         var port = hostPort[1];
-        if(!angular.isUndefined(protocol)){
+        if (!angular.isUndefined(protocol)) {
             $scope.urlUI += protocol + "//";
         }
-        if(!angular.isUndefined(host)){
+        if (!angular.isUndefined(host)) {
             $scope.urlUI += host;
         }
-        if(!angular.isUndefined(port)){
+        if (!angular.isUndefined(port)) {
             $scope.urlUI += ":" + port + "/";
-        }else{
+        } else {
             $scope.urlUI += "/";
         }
     }
@@ -73,8 +73,8 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
     $scope.goToLogin = function () {
         $window.location.href = $scope.urlUI + 'ui/views/login.html';
     }
-    
-    $scope.loadAllCrop = function(){
+
+    $scope.loadAllCrop = function () {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -82,18 +82,18 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         }
-        
+
         $http.get($scope.urlServer + "api/masterData/getAllActiveCrops", config).then(
-            function(response){
-                $scope.cropList = response.data;
-            },
-            function(errResponse){
-                console.log(errResponse);
-            }
+                function (response) {
+                    $scope.cropList = response.data;
+                },
+                function (errResponse) {
+                    console.log(errResponse);
+                }
         );
     };
-    
-    $scope.loadAllFarmers = function(){
+
+    $scope.loadAllFarmers = function () {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -101,18 +101,18 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         };
-        
+
         $http.get($scope.urlServer + 'api/farmer/getALLActiveFarmer', config).then(
-                function(response){
+                function (response) {
                     $scope.farmerList = response.data;
                 },
-                function(errResponse){
+                function (errResponse) {
                     console.log(errResponse);
                 }
         );
     };
-    
-    $scope.loadAllReportingOffice = function(){
+
+    $scope.loadAllReportingOffice = function () {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -120,18 +120,18 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         };
-        
+
         $http.get($scope.urlServer + "api/reportingOffice/getAllActiveReportingOffice", config).then(
-                function(response){
+                function (response) {
                     $scope.officeList = response.data;
                 },
-                function(errResponse){
+                function (errResponse) {
                     console.log(errResponse);
                 }
         );
     };
-    
-    $scope.loadAllReportingFieldOfficer = function(){
+
+    $scope.loadAllReportingFieldOfficer = function () {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -139,18 +139,18 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         };
-        
+
         $http.get($scope.urlServer + "api/reportingFieldOfficer/getAllActiveReportingFieldOfficer", config).then(
-                function(response){
+                function (response) {
                     $scope.officerList = response.data;
                 },
-                function(errResponse){
+                function (errResponse) {
                     console.log(errResponse);
                 }
         );
     };
-    
-    $scope.loadAllWarehouseList = function(){
+
+    $scope.loadAllWarehouseList = function () {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -158,18 +158,18 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         };
-        
+
         $http.get($scope.urlServer + "api/masterData/getAllActiveWarehouseList", config).then(
-                function(response){
+                function (response) {
                     $scope.warehouseList = response.data;
                 },
-                function(errResponse){
+                function (errResponse) {
                     console.log(errResponse);
                 }
         );
     };
-    
-    $scope.loadAllLandDetails = function(){
+
+    $scope.loadAllLandDetails = function () {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -177,18 +177,18 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         };
-        
+
         $http.get($scope.urlServer + "api/masterData/getAllLandDetails", config).then(
-            function(response){
-                $scope.landList = response.data;
-            },
-            function(errResponse){
-                console.log(errResponse);
-            }
+                function (response) {
+                    $scope.landList = response.data;
+                },
+                function (errResponse) {
+                    console.log(errResponse);
+                }
         );
     };
-    
-    $scope.loadAllActiveSeasonList = function(){
+
+    $scope.loadAllActiveSeasonList = function () {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -197,16 +197,35 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
             }
         };
         $http.get($scope.urlServer + "api/masterData/getAllActiveSeasonList", config).then(
-                function(response){
+                function (response) {
                     $scope.seasonList = response.data;
                 },
-                function(errResponse){
+                function (errResponse) {
+                    console.log(errResponse);
+                }
+        );
+    };
+
+    $scope.loadCropVarietyByCrop = function (crop) {
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+
+        $http.get($scope.urlServer + "api/masterData/getCropVarietyByCropName/" + crop.cropName, config).then(
+                function (response) {
+                    $scope.cropVarietyList = response.data;
+                },
+                function (errResponse) {
                     console.log(errResponse);
                 }
         );
     };
     
-    $scope.loadCropVarietyByCrop = function(crop){
+    $scope.loadAllFarmInputCategory = function(){
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -215,13 +234,32 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
             }
         };
         
-        $http.get($scope.urlServer + "api/masterData/getCropVarietyByCropName/" + crop.cropName, config).then(
-                function(response){
-                    $scope.cropVarietyList = response.data;
-                },
-                function(errResponse){
+        $http.get($scope.urlServer + "api/masterData/getAllInputCategory", config).then(
+            function(response){
+                $scope.inputCategoryList = response.data;
+            },
+            function(errResponse){
                     console.log(errResponse);
-                }
+            }
+        );
+    };
+    
+    $scope.loadAllProducts = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        
+        $http.get($scope.urlServer + "api/product/getAllProducts", config).then(
+            function(response){
+                $scope.productList = response.data;
+            },
+            function(errResponse){
+                    console.log(errResponse);
+            }
         );
     };
 
@@ -233,24 +271,65 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
         $scope.loadAllWarehouseList();
         $scope.loadAllLandDetails();
         $scope.loadAllActiveSeasonList();
+        $scope.loadAllFarmInputCategory();
+        $scope.loadAllProducts();
     };
 
-    
+
     $scope.seasonDetails = [
         {
-            "land":[]
+            "id": 0,
+            "landName": null,
+            "landArea": null,
+            "seasonName": null,
+            "cropName": null,
+            "cropvarietyName": null,
+            "landId": 0,
+            "seasonId": 0,
+            "cropId": 0,
+            "cropVarietyId": 0
         }
     ];
-    
-    $scope.landData = [];
-    
-    $scope.addContractSeasion = function(){
-        $scope.landData.push($scope.land);
-        $scope.seasonDetails.land.push( $scope.landData);
-//        $scope.seasonDetails.land.push($scope.land);
-//        $scope.seasonDetails.season.push($scope.season);
-//        $scope.seasonDetails.crop.push($scope.crop);
-//        $scope.seasonDetails.cropVariety.push($scope.cropVariety);
+
+    $scope.addContractSeasion = function (land, season, crop, cropVariety) {
+        $scope.landId = land.id;
+        $scope.seasonId = season.id;
+        $scope.cropId = crop.id;
+        $scope.cropVarietyId = cropVariety.id;
+
+        $scope.landName = land.landName;
+        $scope.landArea = land.landSize;
+        $scope.seasonName = season.seasonName;
+        $scope.cropName = crop.cropName;
+        $scope.cropvarietyName = cropVariety.varietyName;
+
+        var seasonDetail = {
+            id: $scope.seasonDetails.length + 1,
+            landName: $scope.landName,
+            landArea: $scope.landArea,
+            seasonName: $scope.seasonName,
+            cropName: $scope.cropName,
+            cropvarietyName: $scope.cropvarietyName,
+            landId : $scope.landId,
+            seasonId : $scope.seasonId,
+            cropId : $scope.cropId,
+            cropVarietyId : $scope.cropVarietyId
+        };
+
+        $scope.seasonDetails.push(seasonDetail);
+        
+        $scope.land = "";
+        $scope.season = "";
+        $scope.crop = "";
+        $scope.cropVariety = "";
     };
 
+    $scope.removeSeasonRow = function (index) {
+        var name = $scope.seasonDetails[index].landName;
+        if ($window.confirm("Do you want to delete: " + name)) {
+            $scope.seasonDetails.splice(index, 1);
+        }
+    };
+    
+    
 });
