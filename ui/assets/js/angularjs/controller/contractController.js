@@ -262,6 +262,25 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
             }
         );
     };
+    
+    $scope.loadProductByCategory = function(inputCatId){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        
+        $http.get($scope.urlServer + "api/product/getProductByCategory/" + inputCatId.id, config).then(
+            function(response){
+                $scope.productList = response.data;
+            },
+            function(errRespone){
+                    console.log(errRespone);
+            }
+        );
+    }
 
     $scope.loadInitData = function () {
         $scope.loadAllCrop();
@@ -272,7 +291,7 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
         $scope.loadAllLandDetails();
         $scope.loadAllActiveSeasonList();
         $scope.loadAllFarmInputCategory();
-        $scope.loadAllProducts();
+//        $scope.loadAllProducts();
     };
 
 
@@ -331,5 +350,34 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
         }
     };
     
+    $scope.inputDetails = [
+        {
+            "id" : 0,
+            "inputCatName" : null,
+            "productName" : null,
+            "stockQty" : 0,
+            "unitProduct" : 0,
+            "priceProduct" : 0,
+            "distriQty" : 0,
+            "subTotal" : 0
+        }
+    ];
+    
+    $scope.addContractInput = function(inputCategory, product, stock, unit, price, distribution, total){
+        $scope.inputCatName = inputCategory.inputCatName;//$scope.inputCategory.inputCatName;
+        $scope.productName = product.productName;//$scope.product.productName;
+        $scope.stockQty = stock;//$scope.stock;
+        $scope.unitProduct = unit;//$scope.unit;
+        $scope.priceProduct = price;//$scope.price;
+        $scope.distriQty = distribution;//$scope.distribution;
+        $scope.subTotal = total;//$scope.total;
+        
+        var inputDetail = {
+          id : $scope.inputDetails.length + 1,
+          inputCatName :  inputCategory.inputCatName,
+          
+          
+        };
+    };
     
 });

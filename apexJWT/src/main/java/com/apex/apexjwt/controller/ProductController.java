@@ -4,6 +4,7 @@ import com.apex.apexjwt.model.Product;
 import com.apex.apexjwt.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +20,10 @@ public class ProductController {
     @GetMapping("/getAllProducts")
     public List<Product> getAllProducts(){
         return productService.getAllProduct();
+    }
+
+    @GetMapping("/getProductByCategory/{categoryId}")
+    public List<Product> getProductByCategory(@PathVariable("categoryId") Long categoryId){
+        return productService.getProductByCategoryId(categoryId);
     }
 }

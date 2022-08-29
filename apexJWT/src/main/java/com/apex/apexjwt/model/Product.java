@@ -51,5 +51,5 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_category")
-    private Category productCategory;
+    private FarmInputCategory productCategory;
 }
