@@ -224,8 +224,8 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 }
         );
     };
-    
-    $scope.loadAllFarmInputCategory = function(){
+
+    $scope.loadAllFarmInputCategory = function () {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -233,18 +233,18 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         };
-        
+
         $http.get($scope.urlServer + "api/masterData/getAllInputCategory", config).then(
-            function(response){
-                $scope.inputCategoryList = response.data;
-            },
-            function(errResponse){
+                function (response) {
+                    $scope.inputCategoryList = response.data;
+                },
+                function (errResponse) {
                     console.log(errResponse);
-            }
+                }
         );
     };
-    
-    $scope.loadAllProducts = function(){
+
+    $scope.loadAllProducts = function () {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -252,18 +252,18 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         };
-        
+
         $http.get($scope.urlServer + "api/product/getAllProducts", config).then(
-            function(response){
-                $scope.productList = response.data;
-            },
-            function(errResponse){
+                function (response) {
+                    $scope.productList = response.data;
+                },
+                function (errResponse) {
                     console.log(errResponse);
-            }
+                }
         );
     };
-    
-    $scope.loadProductByCategory = function(inputCatId){
+
+    $scope.loadProductByCategory = function (inputCatId) {
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -271,14 +271,17 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         };
-        
+
         $http.get($scope.urlServer + "api/product/getProductByCategory/" + inputCatId.id, config).then(
-            function(response){
-                $scope.productList = response.data;
-            },
-            function(errRespone){
+                function (response) {
+                    $scope.productList = response.data;
+                    $scope.stock = "";
+                    $scope.unit = "";
+                    $scope.price = "";
+                },
+                function (errRespone) {
                     console.log(errRespone);
-            }
+                }
         );
     }
 
@@ -329,14 +332,14 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
             seasonName: $scope.seasonName,
             cropName: $scope.cropName,
             cropvarietyName: $scope.cropvarietyName,
-            landId : $scope.landId,
-            seasonId : $scope.seasonId,
-            cropId : $scope.cropId,
-            cropVarietyId : $scope.cropVarietyId
+            landId: $scope.landId,
+            seasonId: $scope.seasonId,
+            cropId: $scope.cropId,
+            cropVarietyId: $scope.cropVarietyId
         };
 
         $scope.seasonDetails.push(seasonDetail);
-        
+
         $scope.land = "";
         $scope.season = "";
         $scope.crop = "";
@@ -349,21 +352,21 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
             $scope.seasonDetails.splice(index, 1);
         }
     };
-    
+
     $scope.inputDetails = [
         {
-            "id" : 0,
-            "inputCatName" : null,
-            "productName" : null,
-            "stockQty" : 0,
-            "unitProduct" : 0,
-            "priceProduct" : 0,
-            "distriQty" : 0,
-            "subTotal" : 0
+            "id": 0,
+            "inputCatName": null,
+            "productName": null,
+            "stockQty": 0,
+            "unitProduct": 0,
+            "priceProduct": 0,
+            "distriQty": 0,
+            "subTotal": 0
         }
     ];
-    
-    $scope.addContractInput = function(inputCategory, product, stock, unit, price, distribution, total){
+
+    $scope.addContractInput = function (inputCategory, product, stock, unit, price, distribution, total) {
         $scope.inputCatName = inputCategory.inputCatName;//$scope.inputCategory.inputCatName;
         $scope.productName = product.productName;//$scope.product.productName;
         $scope.stockQty = stock;//$scope.stock;
@@ -371,13 +374,44 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
         $scope.priceProduct = price;//$scope.price;
         $scope.distriQty = distribution;//$scope.distribution;
         $scope.subTotal = total;//$scope.total;
-        
+
         var inputDetail = {
-          id : $scope.inputDetails.length + 1,
-          inputCatName :  inputCategory.inputCatName,
-          
-          
+            id: $scope.inputDetails.length + 1,
+            inputCatName: inputCategory.inputCatName,
+            productName: product.productName,
+            stockQty : stock,
+            unitProduct: unit,
+            priceProduct: price,
+            distriQty: distribution,
+            subTotal: total
         };
+
+        $scope.inputDetails.push(inputDetail);
+
+        $scope.inputCategory = "";
+        $scope.product = "";
+        $scope.stock = "";
+        $scope.unit = "";
+        $scope.price = "";
+        $scope.distribution = "";
+        $scope.total = "";
+    };
+
+    $scope.removeInputDetailRow = function (index) {
+        var name = $scope.inputDetails[index].inputCatName;
+        if ($window.confirm("Do you want to delete: " + name)) {
+            $scope.inputDetails.splice(index, 1);
+        }
     };
     
+    $scope.loadProductData = function(product){
+        $scope.stock = product.productQty;
+        $scope.unit = product.productUom;
+        $scope.price = product.productPrice;
+    };
+    
+    $scope.calculateTotal = function(){
+        $scope.total = $scope.price * $scope.distribution;
+    };
+
 });

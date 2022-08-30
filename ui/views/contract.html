@@ -619,7 +619,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <label class="form-label label-sm">INPUT CATEGORY: </label> inputCategory: {{inputCategory}}
+                                                            <label class="form-label label-sm">INPUT CATEGORY: </label>
                                                             <select class="form-control form-select" ng-model="inputCategory" ng-change="loadProductByCategory(inputCategory)">
                                                                 <option value="">Select a Input Category</option>
                                                                 <option ng-repeat="inputCategory in inputCategoryList" ng-value="inputCategory">{{inputCategory.inputCatName}}</option>
@@ -628,10 +628,10 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <label class="form-label label-sm">PRODUCT NAME : </label> products: {{product}}
+                                                            <label class="form-label label-sm">PRODUCT NAME : </label>
 <!--                                                            <input type="text" class="form-control" name="product"
                                                                    id="product" ng-model="product" required="">-->
-                                                            <select class="form-control form-select" ng-model="product">
+                                                            <select class="form-control form-select" ng-model="product" ng-change="loadProductData(product)">
                                                                 <option value="">Select a Product</option>
                                                                 <option ng-repeat="product in productList" ng-value="product">{{product.productName}}</option>
                                                             </select>
@@ -640,31 +640,31 @@
                                                     <div class="col-sm-1">
                                                         <div class="form-group">
                                                             <label class="form-label label-sm">STOCK QTY : </label>
-                                                            <input type="text" class="form-control" ng-model="stock">
+                                                            <input type="text" class="form-control" ng-model="stock" ng-disabled="true">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-1">
                                                         <div class="form-group">
                                                             <label class="form-label label-sm">UNIT : </label>
-                                                            <input class="form-control" type="text" ng-model="unit">
+                                                            <input class="form-control" type="text" ng-model="unit" ng-disabled="true">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label class="form-label label-sm">PRICE : </label>
-                                                            <input class="form-control" type="text" ng-model="price">
+                                                            <input class="form-control" type="number" ng-model="price" ng-value="0" ng-disabled="true">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-1">
                                                         <div class="form-group">
                                                             <label class="form-label label-sm">DISTRI. QTY : </label>
-                                                            <input class="form-control" type="text" ng-model="distribution">
+                                                            <input class="form-control" type="text" ng-model="distribution" ng-change="calculateTotal()">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-1">
                                                         <div class="form-group">
                                                             <label class="form-label label-sm">SUB TOTAL : </label>
-                                                            <input class="form-control" type="text" ng-model="total">
+                                                            <input class="form-control" type="number" ng-model="total" ng-disabled="true">
                                                         </div>
                                                     </div>
 
@@ -693,18 +693,20 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="tbl_season_details">
-                                                                <tr ng-repeat="season in seasonDetails track by $index"
-                                                                    ng-show="season.id !== 0">
-                                                                    <td style="display:none;">{{ season.id}}</td>
-                                                                    <td>{{ season.landName}}</td>
-                                                                    <td>{{ season.landArea}}</td>
-                                                                    <td>{{ season.seasonName}}</td>
-                                                                    <td>{{ season.cropName}}</td>
-                                                                    <td>{{ season.cropvarietyName }}</td>
+                                                                <tr ng-repeat="iDetail in inputDetails track by $index"
+                                                                    ng-show="iDetail.id !== 0">
+                                                                    <td style="display:none;">{{ iDetail.id}}</td>
+                                                                    <td>{{ iDetail.inputCatName}}</td>
+                                                                    <td>{{ iDetail.productName}}</td>
+                                                                    <td>{{ iDetail.stockQty }}</td>
+                                                                    <td>{{ iDetail.unitProduct}}</td>
+                                                                    <td>{{ iDetail.priceProduct}}</td>
+                                                                    <td>{{ iDetail.distriQty }}</td>
+                                                                    <td>{{ iDetail.subTotal }}</td>
                                                                     <td><a class="btn btn-xs delete-record"
-                                                                           ng-click="removeSeasonRow($index)"><i
+                                                                           ng-click="removeInputDetailRow($index)"><i
                                                                                 class="fa fa-trash"
-                                                                                aria-hidden="true"></i></a>
+                                                                                aria-hidden="true"></i>DEL</a>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
