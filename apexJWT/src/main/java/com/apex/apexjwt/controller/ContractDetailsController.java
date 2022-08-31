@@ -58,6 +58,6 @@ public class ContractDetailsController {
                 log.info(inputDetailRequest);
             }
         }
-        
+
     }
 }
