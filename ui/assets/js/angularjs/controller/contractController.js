@@ -323,7 +323,7 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
         $scope.landArea = land.landSize;
         $scope.seasonName = season.seasonName;
         $scope.cropName = crop.cropName;
-        $scope.cropvarietyName = cropVariety.varietyName;
+        $scope.cropVarietyName = cropVariety.varietyName;
 
         var seasonDetail = {
             id: $scope.seasonDetails.length + 1,
@@ -331,7 +331,7 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
             landArea: $scope.landArea,
             seasonName: $scope.seasonName,
             cropName: $scope.cropName,
-            cropvarietyName: $scope.cropvarietyName,
+            cropVarietyName: $scope.cropVarietyName,
             landId: $scope.landId,
             seasonId: $scope.seasonId,
             cropId: $scope.cropId,
@@ -366,7 +366,8 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
             "inputCategory" : null,
             "unit" : 0,
             "price" : 0,
-            "distributionQty" : 0
+            "distributionQty" : 0,
+            "inputCategoryName" : null
         }
     ];
 
@@ -391,7 +392,8 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
             inputCategory : inputCategory,
             "unit" : unit,
             "price" : price,
-            "distributionQty" : distribution
+            "distributionQty" : distribution,
+            "inputCategoryName" : inputCategory.inputCatName
         };
 
         $scope.inputDetails.push(inputDetail);
@@ -427,8 +429,8 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
       "office" : null,
       "officer" : null,
       "warehouse" : null,
-      "seasonDetail" : null,
-      "inputDetail" : null,
+      "seasonDetailRequestList" : null,
+      "inputDetailRequestList" : null,
       "paymentDetail" : null
     };
 
@@ -453,8 +455,8 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
         $scope.cd.office = $scope.office;
         $scope.cd.officer = $scope.officer;
         $scope.cd.warehouse = $scope.warehouse;
-        $scope.cd.seasonDetail = $scope.seasonDetails;
-        $scope.cd.inputDetail = $scope.inputDetails;
+        $scope.cd.seasonDetailRequestList = $scope.seasonDetails;
+        $scope.cd.inputDetailRequestList = $scope.inputDetails;
         $scope.cd.paymentDetail = $scope.pd;
         
         $http.post($scope.urlServer + "api/contract/createContractDetail", $scope.cd, config).then(

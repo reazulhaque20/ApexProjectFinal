@@ -42,4 +42,9 @@ public class SeasonListServiceImpl implements SeasonListService {
         Response response = new Response("Season List Successfully Updated.", "success", 0L);
         return response;
     }
+
+    @Override
+    public SeasonList getSeasonBySeasonName(String seasonName) {
+        return seasonListRepo.getSeasonListBySeasonName(seasonName);
+    }
 }

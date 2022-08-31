@@ -22,4 +22,9 @@ public class LandDetailServiceImpl implements LandDetailService {
     public List<LandDetail> getAllLandDetails() {
         return landDetailRepo.findAll();
     }
+
+    @Override
+    public LandDetail getLandDetailByLandName(String landName) {
+        return landDetailRepo.getLandDetailByLandName(landName);
+    }
 }

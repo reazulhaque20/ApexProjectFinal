@@ -12,4 +12,5 @@ public interface SeasonListService {
     List<SeasonList> getAllActiveSeasonList();
     Response addSeasonList(SeasonList seasonList);
     Response updateSeasonList(SeasonList seasonList);
+    SeasonList getSeasonBySeasonName(String seasonName);
 }

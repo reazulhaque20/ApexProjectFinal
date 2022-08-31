@@ -12,4 +12,5 @@ public interface CropVarietyDetailService {
     List<CropVarietyDetail> getCropVarietyDetailByCropName(String cropName);
     Response addCropVariety(CropVarietyDetail cropVarietyDetail);
     Response updateCropVariety(CropVarietyDetail cropVarietyDetail);
+    CropVarietyDetail getCropVarietyDetailByVarietyName(String varietyName);
 }

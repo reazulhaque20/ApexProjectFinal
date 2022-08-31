@@ -7,4 +7,5 @@ import java.util.List;
 public interface LandDetailService {
     LandDetail getLandDetailById(Long id);
     List<LandDetail> getAllLandDetails();
+    LandDetail getLandDetailByLandName(String landName);
 }

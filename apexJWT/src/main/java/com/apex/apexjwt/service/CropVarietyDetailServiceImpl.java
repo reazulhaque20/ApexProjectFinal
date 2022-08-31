@@ -11,6 +11,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CropVarietyDetailServiceImpl implements CropVarietyDetailService{
+    @Override
+    public CropVarietyDetail getCropVarietyDetailByVarietyName(String varietyName) {
+        return cropVarietyDetailRepo.getCropVarietyDetailByVarietyName(varietyName);
+    }
 
     private final CropVarietyDetailRepo cropVarietyDetailRepo;
 

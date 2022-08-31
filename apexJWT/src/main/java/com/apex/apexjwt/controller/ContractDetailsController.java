@@ -6,11 +6,10 @@ import com.apex.apexjwt.repository.ContractInputDetailsRepo;
 import com.apex.apexjwt.repository.ContractPaymentDetailRepo;
 import com.apex.apexjwt.repository.ContractSeasonRepo;
 import com.apex.apexjwt.request.CreateContractRequest;
+import com.apex.apexjwt.request.InputDetailRequest;
+import com.apex.apexjwt.request.SeasonDetailRequest;
 import com.apex.apexjwt.response.Response;
-import com.apex.apexjwt.service.ContractDetailsService;
-import com.apex.apexjwt.service.ContractInputDetailService;
-import com.apex.apexjwt.service.ContractPaymentDetailService;
-import com.apex.apexjwt.service.ContractSeasonService;
+import com.apex.apexjwt.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +27,9 @@ public class ContractDetailsController {
     private final ContractSeasonService contractSeasonService;
     private final ContractInputDetailService contractInputDetailService;
     private final ContractPaymentDetailService contractPaymentDetailService;
+    private final SeasonListService seasonListService;
+    private final LandDetailService landDetailService;
+    private final CropVarietyDetailService cropVarietyDetailService;
 
     @PostMapping("/createContractDetail")
     public void createContractDetail(@RequestBody CreateContractRequest createContractRequest){
@@ -42,8 +44,19 @@ public class ContractDetailsController {
         contractDetail.setOfficer(reportingFieldOfficer);
         contractDetail.setStatus("active");
 
-        contractDetail = contractDetailsService.addContractDetails(contractDetail);
+        //contractDetail = contractDetailsService.addContractDetails(contractDetail);
 
+        for(SeasonDetailRequest seasonDetailRequest : createContractRequest.getSeasonDetailRequestList()){
+            if(seasonDetailRequest.getId() != 0){
+                SeasonList seasonList1 = seasonListService.getSeasonBySeasonName(seasonDetailRequest.getSeasonName());
+                LandDetail landDetail = landDetailService.getLandDetailByLandName(seasonDetailRequest.getLandName());
+            }
+        }
 
+        for(InputDetailRequest inputDetailRequest : createContractRequest.getInputDetailRequestList()){
+            if(inputDetailRequest.getId() != 0){
+                log.info(inputDetailRequest);
+            }
+        }
     }
 }

@@ -16,4 +16,7 @@ public interface SeasonListRepo extends JpaRepository<SeasonList, Long> {
 
     @Query("SELECT u FROM SeasonList u WHERE u.status='active'")
     List<SeasonList> getAllActiveSeasonList();
+
+    @Query("SELECT u FROM SeasonList u WHERE u.seasonName=:seasonName")
+    SeasonList getSeasonListBySeasonName(@Param("seasonName") String seasonName);
 }

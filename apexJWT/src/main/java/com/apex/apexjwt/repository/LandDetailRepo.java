@@ -11,4 +11,7 @@ public interface LandDetailRepo extends JpaRepository<LandDetail, Long> {
 
     @Query("SELECT u FROM LandDetail u WHERE u.id=:id")
     public LandDetail getLandDetailById(@Param("id") Long id);
+
+    @Query("SELECT u FROM LandDetail u WHERE u.landName=:landName")
+    LandDetail getLandDetailByLandName(@Param("landName") String landName);
 }

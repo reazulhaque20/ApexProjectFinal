@@ -22,4 +22,7 @@ public interface CropVarietyDetailRepo extends JpaRepository<CropVarietyDetail, 
 
     @Query("SELECT u FROM CropVarietyDetail u WHERE u.varietyCode=:varietyCode")
     List<CropVarietyDetail> getAllVarietyByVarietyCode(String varietyCode);
+
+    @Query("SELECT u FROM CropVarietyDetail u WHERE u.varietyName=:varietyName")
+    CropVarietyDetail getCropVarietyDetailByVarietyName(@Param("varietyName") String varietyName);
 }
