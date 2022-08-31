@@ -362,7 +362,11 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
             "unitProduct": 0,
             "priceProduct": 0,
             "distriQty": 0,
-            "subTotal": 0
+            "subTotal": 0,
+            "inputCategory" : null,
+            "unit" : 0,
+            "price" : 0,
+            "distributionQty" : 0
         }
     ];
 
@@ -383,7 +387,11 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
             unitProduct: unit,
             priceProduct: price,
             distriQty: distribution,
-            subTotal: total
+            subTotal: total,
+            inputCategory : inputCategory,
+            "unit" : unit,
+            "price" : price,
+            "distributionQty" : distribution
         };
 
         $scope.inputDetails.push(inputDetail);
@@ -414,4 +422,48 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
         $scope.total = $scope.price * $scope.distribution;
     };
 
+    $scope.cd = {
+      "farmer" : null,
+      "office" : null,
+      "officer" : null,
+      "warehouse" : null,
+      "seasonDetail" : null,
+      "inputDetail" : null,
+      "paymentDetail" : null
+    };
+
+    $scope.addContractSeason = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        
+        console.log($scope.seasonDetails);
+        console.log($scope.inputDetails);
+        console.log($scope.farmer);
+        console.log($scope.office);
+        console.log($scope.officer);
+        console.log($scope.warehouse);
+        console.log($scope.pd);
+        
+        $scope.cd.farmer = $scope.farmer;
+        $scope.cd.office = $scope.office;
+        $scope.cd.officer = $scope.officer;
+        $scope.cd.warehouse = $scope.warehouse;
+        $scope.cd.seasonDetail = $scope.seasonDetails;
+        $scope.cd.inputDetail = $scope.inputDetails;
+        $scope.cd.paymentDetail = $scope.pd;
+        
+        $http.post($scope.urlServer + "api/contract/createContractDetail", $scope.cd, config).then(
+            function(response){
+                    console.log(response);
+            },
+            function(errResponse){
+                    console.log(errResponse);
+            }
+        );
+    };
 });

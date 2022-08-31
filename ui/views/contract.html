@@ -325,14 +325,13 @@
                                         <h4 class="card-title">New Contract Details</h4>
                                     </div>
                                     <div class="card-body">
-                                        <form id="setNewContractSeasonDetails" class="form-horizontal row" method="POST"
-                                              action="GlobalController">
+                                        <form id="setNewContractSeasonDetails" class="form-horizontal row">
                                             <div class="col-md-12">
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <div class="form-group select2-sm">
                                                             <label class="form-label label-sm">Select Farmer Name : </label>
-                                                            <select name="zone_name" id="zone_name"
+                                                            <select name="zone_name" id="farmer_name"
                                                                     class="form-control form-select" required ng-model="farmer">
                                                                 <option value="">Select Farmer Name</option>
                                                                 <option ng-repeat="farmer in farmerList" ng-value="farmer">{{farmer.farmerName}}</option>
@@ -725,7 +724,7 @@
                                                                     <label class="form-label label-sm">Total Amount :
                                                                     </label>
                                                                     <input type="text" class="form-control number"
-                                                                           name="member_contact" value="">
+                                                                           name="member_contact" ng-model="pd.totalAmount">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
@@ -733,7 +732,7 @@
                                                                     <label class="form-label label-sm">Payment Amount :
                                                                     </label>
                                                                     <input type="text" class="form-control number"
-                                                                           name="member_contact" value="">
+                                                                           name="member_contact" ng-model="pd.paymentAmount">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
@@ -741,7 +740,7 @@
                                                                     <label class="form-label label-sm">Loan Amount :
                                                                     </label>
                                                                     <input type="text" class="form-control number"
-                                                                           name="member_contact" value="">
+                                                                           name="member_contact" ng-model="pd.loanAmount">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-3">
@@ -749,7 +748,7 @@
                                                                     <label class="form-label label-sm">Total Due Amount :
                                                                     </label>
                                                                     <input type="text" class="form-control number"
-                                                                           name="member_contact" value="">
+                                                                           name="member_contact" ng-model="pd.dueAmount">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -760,7 +759,7 @@
                                                     <button type="button" class="btn btn-soft-danger"
                                                             data-bs-dismiss="modal"><i class="mdi mdi-close"></i>
                                                         CANCEL</button>
-                                                    <button type="submit"
+                                                    <button type="button" ng-click="addContractSeason()"
                                                             class="btn btn-success w-sm waves-effect waves-light"><i
                                                             class="mdi mdi-content-save-all"></i> SAVE DETAILS</button>
                                                 </div>

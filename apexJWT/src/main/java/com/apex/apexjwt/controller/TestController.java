@@ -2,11 +2,11 @@ package com.apex.apexjwt.controller;
 
 import com.apex.apexjwt.model.ContractSeason;
 import com.apex.apexjwt.model.*;
+import com.apex.apexjwt.request.AddContractRequest;
+import com.apex.apexjwt.request.CreateContractRequest;
 import com.apex.apexjwt.service.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,10 @@ public class TestController {
     private final SeasonListService seasonListService;
     private final CropListService cropListService;
     private final CropVarietyDetailService cropVarietyDetailService;
+    private final ContractDetailsService contractDetailsService;
+    private final ContractSeasonService contractSeasonService;
+    private final ContractInputDetailService contractInputDetailService;
+    private final ContractPaymentDetailService contractPaymentDetailService;
 
     @GetMapping("/getContractSeasonList")
     public List<ContractSeason> getContractSeasonList(){
@@ -55,5 +59,28 @@ public class TestController {
         contractSeasonList.add(contractSeason);
 
         return contractSeasonList;
+    }
+
+    @GetMapping("/getAddContract")
+    public AddContractRequest getAddContract(){
+        AddContractRequest addContractRequest = new AddContractRequest();
+
+        ContractDetail contractDetail = contractDetailsService.getContractDetailsById(2L);
+        List<ContractSeason> contractSeasonList = contractSeasonService.getContractSeasonByContractId(2L);
+        List<ContractInputDetail> contractInputDetailList = contractInputDetailService.getContractInputDetailByContractId(2L);
+        ContractPaymentDetail contractPaymentDetail = contractPaymentDetailService.getContractPaymentDetailByContactId(2L);
+
+        addContractRequest.setContractDetail(contractDetail);
+        addContractRequest.setContractSeasonList(contractSeasonList);
+        addContractRequest.setContractInputDetailList(contractInputDetailList);
+        addContractRequest.setContractPaymentDetail(contractPaymentDetail);
+
+        return addContractRequest;
+    }
+
+    @PostMapping("/createContractDetail")
+    public void createContractDetail(@RequestBody CreateContractRequest createContractRequest){
+        System.out.println(createContractRequest);
+
     }
 }
