@@ -19,9 +19,9 @@ public class ContractSeasonServiceImpl implements ContractSeasonService {
     }
 
     @Override
-    public Response addContractSeason(ContractSeason contractSeason) {
+    public Response addContractSeason(List<ContractSeason> contractSeasonList) {
         Response response;
-        contractSeasonRepo.save(contractSeason);
+        contractSeasonRepo.saveAll(contractSeasonList);
 
         response = new Response("Contract Season Successfully Added", "success", 0L);
         return response;

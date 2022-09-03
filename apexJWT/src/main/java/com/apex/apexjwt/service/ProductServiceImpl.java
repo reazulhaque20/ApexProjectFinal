@@ -22,4 +22,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getProductByCategoryId(Long id) {
         return productRepo.getProductByCategoryID(id);
     }
+
+    @Override
+    public Product getProductByName(String productName) {
+        return productRepo.getProductByName(productName);
+    }
 }

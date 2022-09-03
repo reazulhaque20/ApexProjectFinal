@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ContractSeasonService {
     List<ContractSeason> getContractSeasonByContractId(Long id);
-    Response addContractSeason(ContractSeason contractSeason);
+    Response addContractSeason(List<ContractSeason> contractSeasonList);
 }

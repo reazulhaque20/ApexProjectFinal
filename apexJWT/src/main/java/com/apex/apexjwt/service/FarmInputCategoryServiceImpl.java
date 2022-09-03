@@ -34,4 +34,9 @@ public class FarmInputCategoryServiceImpl implements FarmInputCategoryService{
         response = new Response("Farm Input Category Successfully Updated.", "success", 0L);
         return response;
     }
+
+    @Override
+    public FarmInputCategory getFarmInputCategoryByName(String inputCatName) {
+        return farmInputCategoryRepo.getFarmInputCategoryByName(inputCatName);
+    }
 }

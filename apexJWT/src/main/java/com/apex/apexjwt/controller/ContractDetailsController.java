@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("api/contract")
 @RequiredArgsConstructor
@@ -29,7 +32,10 @@ public class ContractDetailsController {
     private final ContractPaymentDetailService contractPaymentDetailService;
     private final SeasonListService seasonListService;
     private final LandDetailService landDetailService;
+    private final CropListService cropListService;
     private final CropVarietyDetailService cropVarietyDetailService;
+    private final FarmInputCategoryService farmInputCategoryService;
+    private final ProductService productService;
 
     @PostMapping("/createContractDetail")
     public void createContractDetail(@RequestBody CreateContractRequest createContractRequest){
@@ -45,17 +51,47 @@ public class ContractDetailsController {
         contractDetail.setStatus("active");
 
         //contractDetail = contractDetailsService.addContractDetails(contractDetail);
-
+        List<ContractSeason> contractSeasonList = new ArrayList<>();
+        ContractSeason contractSeason = new ContractSeason();
         for(SeasonDetailRequest seasonDetailRequest : createContractRequest.getSeasonDetailRequestList()){
             if(seasonDetailRequest.getId() != 0){
                 SeasonList seasonList1 = seasonListService.getSeasonBySeasonName(seasonDetailRequest.getSeasonName());
+                log.info("SeasonList: " + seasonList1);
                 LandDetail landDetail = landDetailService.getLandDetailByLandName(seasonDetailRequest.getLandName());
+                log.info("landDetail: " + landDetail);
+                CropList cropList = cropListService.getCropByCropName(seasonDetailRequest.getCropName());
+                log.info("CropList: " + cropList);
+                CropVarietyDetail cropVarietyDetail = cropVarietyDetailService.getCropVarietyDetailByVarietyName(seasonDetailRequest.getCropVarietyName());
+                log.info("Crop Variety: " + cropVarietyDetail);
+                contractSeason.setContract(contractDetail);
+                contractSeason.setLand(landDetail);
+                contractSeason.setLandArea(landDetail.getLandSize());
+                contractSeason.setSeason(seasonList1);
+                contractSeason.setCrop(cropList);
+                contractSeason.setCropVariety(cropVarietyDetail);
+                contractSeason.setStatus("active");
+
+                contractSeasonList.add(contractSeason);
+                contractSeason = new ContractSeason();
             }
         }
 
+        contractSeasonService.addContractSeason(contractSeasonList);
+
+        ContractInputDetail contractInputDetail = new ContractInputDetail();
+        List<ContractInputDetail> contractInputDetailList = new ArrayList<>();
+
         for(InputDetailRequest inputDetailRequest : createContractRequest.getInputDetailRequestList()){
             if(inputDetailRequest.getId() != 0){
-                log.info(inputDetailRequest);
+                log.info("Input Detail Request: " + inputDetailRequest);
+                FarmInputCategory farmInputCategory = farmInputCategoryService.getFarmInputCategoryByName(inputDetailRequest.getInputCategoryName());
+                log.info("Farm Input Category: " + farmInputCategory);
+                Product product = productService.getProductByName(inputDetailRequest.getProductName());
+                log.info("Product: " + product);
+                contractInputDetail.setContract(contractDetail);
+                contractInputDetail.setInputCategory(farmInputCategory);
+                contractInputDetail.setProduct(product);
+                contractInputDetail.setStockQty(product.getProductQty());
             }
         }
 

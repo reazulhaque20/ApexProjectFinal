@@ -10,4 +10,5 @@ public interface FarmInputCategoryService {
     List<FarmInputCategory> getAllInputCategory();
     Response addInputCategory(FarmInputCategory farmInputCategory);
     Response updateInputCategory(FarmInputCategory farmInputCategory);
+    FarmInputCategory getFarmInputCategoryByName(String inputCatName);
 }
