@@ -38,7 +38,8 @@ public class ContractDetailsController {
     private final ProductService productService;
 
     @PostMapping("/createContractDetail")
-    public void createContractDetail(@RequestBody CreateContractRequest createContractRequest){
+    public Response createContractDetail(@RequestBody CreateContractRequest createContractRequest){
+        Response response;
         FarmerDetail farmerDetail = createContractRequest.getFarmer();
         ReportingOffice reportingOffice = createContractRequest.getOffice();
         ReportingFieldOfficer reportingFieldOfficer = createContractRequest.getOfficer();
@@ -50,7 +51,12 @@ public class ContractDetailsController {
         contractDetail.setOfficer(reportingFieldOfficer);
         contractDetail.setStatus("active");
 
-        //contractDetail = contractDetailsService.addContractDetails(contractDetail);
+        try{
+            contractDetail = contractDetailsService.addContractDetails(contractDetail);
+            response = new Response("Contract Detail Crested Successfully Created", "success", 0L);
+        }catch(Exception exception){
+            response = new Response("Failed To Create Contract Detail", "error", 0L);
+        }
         List<ContractSeason> contractSeasonList = new ArrayList<>();
         ContractSeason contractSeason = new ContractSeason();
         for(SeasonDetailRequest seasonDetailRequest : createContractRequest.getSeasonDetailRequestList()){
@@ -75,9 +81,12 @@ public class ContractDetailsController {
                 contractSeason = new ContractSeason();
             }
         }
-
-        contractSeasonService.addContractSeason(contractSeasonList);
-
+        try {
+            contractSeasonService.addContractSeason(contractSeasonList);
+            response = new Response("Success", "success", 0L);
+        }catch(Exception exception){
+            response = new Response("Error", "error", 0L);
+        }
         ContractInputDetail contractInputDetail = new ContractInputDetail();
         List<ContractInputDetail> contractInputDetailList = new ArrayList<>();
 
@@ -92,8 +101,40 @@ public class ContractDetailsController {
                 contractInputDetail.setInputCategory(farmInputCategory);
                 contractInputDetail.setProduct(product);
                 contractInputDetail.setStockQty(product.getProductQty());
+                contractInputDetail.setUnit(product.getProductUom());
+                contractInputDetail.setPrice(product.getProductPrice());
+                contractInputDetail.setDistributionQty(inputDetailRequest.getDistributionQty());
+                contractInputDetail.setSubTotal(inputDetailRequest.getSubTotal());
+                contractInputDetail.setStatus("active");
+                contractInputDetailList.add(contractInputDetail);
+                contractInputDetail = new ContractInputDetail();
             }
+        } // End of For
+        try {
+            contractInputDetailService.addContractInputDetail(contractInputDetailList);
+            response = new Response("Success", "success", 0L);
+        }catch(Exception exception){
+            response = new Response("Error", "error", 0L);
+        }
+        ContractPaymentDetail contractPaymentDetail = new ContractPaymentDetail();
+
+        contractPaymentDetail.setContract(contractDetail);
+        contractPaymentDetail.setTotalAmount(createContractRequest.getPaymentDetail().getTotalAmount());
+        contractPaymentDetail.setPaymentAmount(createContractRequest.getPaymentDetail().getPaymentAmount());
+        contractPaymentDetail.setLoanAmount(createContractRequest.getPaymentDetail().getLoanAmount());
+        contractPaymentDetail.setTotalDueAmount(createContractRequest.getPaymentDetail().getTotalDueAmount());
+
+        try {
+            contractPaymentDetailService.addContractPaymentDetail(contractPaymentDetail);
+            response = new Response("Success", "success", 0L);
+        }catch (Exception exception){
+            response = new Response("Error", "error", 0L);
         }
 
+        if(response.getMessageType().equalsIgnoreCase("success")){
+            return response = new Response("Contract Created Successfully", "success", 0L);
+        }else{
+            return response = new Response("Failed To Create Contract", "error", 0L);
+        }
     }
 }

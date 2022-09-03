@@ -462,6 +462,24 @@ app.controller('contractCtrl', function (serverURL, $scope, $http, NgTableParams
         $http.post($scope.urlServer + "api/contract/createContractDetail", $scope.cd, config).then(
             function(response){
                     console.log(response);
+                    switch (response.data.messageType){
+                        case 'success':
+                            $scope.message("SUCCESS", response.data.message, 'success');
+                            $scope.seasonDetails = "";
+                            $scope.inputDetails = "";
+                            $scope.farmer = "";
+                            $scope.office = "";
+                            $scope.officer = "";
+                            $scope.warehouse = "";
+                            $scope.pd = "";
+                            break;
+                        case 'error':
+                            $scope.message("!ERROR!", response.data.message, 'error');
+                            break;
+                        default:
+                            $scope.message("WARNING", "Unknown Error", "warning");
+                            break;
+                    }
             },
             function(errResponse){
                     console.log(errResponse);

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ContractInputDetailService {
     List<ContractInputDetail> getContractInputDetailByContractId(Long id);
-    Response addContractInputDetail(ContractInputDetail contractInputDetail);
+    Response addContractInputDetail(List<ContractInputDetail> contractInputDetailList);
 }

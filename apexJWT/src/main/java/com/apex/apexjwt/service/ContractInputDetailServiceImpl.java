@@ -19,9 +19,9 @@ public class ContractInputDetailServiceImpl implements ContractInputDetailServic
     }
 
     @Override
-    public Response addContractInputDetail(ContractInputDetail contractInputDetail) {
+    public Response addContractInputDetail(List<ContractInputDetail> contractInputDetailList) {
         Response response;
-        contractInputDetailsRepo.save(contractInputDetail);
+        contractInputDetailsRepo.saveAll(contractInputDetailList);
         response = new Response("Contract Input Detail Successfully Added.", "success", 0L);
         return response;
     }

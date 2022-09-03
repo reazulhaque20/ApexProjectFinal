@@ -30,8 +30,8 @@ public class Product {
     @Column(name = "product_uom")
     private String productUom;
 
-    @Column(name = "product_qty")
-    private Long productQty;
+    @Column(name = "product_qty", precision = 19, scale = 2)
+    private BigDecimal productQty;
 
     @Column(name = "product_stock_status")
     private String productStockStatus;
