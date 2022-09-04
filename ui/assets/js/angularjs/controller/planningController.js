@@ -100,18 +100,76 @@ app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         };
-        $http.get($scope.urlServer + "api/masterData/getAllLandDetails", config).then(
+        $http.get($scope.urlServer + "api/contract/getAllContractList", config).then(
                 function(response){
-                    $scope.landList = response.data;
+                    $scope.contractList = response.data;
                 },
                 function(errResponse){
                     console.log(errResponse);
                 }
         );
-    }
+    };
+    
+    $scope.loadAllReportingOfficerList = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        $http.get($scope.urlServer + "api/reportingFieldOfficer/getAllActiveReportingFieldOfficer", config).then(
+                function(response){
+                    $scope.officerList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    };
+    
+    $scope.loadAllReportingOffice = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        $http.get($scope.urlServer + "api/reportingOffice/getAllActiveReportingOffice", config).then(
+                function(response){
+                    $scope.officeList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    };
+    
+    $scope.loadAllFarmerList = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        $http.get($scope.urlServer + "api/farmer/getALLActiveFarmer", config).then(
+                function(response){
+                    $scope.farmerList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    };
 
     $scope.loadInitData = function () {
         $scope.loadAllLandDetails();
+        $scope.loadAllContractList();
+        $scope.loadAllReportingOfficerList();
+        $scope.loadAllReportingOffice();
+        $scope.loadAllFarmerList();
     };
     
     $scope.addPlanningDetailClick = function(){
@@ -126,8 +184,26 @@ app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         };
-        
         console.log(pd);
+        $http.get($scope.urlServer + "api/planningDetail/addPlanningDetail", $scope.pd, config).then(
+            function(response){
+                switch(response.data.messageType){
+                    case 'success':
+                        $scope.message("SUCCESS", response.data.message, "success");
+                        $("#addOrEditPlanningDetail").modal("hide");
+                        break;
+                    case 'error':
+                        $scope.message("!ERROR!", response.data.message, "error");
+                        break;
+                    default:
+                        $scope.message("!ERROR!", "Unknwon Error", "error");
+                        break;
+                }
+            },
+            function(errResponse){
+                console.log(errResponse);
+            }
+        );
     };
 
     $scope.updateCropGrade = function (cropGrade) {

@@ -515,6 +515,11 @@
                                 
                                 <div class="col-lg-12 mb-2">
                                     <label class="form-label">LAND</label>
+                                    <input class="form-control" type="text" ng-model="pd.planningCode" placeholder="Enter a Planning Code">
+                                </div>
+                                
+                                <div class="col-lg-12 mb-2">
+                                    <label class="form-label">LAND</label>
                                     <select class="form-select form-control" ng-model="pd.land">
                                         <option value="">Select a Land</option>
                                         <option ng-repeat="land in landList" ng-value="land">{{land.landName}}</option>
@@ -523,23 +528,23 @@
                                 
                                 <div class="col-lg-12 mb-2">
                                     <label class="form-label">CONTRACT</label>
-                                    <select class="form-select form-control" ng-model="pd.contract">
+                                    <select class="form-select form-control" ng-model="pd.contact">
                                         <option value="">Select a Contract</option>
-                                        <option ng-repeat="contact in contractList" ng-value="land">{{contract.contractCode}}</option>
+                                        <option ng-repeat="contact in contractList" ng-value="contact">{{contact.contractCode}}</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-12 mb-2">
                                     <label class="form-label">OFFICE</label>
-                                    <select class="form-select form-control" ng-model="pd.officer">
+                                    <select class="form-select form-control" ng-model="pd.office">
                                         <option value="">Select a Office</option>
-                                        <option ng-repeat="officer in officerList" ng-value="land">{{officer.officerList}}</option>
+                                        <option ng-repeat="office in officeList" ng-value="office">{{office.officeName}}</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-12 mb-2">
                                     <label class="form-label">APO NAME</label>
                                     <select class="form-select form-control" ng-model="pd.officer">
                                         <option value="">Select a Officer</option>
-                                        <option ng-repeat="officer in officerList" ng-value="officer">{{officer.officeList}}</option>
+                                        <option ng-repeat="officer in officerList" ng-value="officer">{{officer.officerName}}</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-12 mb-2">
@@ -582,6 +587,7 @@
                                         <option value="inActive">InActive</option>
                                     </select>
                                 </div>
+                                PD: {{pd}}
                             </div>
                         </form>
                         <div class="modal-footer pt-4">
