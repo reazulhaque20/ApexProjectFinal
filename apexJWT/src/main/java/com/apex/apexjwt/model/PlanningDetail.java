@@ -14,6 +14,9 @@ public class PlanningDetail {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "planning_code", length = 45)
+    private String planningCode;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "land_id")
     private LandDetail land;

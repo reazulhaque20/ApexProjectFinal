@@ -137,6 +137,6 @@ public class ContractDetailsController {
 
     @GetMapping("/getAllContractList")
     public List<ContractDetail> getAllContractList(){
-        return contractDetailsService.get
+        return contractDetailsService.getAllContractDetail();
     }
 }
