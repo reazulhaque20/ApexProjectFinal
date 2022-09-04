@@ -74,6 +74,33 @@ app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams
         $window.location.href = $scope.urlUI + 'ui/views/login.html';
     };
     
+    $scope.loadAllPlanningDetail = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        
+        $http.get($scope.urlServer + "api/planningDetail/getAllPlanningDetail", config).then(
+                function(response){
+                    console.log(response);
+                    var data = response.data;
+                    $scope.tableParams = new NgTableParams({
+                        page: 1, // show first page
+                        count: 5           // count per page
+                    }, {
+                        total: data.length, // length of data
+                        dataset: data
+                    });
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    }
+    
     $scope.loadAllLandDetails = function(){
         var config = {
             headers: {
@@ -165,6 +192,7 @@ app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams
     };
 
     $scope.loadInitData = function () {
+        $scope.loadAllPlanningDetail();
         $scope.loadAllLandDetails();
         $scope.loadAllContractList();
         $scope.loadAllReportingOfficerList();
@@ -184,13 +212,19 @@ app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams
                 'Authorization': 'Bearer ' + $scope.token
             }
         };
+        
+        $scope.pd.sowingDate = new Date(pd.sowingDate);
+        $scope.pd.harvestDate = new Date(pd.harvestDate);
+        
         console.log(pd);
-        $http.get($scope.urlServer + "api/planningDetail/addPlanningDetail", $scope.pd, config).then(
+        $http.post($scope.urlServer + "api/planningDetail/addPlanningDetail", $scope.pd, config).then(
             function(response){
                 switch(response.data.messageType){
                     case 'success':
                         $scope.message("SUCCESS", response.data.message, "success");
                         $("#addOrEditPlanningDetail").modal("hide");
+                        $scope.pd = "";
+                        $scope.loadAllPlanningDetail();
                         break;
                     case 'error':
                         $scope.message("!ERROR!", response.data.message, "error");
@@ -206,37 +240,8 @@ app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams
         );
     };
 
-    $scope.updateCropGrade = function (cropGrade) {
-        var config = {
-            headers: {
-                'NO-AUTH': 'True',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + $scope.token
-            }
-        }
-
-        $http.put($scope.urlServer + "api/masterData/updateCropGrade", cropGrade, config).then(
-            function (response) {
-                console.log(response);
-                switch (response.data.messageType) {
-                    case 'success':
-                        $scope.message("SUCCESS", response.data.message, "success");
-                        $('#addOrEditCropGrade').modal('hide');
-                        $scope.loadAllCropCrade();
-                        break;
-                    case 'error':
-                        $scope.message("!ERROR!", response.data.message, "error");
-                        break;
-                    default:
-                        $scope.message("WARNING", "Unknown Error", "warning");
-                        break;
-                }
-            },
-            function (errResponse) {
-                $scope.message("!ERROR!", "Unknown Error", "warning");
-                $('#addOrEditCropGrade').modal('hide');
-            }
-        );
-    }
+    $scope.editPlanningDetail = function(pd){
+        $scope.pd = pd;
+    };
 
 });

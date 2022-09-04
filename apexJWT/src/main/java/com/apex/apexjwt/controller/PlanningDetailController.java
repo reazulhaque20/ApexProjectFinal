@@ -22,6 +22,7 @@ public class PlanningDetailController {
 
     @PostMapping("/addPlanningDetail")
     Response addPlanningDetail(@RequestBody PlanningDetail planningDetail){
+        planningDetail.setStatus("active");
         Response response = planningDetailService.addPlanningDetail(planningDetail);
         return response;
     }
