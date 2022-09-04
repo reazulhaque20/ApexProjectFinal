@@ -32,6 +32,9 @@ public class ContractDetail {
     @JoinColumn(name = "office_id")
     private ReportingOffice office;
 
+    @Column(name = "contract_code", length = 45)
+    private String contractCode;
+
     @Column(name = "status", length = 10)
     private String status;
 }

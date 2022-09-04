@@ -12,10 +12,7 @@ import com.apex.apexjwt.response.Response;
 import com.apex.apexjwt.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,5 +133,10 @@ public class ContractDetailsController {
         }else{
             return response = new Response("Failed To Create Contract", "error", 0L);
         }
+    }
+
+    @GetMapping("/getAllContractList")
+    public List<ContractDetail> getAllContractList(){
+        return contractDetailsService.get
     }
 }
