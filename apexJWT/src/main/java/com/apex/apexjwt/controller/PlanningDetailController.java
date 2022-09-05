@@ -26,4 +26,10 @@ public class PlanningDetailController {
         Response response = planningDetailService.addPlanningDetail(planningDetail);
         return response;
     }
+
+    @PutMapping("/updatePlaningDetail")
+    Response updatePlaningDetail(@RequestBody PlanningDetail planningDetail){
+        Response response = planningDetailService.updatePlanningDetail(planningDetail);
+        return response;
+    }
 }

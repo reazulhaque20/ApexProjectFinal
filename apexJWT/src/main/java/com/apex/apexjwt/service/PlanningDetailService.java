@@ -9,5 +9,5 @@ public interface PlanningDetailService {
 
     Response addPlanningDetail(PlanningDetail planningDetail);
     List<PlanningDetail> getAllPlanningDetail();
-
+    Response updatePlanningDetail(PlanningDetail planningDetail);
 }

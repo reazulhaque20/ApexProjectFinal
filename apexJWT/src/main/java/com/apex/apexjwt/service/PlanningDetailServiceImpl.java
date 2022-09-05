@@ -28,4 +28,11 @@ public class PlanningDetailServiceImpl implements PlanningDetailService {
     public List<PlanningDetail> getAllPlanningDetail() {
         return planningDetailRepo.findAll();
     }
+
+    @Override
+    public Response updatePlanningDetail(PlanningDetail planningDetail) {
+        planningDetailRepo.save(planningDetail);
+        Response response = new Response("Planning Detail Successfully Updated.", "success", 0L);
+        return response;
+    }
 }

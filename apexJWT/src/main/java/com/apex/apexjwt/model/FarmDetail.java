@@ -1,11 +1,13 @@
 package com.apex.apexjwt.model;
 
 import com.apex.apexjwt.model.Location;
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "farm_details")
+@Data
 public class FarmDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +20,7 @@ public class FarmDetail {
     @Column(name = "farm_type", length = 45)
     private String farmType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "farm_location")
     private Location farmLocation;
 

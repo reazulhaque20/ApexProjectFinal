@@ -1,4 +1,4 @@
-app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams, $window, SweetAlert) {
+app.controller('sowingCtrl', function (serverURL, $scope, $http, NgTableParams, $window, SweetAlert) {
 
     $scope.urlServer = "";
     $scope.urlUI = "";
@@ -100,78 +100,8 @@ app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams
                 }
         );
     }
-    
-    $scope.loadAllLandDetails = function(){
-        var config = {
-            headers: {
-                'NO-AUTH': 'True',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + $scope.token
-            }
-        };
-        $http.get($scope.urlServer + "api/masterData/getAllLandDetails", config).then(
-                function(response){
-                    $scope.landList = response.data;
-                },
-                function(errResponse){
-                    console.log(errResponse);
-                }
-        );
-    };
-    
-    $scope.loadAllContractList = function(){
-        var config = {
-            headers: {
-                'NO-AUTH': 'True',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + $scope.token
-            }
-        };
-        $http.get($scope.urlServer + "api/contract/getAllContractList", config).then(
-                function(response){
-                    $scope.contractList = response.data;
-                },
-                function(errResponse){
-                    console.log(errResponse);
-                }
-        );
-    };
-    
-    $scope.loadAllReportingOfficerList = function(){
-        var config = {
-            headers: {
-                'NO-AUTH': 'True',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + $scope.token
-            }
-        };
-        $http.get($scope.urlServer + "api/reportingFieldOfficer/getAllActiveReportingFieldOfficer", config).then(
-                function(response){
-                    $scope.officerList = response.data;
-                },
-                function(errResponse){
-                    console.log(errResponse);
-                }
-        );
-    };
-    
-    $scope.loadAllReportingOffice = function(){
-        var config = {
-            headers: {
-                'NO-AUTH': 'True',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + $scope.token
-            }
-        };
-        $http.get($scope.urlServer + "api/reportingOffice/getAllActiveReportingOffice", config).then(
-                function(response){
-                    $scope.officeList = response.data;
-                },
-                function(errResponse){
-                    console.log(errResponse);
-                }
-        );
-    };
+
+
     
     $scope.loadAllFarmerList = function(){
         var config = {
@@ -190,14 +120,47 @@ app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams
                 }
         );
     };
+    
+    $scope.loadAllFarmDetail = function(){
+         var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        $http.get($scope.urlServer + "api/farmDetail/getAllFarmDetail", config).then(
+                function(response){
+                    $scope.farmDetailList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    };
+    
+    $scope.loadAllSeasonList = function(){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        $http.get($scope.urlServer + "api/masterData/getAllActiveSeasonList", config).then(
+                function(response){
+                    $scope.seasonList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    }
 
     $scope.loadInitData = function () {
-        $scope.loadAllPlanningDetail();
-        $scope.loadAllLandDetails();
-        $scope.loadAllContractList();
-        $scope.loadAllReportingOfficerList();
-        $scope.loadAllReportingOffice();
         $scope.loadAllFarmerList();
+        $scope.loadAllFarmDetail();
+        $scope.loadAllSeasonList();
     };
     
     $scope.addPlanningDetailClick = function(){

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Sep 04, 2022 at 08:52 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.20
+-- Host: 127.0.0.1
+-- Generation Time: Sep 05, 2022 at 12:52 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -607,6 +607,13 @@ CREATE TABLE `farm_details` (
   `farm_location` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `farm_details`
+--
+
+INSERT INTO `farm_details` (`farm_id`, `farm_name`, `farm_type`, `farm_location`) VALUES
+(1, 'Farm-1', 'Shade', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -658,6 +665,43 @@ INSERT INTO `farm_land_detail` (`id`, `farmer_id`, `reporting_office_id`, `repor
 (3, 2, 2, 1, 'sdf', 'Open Field', 'Commercial', 'Owned', 'Valley', '147', 'asdf', 'asdf', '1234'),
 (4, 2, 2, 1, 'asdf', 'Net House', 'Commercial', 'Owned', 'Plain', '741', 'asd', 'asdf', '4321'),
 (5, 30, 2, 2, 'sfgsd', 'Net House', 'Trial', 'Lease', 'Plateaus', 'dsfg', 'dsfg', 'dfg', 'sdfg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `farm_land_planning`
+--
+
+CREATE TABLE `farm_land_planning` (
+  `id` bigint(20) NOT NULL,
+  `farmer_id` bigint(20) DEFAULT NULL,
+  `farm_id` bigint(20) DEFAULT NULL,
+  `season_id` bigint(20) DEFAULT NULL,
+  `sowing_date` date DEFAULT NULL,
+  `seed_source` varchar(45) DEFAULT NULL,
+  `seed_qty` decimal(19,2) DEFAULT NULL,
+  `est_yield` varchar(45) DEFAULT NULL,
+  `est_purchase` varchar(45) DEFAULT NULL,
+  `est_harvest_date` date DEFAULT NULL,
+  `rr_spacing` varchar(45) DEFAULT NULL,
+  `tt_spacing` varchar(45) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `farm_land_planning_crop`
+--
+
+CREATE TABLE `farm_land_planning_crop` (
+  `id` bigint(20) NOT NULL,
+  `farm_land_planning_id` bigint(20) DEFAULT NULL,
+  `crop_id` bigint(20) DEFAULT NULL,
+  `crop_variety_id` bigint(20) DEFAULT NULL,
+  `remarks` varchar(100) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -855,8 +899,8 @@ CREATE TABLE `planning_detail` (
 --
 
 INSERT INTO `planning_detail` (`id`, `planning_code`, `land_id`, `contract_id`, `office_id`, `officer_id`, `farmer_id`, `sowing_date`, `harvest_date`, `yield_decimal`, `purchase_qty`, `status`) VALUES
-(3, 'PD001', 1, 2, 1, 1, 2, '2022-09-04 00:00:00', '2022-09-04 00:00:00', '123', '123.00', 'active'),
-(4, 'PD002', 1, 2, 1, 1, 2, '2022-09-05 00:00:00', NULL, '123', '123.00', NULL),
+(3, 'PD001', 1, 2, 1, 1, 2, '2022-09-04 00:00:00', '2022-09-04 00:00:00', '123', '123.00', 'inActive'),
+(4, 'PD002', 1, 2, 1, 1, 2, '2022-09-05 00:00:00', '2022-09-05 00:00:00', '123', '123.00', 'actice'),
 (5, 'PD003', 1, 2, 1, 1, 2, '2022-09-05 00:00:00', '2022-09-05 00:00:00', '321', '321.00', 'active');
 
 -- --------------------------------------------------------
@@ -3676,6 +3720,24 @@ ALTER TABLE `farm_land_detail`
   ADD KEY `reportingFieldOfficer` (`reporting_field_officer_id`);
 
 --
+-- Indexes for table `farm_land_planning`
+--
+ALTER TABLE `farm_land_planning`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `flp_farmer_fk` (`farmer_id`),
+  ADD KEY `flp_farmDetail_fk` (`farm_id`),
+  ADD KEY `flp.seasonList_fk` (`season_id`);
+
+--
+-- Indexes for table `farm_land_planning_crop`
+--
+ALTER TABLE `farm_land_planning_crop`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `planning_crop_farmland_fk` (`farm_land_planning_id`),
+  ADD KEY `planning_crop_fk` (`crop_id`),
+  ADD KEY `planning_crop_cropVariety_fk` (`crop_variety_id`);
+
+--
 -- Indexes for table `fertilizer`
 --
 ALTER TABLE `fertilizer`
@@ -4005,7 +4067,7 @@ ALTER TABLE `farmer_financial_details`
 -- AUTO_INCREMENT for table `farm_details`
 --
 ALTER TABLE `farm_details`
-  MODIFY `farm_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `farm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `farm_input_category`
@@ -4018,6 +4080,18 @@ ALTER TABLE `farm_input_category`
 --
 ALTER TABLE `farm_land_detail`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `farm_land_planning`
+--
+ALTER TABLE `farm_land_planning`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `farm_land_planning_crop`
+--
+ALTER TABLE `farm_land_planning_crop`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `fertilizer`
@@ -4304,6 +4378,22 @@ ALTER TABLE `farm_land_detail`
   ADD CONSTRAINT `farmerNamefk` FOREIGN KEY (`farmer_id`) REFERENCES `farmer_details` (`farmer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `reportingFieldOfficer` FOREIGN KEY (`reporting_field_officer_id`) REFERENCES `reporting_field_officer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `reportingOfficefk` FOREIGN KEY (`reporting_office_id`) REFERENCES `reporting_office` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `farm_land_planning`
+--
+ALTER TABLE `farm_land_planning`
+  ADD CONSTRAINT `flp.seasonList_fk` FOREIGN KEY (`season_id`) REFERENCES `season_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `flp_farmDetail_fk` FOREIGN KEY (`farm_id`) REFERENCES `farm_details` (`farm_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `flp_farmer_fk` FOREIGN KEY (`farmer_id`) REFERENCES `farmer_details` (`farmer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `farm_land_planning_crop`
+--
+ALTER TABLE `farm_land_planning_crop`
+  ADD CONSTRAINT `planning_crop_cropVariety_fk` FOREIGN KEY (`crop_variety_id`) REFERENCES `crop_variety_detail` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `planning_crop_farmland_fk` FOREIGN KEY (`farm_land_planning_id`) REFERENCES `farm_land_planning` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `planning_crop_fk` FOREIGN KEY (`crop_id`) REFERENCES `crop_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `input_products`

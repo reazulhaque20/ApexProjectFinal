@@ -17,8 +17,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group select2-sm">
                                                 <label class="form-label label-sm">Farmer Name : </label>
-                                                <select class="form-control GlobalSelect" name="reporting_officer" id="" required>
+                                                <select class="form-control form-select" name="farmer" required>
                                                     <option value="">Select Farmer Name</option>
+                                                    <option ng-repeat="farmer in farmerList" ng-value="farmer">{{farmer.farmerName}}</option>
                                                 </select>
                                             </div>
                                         </div>
