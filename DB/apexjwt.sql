@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2022 at 11:09 AM
+-- Generation Time: Sep 06, 2022 at 10:50 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -59,13 +59,6 @@ CREATE TABLE `category` (
   `status` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`category_id`, `category_name`, `category_desc`, `status`) VALUES
-(1, 'Category-1', '1st category', 'Active');
-
 -- --------------------------------------------------------
 
 --
@@ -79,6 +72,95 @@ CREATE TABLE `certifications` (
   `certification_validity` varchar(45) DEFAULT NULL,
   `certification_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contract_details`
+--
+
+CREATE TABLE `contract_details` (
+  `id` bigint(20) NOT NULL,
+  `farmer_id` bigint(20) DEFAULT NULL,
+  `officer_id` bigint(20) DEFAULT NULL,
+  `office_id` bigint(20) DEFAULT NULL,
+  `contract_code` varchar(45) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contract_details`
+--
+
+INSERT INTO `contract_details` (`id`, `farmer_id`, `officer_id`, `office_id`, `contract_code`, `status`) VALUES
+(2, 2, 1, 1, 'CC001', 'active'),
+(3, 2, 1, 1, 'CC002', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contract_input_details`
+--
+
+CREATE TABLE `contract_input_details` (
+  `id` bigint(20) NOT NULL,
+  `contract_id` bigint(20) DEFAULT NULL,
+  `input_category_id` bigint(20) DEFAULT NULL,
+  `product_id` bigint(20) DEFAULT NULL,
+  `stock_qty` decimal(19,2) DEFAULT NULL,
+  `unit` varchar(45) DEFAULT NULL,
+  `price` decimal(19,2) DEFAULT NULL,
+  `distribution_qty` decimal(19,2) DEFAULT NULL,
+  `sub_total` decimal(19,2) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contract_payment_details`
+--
+
+CREATE TABLE `contract_payment_details` (
+  `id` bigint(20) NOT NULL,
+  `contract_id` bigint(20) DEFAULT NULL,
+  `total_amount` decimal(19,2) DEFAULT NULL,
+  `payment_amount` decimal(19,2) DEFAULT NULL,
+  `loan_amount` decimal(19,2) DEFAULT NULL,
+  `total_due_amount` decimal(19,2) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contract_payment_details`
+--
+
+INSERT INTO `contract_payment_details` (`id`, `contract_id`, `total_amount`, `payment_amount`, `loan_amount`, `total_due_amount`, `status`) VALUES
+(1, 2, '500.00', '400.00', '200.00', '100.00', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contract_season`
+--
+
+CREATE TABLE `contract_season` (
+  `id` bigint(20) NOT NULL,
+  `contract_id` bigint(20) DEFAULT NULL,
+  `land_id` bigint(20) DEFAULT NULL,
+  `land_area` varchar(45) DEFAULT NULL,
+  `season_id` bigint(20) DEFAULT NULL,
+  `crop_id` bigint(20) DEFAULT NULL,
+  `crop_variety_id` bigint(20) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contract_season`
+--
+
+INSERT INTO `contract_season` (`id`, `contract_id`, `land_id`, `land_area`, `season_id`, `crop_id`, `crop_variety_id`, `status`) VALUES
+(4, 2, 2, '4', 1, 1, 6, 'active');
 
 -- --------------------------------------------------------
 
@@ -185,6 +267,76 @@ CREATE TABLE `crop_activity` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `crop_grade_list`
+--
+
+CREATE TABLE `crop_grade_list` (
+  `id` bigint(20) NOT NULL,
+  `crop_id` bigint(20) DEFAULT NULL,
+  `variety_id` bigint(20) DEFAULT NULL,
+  `grade_code` varchar(45) DEFAULT NULL,
+  `grade_name` varchar(45) DEFAULT NULL,
+  `price` decimal(19,2) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `crop_grade_list`
+--
+
+INSERT INTO `crop_grade_list` (`id`, `crop_id`, `variety_id`, `grade_code`, `grade_name`, `price`, `status`) VALUES
+(0, 1, 6, 'G-1', 'Grade-1', '12.00', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `crop_list`
+--
+
+CREATE TABLE `crop_list` (
+  `id` bigint(20) NOT NULL,
+  `crop_code` varchar(45) DEFAULT NULL,
+  `crop_name` varchar(45) DEFAULT NULL,
+  `unit` bigint(20) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `crop_list`
+--
+
+INSERT INTO `crop_list` (`id`, `crop_code`, `crop_name`, `unit`, `status`) VALUES
+(1, 'CRP-001', 'Crop-1', 10, 'active'),
+(2, 'CRP-002', 'Crop-2', 20, 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `crop_variety_detail`
+--
+
+CREATE TABLE `crop_variety_detail` (
+  `id` bigint(20) NOT NULL,
+  `crop_id` bigint(20) DEFAULT NULL,
+  `variety_code` varchar(45) DEFAULT NULL,
+  `variety_name` varchar(45) DEFAULT NULL,
+  `crop_cycle` varchar(45) DEFAULT NULL COMMENT 'value in days',
+  `expected_yield` varchar(45) DEFAULT NULL COMMENT '(KGS)/DCE',
+  `initial_harvest` varchar(45) DEFAULT NULL COMMENT 'Days',
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `crop_variety_detail`
+--
+
+INSERT INTO `crop_variety_detail` (`id`, `crop_id`, `variety_code`, `variety_name`, `crop_cycle`, `expected_yield`, `initial_harvest`, `status`) VALUES
+(6, 1, 'VRT-001', 'Variety-1', '60', '45', '55', 'active'),
+(11, 2, 'VRT-002', 'Variety-2', '90', '20', '80', 'active');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `department`
 --
 
@@ -244,7 +396,8 @@ CREATE TABLE `division` (
 
 INSERT INTO `division` (`id`, `div_name`, `status`) VALUES
 (1, 'Dhaka', 'active'),
-(2, 'Chattogram', 'active');
+(2, 'Chattogram', 'active'),
+(3, 'sfgd', 'inActive');
 
 -- --------------------------------------------------------
 
@@ -454,6 +607,34 @@ CREATE TABLE `farm_details` (
   `farm_location` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `farm_details`
+--
+
+INSERT INTO `farm_details` (`farm_id`, `farm_name`, `farm_type`, `farm_location`) VALUES
+(1, 'Farm-1', 'Shade', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `farm_input_category`
+--
+
+CREATE TABLE `farm_input_category` (
+  `id` bigint(20) NOT NULL,
+  `input_cat_code` varchar(45) DEFAULT NULL,
+  `input_cat_name` varchar(45) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `farm_input_category`
+--
+
+INSERT INTO `farm_input_category` (`id`, `input_cat_code`, `input_cat_name`, `status`) VALUES
+(1, 'FI-CAT-001', 'Farm Input Category 1', 'active'),
+(2, 'FI-CAT-002', 'Farm Input Category 2', 'active');
+
 -- --------------------------------------------------------
 
 --
@@ -484,6 +665,43 @@ INSERT INTO `farm_land_detail` (`id`, `farmer_id`, `reporting_office_id`, `repor
 (3, 2, 2, 1, 'sdf', 'Open Field', 'Commercial', 'Owned', 'Valley', '147', 'asdf', 'asdf', '1234'),
 (4, 2, 2, 1, 'asdf', 'Net House', 'Commercial', 'Owned', 'Plain', '741', 'asd', 'asdf', '4321'),
 (5, 30, 2, 2, 'sfgsd', 'Net House', 'Trial', 'Lease', 'Plateaus', 'dsfg', 'dsfg', 'dfg', 'sdfg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `farm_land_planning`
+--
+
+CREATE TABLE `farm_land_planning` (
+  `id` bigint(20) NOT NULL,
+  `farmer_id` bigint(20) DEFAULT NULL,
+  `farm_id` bigint(20) DEFAULT NULL,
+  `season_id` bigint(20) DEFAULT NULL,
+  `sowing_date` date DEFAULT NULL,
+  `seed_source` varchar(45) DEFAULT NULL,
+  `seed_qty` decimal(19,2) DEFAULT NULL,
+  `est_yield` varchar(45) DEFAULT NULL,
+  `est_purchase` varchar(45) DEFAULT NULL,
+  `est_harvest_date` date DEFAULT NULL,
+  `rr_spacing` varchar(45) DEFAULT NULL,
+  `tt_spacing` varchar(45) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `farm_land_planning_crop`
+--
+
+CREATE TABLE `farm_land_planning_crop` (
+  `id` bigint(20) NOT NULL,
+  `farm_land_planning_id` bigint(20) DEFAULT NULL,
+  `crop_id` bigint(20) DEFAULT NULL,
+  `crop_variety_id` bigint(20) DEFAULT NULL,
+  `remarks` varchar(100) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -525,6 +743,22 @@ CREATE TABLE `group` (
 
 INSERT INTO `group` (`group_id`, `group_name`, `group_status`) VALUES
 (1, 'Creator', 'Active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `input_products`
+--
+
+CREATE TABLE `input_products` (
+  `id` bigint(20) NOT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `farm_input_cat_id` bigint(20) DEFAULT NULL,
+  `product_name` varchar(45) DEFAULT NULL,
+  `unit` int(11) DEFAULT NULL,
+  `price` decimal(19,2) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -591,7 +825,8 @@ CREATE TABLE `land_details` (
 --
 
 INSERT INTO `land_details` (`land_id`, `land_name`, `land_type`, `land_size`, `land_uom`, `land_current_status`, `land_desc`, `land_location_id`) VALUES
-(1, 'Land-1', 'Plain', '3', 'acr', 'Used', 'Rice Land', 1);
+(1, 'Land-1', 'Plain', '3', 'acr', 'Used', 'Rice Land', 1),
+(2, 'Land-2', 'Plain', '5', 'acr', 'Used', 'Farm land', 1);
 
 -- --------------------------------------------------------
 
@@ -641,6 +876,36 @@ INSERT INTO `manufacturer` (`manufacturer_id`, `manufacturer_name`, `manufacture
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `planning_detail`
+--
+
+CREATE TABLE `planning_detail` (
+  `id` bigint(20) NOT NULL,
+  `planning_code` varchar(45) DEFAULT NULL,
+  `land_id` bigint(20) DEFAULT NULL,
+  `contract_id` bigint(20) DEFAULT NULL,
+  `office_id` bigint(20) DEFAULT NULL,
+  `officer_id` bigint(20) DEFAULT NULL COMMENT 'APO Name',
+  `farmer_id` bigint(20) DEFAULT NULL,
+  `sowing_date` datetime DEFAULT NULL,
+  `harvest_date` datetime DEFAULT NULL,
+  `yield_decimal` varchar(45) DEFAULT NULL,
+  `purchase_qty` decimal(19,2) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `planning_detail`
+--
+
+INSERT INTO `planning_detail` (`id`, `planning_code`, `land_id`, `contract_id`, `office_id`, `officer_id`, `farmer_id`, `sowing_date`, `harvest_date`, `yield_decimal`, `purchase_qty`, `status`) VALUES
+(3, 'PD001', 1, 2, 1, 1, 2, '2022-09-04 00:00:00', '2022-09-04 00:00:00', '123', '123.00', 'inActive'),
+(4, 'PD002', 1, 2, 1, 1, 2, '2022-09-05 00:00:00', '2022-09-05 00:00:00', '123', '123.00', 'actice'),
+(5, 'PD003', 1, 2, 1, 1, 2, '2022-09-05 00:00:00', '2022-09-05 00:00:00', '321', '321.00', 'active');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
@@ -650,7 +915,7 @@ CREATE TABLE `product` (
   `product_desc` varchar(255) DEFAULT NULL,
   `product_type` varchar(255) DEFAULT NULL,
   `product_uom` varchar(255) DEFAULT NULL,
-  `product_qty` bigint(20) DEFAULT NULL,
+  `product_qty` decimal(19,4) DEFAULT NULL,
   `product_stock_status` varchar(255) DEFAULT NULL,
   `product_manufacturer_id` bigint(20) DEFAULT NULL,
   `product_price` decimal(19,4) DEFAULT NULL,
@@ -658,13 +923,6 @@ CREATE TABLE `product` (
   `status` varchar(255) DEFAULT NULL,
   `product_category` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `product`
---
-
-INSERT INTO `product` (`product_id`, `product_name`, `product_desc`, `product_type`, `product_uom`, `product_qty`, `product_stock_status`, `product_manufacturer_id`, `product_price`, `product_reorder_level`, `status`, `product_category`) VALUES
-(1, 'Product-1', 'product1', 'Test', 'Test', 100, 'Test', 1, '500.0000', '10', 'Active', 1);
 
 -- --------------------------------------------------------
 
@@ -771,6 +1029,28 @@ INSERT INTO `role` (`id`, `role_description`, `role_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `season_list`
+--
+
+CREATE TABLE `season_list` (
+  `id` bigint(20) NOT NULL,
+  `season_code` varchar(45) DEFAULT NULL,
+  `season_name` varchar(45) DEFAULT NULL,
+  `season_start` date DEFAULT NULL,
+  `season_end` date DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `season_list`
+--
+
+INSERT INTO `season_list` (`id`, `season_code`, `season_name`, `season_start`, `season_end`, `status`) VALUES
+(1, 'S001', 'Season 1', '2022-08-17', '2022-08-30', 'active');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `seed_master`
 --
 
@@ -806,6 +1086,31 @@ CREATE TABLE `stock` (
   `stock_uom` varchar(45) DEFAULT NULL,
   `stock_threshold` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier_list`
+--
+
+CREATE TABLE `supplier_list` (
+  `id` bigint(20) NOT NULL,
+  `code` varchar(45) DEFAULT NULL,
+  `short_name` varchar(45) DEFAULT NULL,
+  `full_name` varchar(45) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `phone` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `contact_person` varchar(45) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `supplier_list`
+--
+
+INSERT INTO `supplier_list` (`id`, `code`, `short_name`, `full_name`, `address`, `phone`, `email`, `contact_person`, `status`) VALUES
+(1, 'SUP001', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'active');
 
 -- --------------------------------------------------------
 
@@ -3133,6 +3438,30 @@ INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `warehouse_list`
+--
+
+CREATE TABLE `warehouse_list` (
+  `id` bigint(20) NOT NULL,
+  `warehouse_code` varchar(45) DEFAULT NULL,
+  `warehouse_name` varchar(45) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `location` varchar(45) DEFAULT NULL,
+  `incharge_name` varchar(45) DEFAULT NULL,
+  `capacity` varchar(45) DEFAULT NULL COMMENT 'Value in Tonnes',
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `warehouse_list`
+--
+
+INSERT INTO `warehouse_list` (`id`, `warehouse_code`, `warehouse_name`, `address`, `location`, `incharge_name`, `capacity`, `status`) VALUES
+(1, 'WH-001', 'Warehouse-1', 'Dhaka', 'Dhaka', 'None', '10', 'active');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `wfheader`
 --
 
@@ -3165,6 +3494,28 @@ CREATE TABLE `wflines` (
   `wfline_status` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zone_list`
+--
+
+CREATE TABLE `zone_list` (
+  `id` bigint(20) NOT NULL,
+  `zone_code` varchar(45) DEFAULT NULL,
+  `zone_name` varchar(45) DEFAULT NULL,
+  `division_id` bigint(20) DEFAULT NULL,
+  `district_id` bigint(20) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `zone_list`
+--
+
+INSERT INTO `zone_list` (`id`, `zone_code`, `zone_name`, `division_id`, `district_id`, `status`) VALUES
+(2, 'Z001', 'Zone1', 1, 2, 'active');
+
 --
 -- Indexes for dumped tables
 --
@@ -3186,6 +3537,42 @@ ALTER TABLE `category`
 --
 ALTER TABLE `certifications`
   ADD PRIMARY KEY (`certifications_id`);
+
+--
+-- Indexes for table `contract_details`
+--
+ALTER TABLE `contract_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contract_farmer_fk` (`farmer_id`),
+  ADD KEY `contract_officer_fk` (`officer_id`),
+  ADD KEY `contract_office_fk` (`office_id`);
+
+--
+-- Indexes for table `contract_input_details`
+--
+ALTER TABLE `contract_input_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contract_input_category_fk` (`input_category_id`),
+  ADD KEY `contract_product` (`product_id`),
+  ADD KEY `contract_input_contract_fk` (`contract_id`);
+
+--
+-- Indexes for table `contract_payment_details`
+--
+ALTER TABLE `contract_payment_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contract_payment_contract_fk` (`contract_id`);
+
+--
+-- Indexes for table `contract_season`
+--
+ALTER TABLE `contract_season`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contract_season_fk` (`season_id`),
+  ADD KEY `contract_crop_fk` (`crop_id`),
+  ADD KEY `contract_crop_variety_fk` (`crop_variety_id`),
+  ADD KEY `contract_land_fk` (`land_id`),
+  ADD KEY `contract_season_contract_fk` (`contract_id`);
 
 --
 -- Indexes for table `contruct_cash_details`
@@ -3235,6 +3622,27 @@ ALTER TABLE `crop_activity`
   ADD KEY `cropActiviry_seed_fk` (`seed_id`),
   ADD KEY `cropActivity_cm_fk` (`contruct_details_id`),
   ADD KEY `cropActiviry_fertilizer_fk` (`fertilizer_id`);
+
+--
+-- Indexes for table `crop_grade_list`
+--
+ALTER TABLE `crop_grade_list`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `grade_crop_fk` (`crop_id`),
+  ADD KEY `garder_variety_fk` (`variety_id`);
+
+--
+-- Indexes for table `crop_list`
+--
+ALTER TABLE `crop_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `crop_variety_detail`
+--
+ALTER TABLE `crop_variety_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `variety_crop_fk` (`crop_id`);
 
 --
 -- Indexes for table `department`
@@ -3297,6 +3705,12 @@ ALTER TABLE `farm_details`
   ADD KEY `farm_location_fk` (`farm_location`);
 
 --
+-- Indexes for table `farm_input_category`
+--
+ALTER TABLE `farm_input_category`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `farm_land_detail`
 --
 ALTER TABLE `farm_land_detail`
@@ -3304,6 +3718,24 @@ ALTER TABLE `farm_land_detail`
   ADD KEY `farmerNamefk` (`farmer_id`),
   ADD KEY `reportingOfficefk` (`reporting_office_id`),
   ADD KEY `reportingFieldOfficer` (`reporting_field_officer_id`);
+
+--
+-- Indexes for table `farm_land_planning`
+--
+ALTER TABLE `farm_land_planning`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `flp_farmer_fk` (`farmer_id`),
+  ADD KEY `flp_farmDetail_fk` (`farm_id`),
+  ADD KEY `flp.seasonList_fk` (`season_id`);
+
+--
+-- Indexes for table `farm_land_planning_crop`
+--
+ALTER TABLE `farm_land_planning_crop`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `planning_crop_farmland_fk` (`farm_land_planning_id`),
+  ADD KEY `planning_crop_fk` (`crop_id`),
+  ADD KEY `planning_crop_cropVariety_fk` (`crop_variety_id`);
 
 --
 -- Indexes for table `fertilizer`
@@ -3316,6 +3748,13 @@ ALTER TABLE `fertilizer`
 --
 ALTER TABLE `group`
   ADD PRIMARY KEY (`group_id`);
+
+--
+-- Indexes for table `input_products`
+--
+ALTER TABLE `input_products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `farm_input_product_fk` (`farm_input_cat_id`);
 
 --
 -- Indexes for table `inventory`
@@ -3348,6 +3787,17 @@ ALTER TABLE `location`
 --
 ALTER TABLE `manufacturer`
   ADD PRIMARY KEY (`manufacturer_id`);
+
+--
+-- Indexes for table `planning_detail`
+--
+ALTER TABLE `planning_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pd_land_fk` (`land_id`),
+  ADD KEY `pd_contract_fk` (`contract_id`),
+  ADD KEY `pd_office_fk` (`office_id`),
+  ADD KEY `pd_officer_fk` (`officer_id`),
+  ADD KEY `pd_farmer_fk` (`farmer_id`);
 
 --
 -- Indexes for table `product`
@@ -3389,6 +3839,12 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `season_list`
+--
+ALTER TABLE `season_list`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `seed_master`
 --
 ALTER TABLE `seed_master`
@@ -3399,6 +3855,12 @@ ALTER TABLE `seed_master`
 --
 ALTER TABLE `stock`
   ADD PRIMARY KEY (`stock_id`);
+
+--
+-- Indexes for table `supplier_list`
+--
+ALTER TABLE `supplier_list`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `union`
@@ -3437,6 +3899,12 @@ ALTER TABLE `user_role`
   ADD KEY `FKa68196081fvovjhkek5m97n3y` (`role_id`);
 
 --
+-- Indexes for table `warehouse_list`
+--
+ALTER TABLE `warehouse_list`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `wfheader`
 --
 ALTER TABLE `wfheader`
@@ -3450,6 +3918,14 @@ ALTER TABLE `wflines`
   ADD PRIMARY KEY (`wfline_id`),
   ADD KEY `wfLine_wfheader_fk` (`wfheader_id`),
   ADD KEY `wfLine_Group_fk` (`wfline_next_group`);
+
+--
+-- Indexes for table `zone_list`
+--
+ALTER TABLE `zone_list`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `zone_division_fk` (`division_id`),
+  ADD KEY `zone_district_fk` (`district_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -3472,6 +3948,30 @@ ALTER TABLE `category`
 --
 ALTER TABLE `certifications`
   MODIFY `certifications_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `contract_details`
+--
+ALTER TABLE `contract_details`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `contract_input_details`
+--
+ALTER TABLE `contract_input_details`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `contract_payment_details`
+--
+ALTER TABLE `contract_payment_details`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `contract_season`
+--
+ALTER TABLE `contract_season`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `contruct_details`
@@ -3504,6 +4004,18 @@ ALTER TABLE `crop_activity`
   MODIFY `crop_activity_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `crop_list`
+--
+ALTER TABLE `crop_list`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `crop_variety_detail`
+--
+ALTER TABLE `crop_variety_detail`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
@@ -3519,7 +4031,7 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT for table `division`
 --
 ALTER TABLE `division`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `dropdown`
@@ -3555,13 +4067,31 @@ ALTER TABLE `farmer_financial_details`
 -- AUTO_INCREMENT for table `farm_details`
 --
 ALTER TABLE `farm_details`
-  MODIFY `farm_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `farm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `farm_input_category`
+--
+ALTER TABLE `farm_input_category`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `farm_land_detail`
 --
 ALTER TABLE `farm_land_detail`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `farm_land_planning`
+--
+ALTER TABLE `farm_land_planning`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `farm_land_planning_crop`
+--
+ALTER TABLE `farm_land_planning_crop`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `fertilizer`
@@ -3574,6 +4104,12 @@ ALTER TABLE `fertilizer`
 --
 ALTER TABLE `group`
   MODIFY `group_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `input_products`
+--
+ALTER TABLE `input_products`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `inventory`
@@ -3591,7 +4127,7 @@ ALTER TABLE `labour`
 -- AUTO_INCREMENT for table `land_details`
 --
 ALTER TABLE `land_details`
-  MODIFY `land_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `land_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `location`
@@ -3606,10 +4142,16 @@ ALTER TABLE `manufacturer`
   MODIFY `manufacturer_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `planning_detail`
+--
+ALTER TABLE `planning_detail`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `product_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reporting_field_officer`
@@ -3636,6 +4178,12 @@ ALTER TABLE `role`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
+-- AUTO_INCREMENT for table `season_list`
+--
+ALTER TABLE `season_list`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `seed_master`
 --
 ALTER TABLE `seed_master`
@@ -3646,6 +4194,12 @@ ALTER TABLE `seed_master`
 --
 ALTER TABLE `stock`
   MODIFY `stock_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `supplier_list`
+--
+ALTER TABLE `supplier_list`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `union`
@@ -3672,14 +4226,58 @@ ALTER TABLE `user_info`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `warehouse_list`
+--
+ALTER TABLE `warehouse_list`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `wfheader`
 --
 ALTER TABLE `wfheader`
   MODIFY `wfheader_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `zone_list`
+--
+ALTER TABLE `zone_list`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `contract_details`
+--
+ALTER TABLE `contract_details`
+  ADD CONSTRAINT `contract_farmer_fk` FOREIGN KEY (`farmer_id`) REFERENCES `farmer_details` (`farmer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `contract_office_fk` FOREIGN KEY (`office_id`) REFERENCES `reporting_office` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `contract_officer_fk` FOREIGN KEY (`officer_id`) REFERENCES `reporting_field_officer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `contract_input_details`
+--
+ALTER TABLE `contract_input_details`
+  ADD CONSTRAINT `contract_input_category_fk` FOREIGN KEY (`input_category_id`) REFERENCES `farm_input_category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `contract_input_contract_fk` FOREIGN KEY (`contract_id`) REFERENCES `contract_details` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `contract_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `contract_payment_details`
+--
+ALTER TABLE `contract_payment_details`
+  ADD CONSTRAINT `contract_payment_contract_fk` FOREIGN KEY (`contract_id`) REFERENCES `contract_details` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `contract_season`
+--
+ALTER TABLE `contract_season`
+  ADD CONSTRAINT `contract_crop_fk` FOREIGN KEY (`crop_id`) REFERENCES `crop_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `contract_crop_variety_fk` FOREIGN KEY (`crop_variety_id`) REFERENCES `crop_variety_detail` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `contract_land_fk` FOREIGN KEY (`land_id`) REFERENCES `land_details` (`land_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `contract_season_contract_fk` FOREIGN KEY (`contract_id`) REFERENCES `contract_details` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `contract_season_fk` FOREIGN KEY (`season_id`) REFERENCES `season_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `contruct_cash_details`
@@ -3723,6 +4321,19 @@ ALTER TABLE `crop_activity`
   ADD CONSTRAINT `cropActiviry_seed_fk` FOREIGN KEY (`seed_id`) REFERENCES `seed_master` (`seed_master_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `cropActivity_cm_fk` FOREIGN KEY (`contruct_details_id`) REFERENCES `contruct_details` (`contruct_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `cropActivity_user_fk` FOREIGN KEY (`apo_user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `crop_grade_list`
+--
+ALTER TABLE `crop_grade_list`
+  ADD CONSTRAINT `garder_variety_fk` FOREIGN KEY (`variety_id`) REFERENCES `crop_variety_detail` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `grade_crop_fk` FOREIGN KEY (`crop_id`) REFERENCES `crop_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `crop_variety_detail`
+--
+ALTER TABLE `crop_variety_detail`
+  ADD CONSTRAINT `variety_crop_fk` FOREIGN KEY (`crop_id`) REFERENCES `crop_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `district`
@@ -3769,6 +4380,28 @@ ALTER TABLE `farm_land_detail`
   ADD CONSTRAINT `reportingOfficefk` FOREIGN KEY (`reporting_office_id`) REFERENCES `reporting_office` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Constraints for table `farm_land_planning`
+--
+ALTER TABLE `farm_land_planning`
+  ADD CONSTRAINT `flp.seasonList_fk` FOREIGN KEY (`season_id`) REFERENCES `season_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `flp_farmDetail_fk` FOREIGN KEY (`farm_id`) REFERENCES `farm_details` (`farm_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `flp_farmer_fk` FOREIGN KEY (`farmer_id`) REFERENCES `farmer_details` (`farmer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `farm_land_planning_crop`
+--
+ALTER TABLE `farm_land_planning_crop`
+  ADD CONSTRAINT `planning_crop_cropVariety_fk` FOREIGN KEY (`crop_variety_id`) REFERENCES `crop_variety_detail` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `planning_crop_farmland_fk` FOREIGN KEY (`farm_land_planning_id`) REFERENCES `farm_land_planning` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `planning_crop_fk` FOREIGN KEY (`crop_id`) REFERENCES `crop_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `input_products`
+--
+ALTER TABLE `input_products`
+  ADD CONSTRAINT `farm_input_product_fk` FOREIGN KEY (`farm_input_cat_id`) REFERENCES `farm_input_category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Constraints for table `inventory`
 --
 ALTER TABLE `inventory`
@@ -3781,10 +4414,20 @@ ALTER TABLE `land_details`
   ADD CONSTRAINT `land_location_fk` FOREIGN KEY (`land_location_id`) REFERENCES `location` (`location_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Constraints for table `planning_detail`
+--
+ALTER TABLE `planning_detail`
+  ADD CONSTRAINT `pd_contract_fk` FOREIGN KEY (`contract_id`) REFERENCES `contract_details` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pd_farmer_fk` FOREIGN KEY (`farmer_id`) REFERENCES `farmer_details` (`farmer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pd_land_fk` FOREIGN KEY (`land_id`) REFERENCES `land_details` (`land_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pd_office_fk` FOREIGN KEY (`office_id`) REFERENCES `reporting_office` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pd_officer_fk` FOREIGN KEY (`officer_id`) REFERENCES `reporting_field_officer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Constraints for table `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `product_category_fk` FOREIGN KEY (`product_category`) REFERENCES `category` (`category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `product_category_fk` FOREIGN KEY (`product_category`) REFERENCES `farm_input_category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `product_manufacturer_fk` FOREIGN KEY (`product_manufacturer_id`) REFERENCES `manufacturer` (`manufacturer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -3827,6 +4470,13 @@ ALTER TABLE `wfheader`
 ALTER TABLE `wflines`
   ADD CONSTRAINT `wfLine_Group_fk` FOREIGN KEY (`wfline_next_group`) REFERENCES `group` (`group_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `wfLine_wfheader_fk` FOREIGN KEY (`wfheader_id`) REFERENCES `wfheader` (`wfheader_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `zone_list`
+--
+ALTER TABLE `zone_list`
+  ADD CONSTRAINT `zone_district_fk` FOREIGN KEY (`district_id`) REFERENCES `district` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `zone_division_fk` FOREIGN KEY (`division_id`) REFERENCES `division` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

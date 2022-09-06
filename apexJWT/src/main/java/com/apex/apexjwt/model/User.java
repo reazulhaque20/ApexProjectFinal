@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -15,7 +16,9 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+
     private String userName;
     private String firstName;
     private String lastName;

@@ -149,14 +149,15 @@
         </header>
 
         <!-- ========== Left Sidebar Start ========== -->
-        <div class="vertical-menu">
+       <div class="vertical-menu">
             <div data-simplebar class="h-100">
                 <!--- Sidemenu -->
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
                         <li>
-                            <a href="../../views/dashboard.html"><i class="mdi mdi-monitor-dashboard"></i><span
+                            <a href="../views/dashboard.html" class="disabled"><i
+                                    class="mdi mdi-monitor-dashboard"></i><span
                                     data-key="t-dashboard">Dashboard</span></a>
                         </li>
                         <li>
@@ -181,16 +182,22 @@
                                     class="mdi mdi-handshake-outline"></i><span data-key="t-pages">Contract
                                     Farming</span></a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="contracts_list" data-key="t-starter-page">Contracts List</a></li>
-                                <li><a href="new_contract" data-key="t-maintenance">Create Contract</a></li>
+                                <li><a href="../contract.html" data-key="t-starter-page">Contracts List</a></li>
+                                <li><a href="../contract.html" data-key="t-maintenance">Create Contract</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-clipboard-list"></i><span
                                     data-key="t-pages">Planning</span></a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
-                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                                <li><a href="../planning.html" data-key="t-starter-page">Planning List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-clipboard-list"></i><span
+                                    data-key="t-pages">Sowing</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="../sowing.html" data-key="t-starter-page">Sowing List</a></li>
                             </ul>
                         </li>
                         <li>
@@ -257,17 +264,30 @@
                             <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-cog-outline"></i><span
                                     data-key="t-pages">Master Data</span></a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="location.html" data-key="t-starter-page">Location List</a></li>
-                                <li><a href="officeList.html">Reporting Office</a></li>
-                                <li><a href="officeList.html">Reporting Officer</a></li>
-                                <li><a href="divisionList.html" data-key="t-starter-page">Division List</a></li>
-                                <li><a href="districtList.html">District List</a></li>
-                                <li><a href="upazillaList.html">Upazila List</a></li>
-                                <li><a href="unionList.html">Union List</a></li>
-                                <li><a href="buyer_list.html">Buyer List</a></li>
-                                <li><a href="crop_list.html">Crop List</a></li>
-                                <li><a href="cropVarietyDetail.html">Crop Variety</a></li>
-                                <li><a href="cropGradeList.html">Crop Grade</a></li>
+                                <li><a href="../master_data/location.html" data-key="t-starter-page">Location
+                                        List</a></li>
+                                <li><a href="../master_data/officeList.html">Reporting Office</a></li>
+                                <li><a href="../master_data/officerList.html">Reporting Officer</a></li>
+                                <li><a href="../master_data/divisionList.html" data-key="t-starter-page">Division
+                                        List</a></li>
+                                <li><a href="../master_data/districtList.html">District List</a></li>
+                                <li><a href="../master_data/upazillaList.html" data-key="t-starter-page">Upazila
+                                        List</a></li>
+                                <li><a href="../master_data/unionList.html" data-key="t-starter-page">Union
+                                        List</a></li>
+                                <li><a href="../master_data/dropDownList.html" data-key="t-starter-page">DropDown
+                                        List</a></li>
+                                <li><a href="../master_data/buyer_list.html" data-key="t-starter-page">Buyer
+                                        List</a></li>
+                                <li><a href="../master_data/crop_list.html">Crop List</a></li>
+                                <li><a href="../master_data/cropVarietyDetail.html">Crop Variety</a></li>
+                                <li><a href="../master_data/cropGradeList.html">Crop Grade</a></li>
+                                <li><a href="../master_data/farmer_input_category.html">Farm Input Category</a>
+                                </li>
+                                <li><a href="../master_data/season_list.html">Season List</a></li>
+                                <li><a href="../master_data/supplierList.html">Supplier List</a></li>
+                                <li><a href="../master_data/warehouseList.html">Warehouse List</a></li>
+                                <li><a href="../master_data/zone_list.html">Zone List</a></li>
                             </ul>
                         </li>
                         <li>
@@ -275,13 +295,12 @@
                                     class="mdi mdi-account-cog-outline"></i><span data-key="t-System Users">System
                                     Users</span></a>
                             <ul class="sub-menu mm-collapse" aria-expanded="false">
-                                <li><a href="applied_users" data-key="t-applied_users">Applied Users</a></li>
-                                <li><a href="../../views/users/users_list.html" data-key="t-users_list">Users List</a>
-                                </li>
-                                <li><a href="user_groups" data-key="t-user_groups">User Groups</a></li>
-                                <li><a href="menu_list" data-key="t-menu_list">Menu List</a></li>
-                                <li><a href="menu_permission" data-key="t-menu_permission">Menu Permission</a></li>
-                                <li><a href="approval_permissions" data-key="t-approval_permissions">Approval
+                                <li><a href="" data-key="t-applied_users">Applied Users</a></li>
+                                <li><a href="../users/users_list.html" data-key="t-users_list">Users List</a></li>
+                                <li><a href="" data-key="t-user_groups">User Groups</a></li>
+                                <li><a href="" data-key="t-menu_list">Menu List</a></li>
+                                <li><a href="" data-key="t-menu_permission">Menu Permission</a></li>
+                                <li><a href="" data-key="t-approval_permissions">Approval
                                         Permission</a></li>
                             </ul>
                         </li>
