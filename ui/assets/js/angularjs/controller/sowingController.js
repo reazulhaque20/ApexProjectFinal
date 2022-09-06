@@ -155,19 +155,9 @@ app.controller('sowingCtrl', function (serverURL, $scope, $http, NgTableParams, 
                     console.log(errResponse);
                 }
         );
-    }
-
-    $scope.loadInitData = function () {
-        $scope.loadAllFarmerList();
-        $scope.loadAllFarmDetail();
-        $scope.loadAllSeasonList();
     };
     
-    $scope.addPlanningDetailClick = function(){
-        $scope.pd = "";
-    };
-    
-    $scope.addPlanningDetail = function(pd){
+    $scope.loadAllCropList = function(){
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -176,8 +166,68 @@ app.controller('sowingCtrl', function (serverURL, $scope, $http, NgTableParams, 
             }
         };
         
-        $scope.pd.sowingDate = new Date(pd.sowingDate);
-        $scope.pd.harvestDate = new Date(pd.harvestDate);
+        $http.get($scope.urlServer + "api/masterData/getAllActiveCrops", config).then(
+            function(response){
+                $scope.cropList = response.data;
+            },
+            function(errResponse){
+                console.log(errResponse);
+            }
+        );
+    };
+    
+    $scope.loadCropVarietyByCropName = function(crop){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        
+        $http.get($scope.urlServer + "api/masterData/getCropVarietyByCropName/"+crop.cropName, config).then(
+                function(response){
+                    $scope.varietyList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    };
+
+    $scope.loadInitData = function () {
+        $scope.loadAllFarmerList();
+        $scope.loadAllFarmDetail();
+        $scope.loadAllSeasonList();
+        $scope.loadAllCropList();
+    };
+    
+    $scope.addPlanningDetailClick = function(){
+        $scope.pd = "";
+    };
+    
+    $scope.planningCrops = [];
+    
+    $scope.addPlanningCrop = function(planningCrop){
+        $scope.planningCrops.push(planningCrop);
+        $scope.pc = "";
+    };
+    
+    $scope.removeRow = function(index){
+        var name = $scope.planningCrops[index].crop.cropName;
+        if ($window.confirm("Do you want to delete: " + name)) {
+            $scope.planningCrops.splice(index, 1);
+        }
+    };
+    
+    $scope.addSowingDetail = function(sw){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
         
         console.log(pd);
         $http.post($scope.urlServer + "api/planningDetail/addPlanningDetail", $scope.pd, config).then(
