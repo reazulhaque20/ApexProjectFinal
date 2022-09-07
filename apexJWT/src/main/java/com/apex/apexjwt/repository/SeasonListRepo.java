@@ -12,7 +12,7 @@ import java.util.List;
 public interface SeasonListRepo extends JpaRepository<SeasonList, Long> {
 
     @Query("SELECT u FROM SeasonList u WHERE u.id=:id")
-    public SeasonList getSeasonById(@Param("id") Long id);
+    SeasonList getSeasonById(@Param("id") Long id);
 
     @Query("SELECT u FROM SeasonList u WHERE u.status='active'")
     List<SeasonList> getAllActiveSeasonList();
