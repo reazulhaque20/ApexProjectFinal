@@ -33,6 +33,8 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -98,6 +100,10 @@ public class FarmerController {
             response.setMessageType("error");
             return response;
         }
+
+        farmerDetail.setJoiningDate(LocalDate.now());
+        farmerDetail.setFarmerType("Type-1");
+        farmerDetail.setStatus("active");
         farmerDetail = farmerService.createFarmer(farmerDetail);
 
         for (FarmerFamilyDetail familyDetail: farmerAddRequest.getFarmerFamilyDetailList()) {

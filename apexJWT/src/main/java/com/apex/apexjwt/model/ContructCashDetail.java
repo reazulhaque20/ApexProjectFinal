@@ -10,8 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "contruct_cash_details")
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

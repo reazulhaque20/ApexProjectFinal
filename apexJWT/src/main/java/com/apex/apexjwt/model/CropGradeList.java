@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @Table(name = "crop_grade_list")
 public class CropGradeList {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

@@ -866,6 +866,21 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="tbl_family_member">
+                                                                <!-- <tr>
+                                                                    <td><input type="text" class="form-control upper"
+                                                                            name="member_name" maxlength="30" required></td>
+                                                                    <td><input type="text" class="form-control number"
+                                                                            name="member_contact"></td>
+                                                                    <td><input type="text" class="form-control datepicker"
+                                                                            name="member_dob" required></td>
+                                                                    <td><input type="text" class="form-control upper"
+                                                                            name="member_realtionship" required></td>
+                                                                    <td><a href="javascript:void()"
+                                                                            class="btn btn-outline-danger btn-sm"
+                                                                            onclick="delRow(this,'addFamilyMember')"
+                                                                            title="Delete Family Member"><i
+                                                                                class="fa fa-trash-o"></i> Remove</a></td>
+                                                                </tr> -->
                                                                 <tr ng-repeat="f_member in f_members track by $index"
                                                                     ng-show="f_member.memberName != null">
                                                                     <td style="display:none;">{{ f_member.id}}</td>

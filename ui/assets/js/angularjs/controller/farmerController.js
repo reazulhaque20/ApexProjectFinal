@@ -508,10 +508,10 @@ app.controller('farmerCtrl', function (serverURL, $scope, $http, NgTableParams, 
     $scope.profilePicturePath = "../assets/images/proimage.jpeg";
 });
 
-app.factory('farmerFactory', function($http){
+app.factory('farmerFactory', function($http,serverURL){
         
         var uploadProfilePic = function(formData, farmerId){
-          return $http.post("http://localhost:8081/api/farmer/uploadImage/" + farmerId, formData, {
+          return $http.post(serverURL + "api/farmer/uploadImage/" + farmerId, formData, {
                                 transformRequest: angular.identity,
                                 headers: {
                                     'Content-Type': undefined

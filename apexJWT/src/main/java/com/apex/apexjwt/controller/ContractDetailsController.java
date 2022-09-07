@@ -47,6 +47,7 @@ public class ContractDetailsController {
         contractDetail.setOffice(reportingOffice);
         contractDetail.setOfficer(reportingFieldOfficer);
         contractDetail.setStatus("active");
+//        contractDetail.setContractCode(createContractRequest);
 
         try{
             contractDetail = contractDetailsService.addContractDetails(contractDetail);
@@ -120,6 +121,7 @@ public class ContractDetailsController {
         contractPaymentDetail.setPaymentAmount(createContractRequest.getPaymentDetail().getPaymentAmount());
         contractPaymentDetail.setLoanAmount(createContractRequest.getPaymentDetail().getLoanAmount());
         contractPaymentDetail.setTotalDueAmount(createContractRequest.getPaymentDetail().getTotalDueAmount());
+        contractPaymentDetail.setStatus("active");
 
         try {
             contractPaymentDetailService.addContractPaymentDetail(contractPaymentDetail);

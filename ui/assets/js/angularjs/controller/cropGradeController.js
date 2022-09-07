@@ -163,7 +163,7 @@ app.controller('cropGradeCtrl', function (serverURL, $scope, $http, NgTableParam
                     case 'success':
                         $scope.message("SUCCESS", response.data.message, "success");
                         $("#addOrEditCropGrade").modal("hide");
-                        $scope.loadAllCropVariety();
+                        $scope.loadAllCropGrade();
                         break;
                     case 'error':
                         $scope.message("!ERRRO!", response.data.message, "error");
