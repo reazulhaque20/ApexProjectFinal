@@ -74,7 +74,7 @@ app.controller('sowingCtrl', function (serverURL, $scope, $http, NgTableParams, 
         $window.location.href = $scope.urlUI + 'ui/views/login.html';
     };
     
-    $scope.loadAllPlanningDetail = function(){
+    $scope.loadAllSowingDetail = function(){
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -83,7 +83,7 @@ app.controller('sowingCtrl', function (serverURL, $scope, $http, NgTableParams, 
             }
         };
         
-        $http.get($scope.urlServer + "api/planningDetail/getAllPlanningDetail", config).then(
+        $http.get($scope.urlServer + "api/sowing/getAllSowingCrops", config).then(
                 function(response){
                     console.log(response);
                     var data = response.data;
@@ -155,19 +155,29 @@ app.controller('sowingCtrl', function (serverURL, $scope, $http, NgTableParams, 
                     console.log(errResponse);
                 }
         );
-    }
+    };
+    
 
-    $scope.loadInitData = function () {
-        $scope.loadAllFarmerList();
-        $scope.loadAllFarmDetail();
-        $scope.loadAllSeasonList();
+    
+    $scope.loadAllCrops = function(){
+      var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        $http.get($scope.urlServer + "api/masterData/getAllCrops", config).then(
+                function(response){
+                    $scope.cropList = response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
     };
     
-    $scope.addPlanningDetailClick = function(){
-        $scope.pd = "";
-    };
-    
-    $scope.addPlanningDetail = function(pd){
+    $scope.loadCropsVarietyByCropName = function(cropName){
         var config = {
             headers: {
                 'NO-AUTH': 'True',
@@ -176,11 +186,73 @@ app.controller('sowingCtrl', function (serverURL, $scope, $http, NgTableParams, 
             }
         };
         
-        $scope.pd.sowingDate = new Date(pd.sowingDate);
-        $scope.pd.harvestDate = new Date(pd.harvestDate);
+        $http.get($scope.urlServer + "api/masterData/getCropVarietyByCropName/"+cropName, config).then(
+                function(response){
+                    $scope.cropVarietyList =  response.data;
+                },
+                function(errResponse){
+                    console.log(errResponse);
+                }
+        );
+    };
+
+    $scope.loadInitData = function () {
+        $scope.loadAllSowingDetail();
+        $scope.loadAllFarmerList();
+        $scope.loadAllFarmDetail();
+        $scope.loadAllSeasonList();
+        $scope.loadAllCrops();
         
-        console.log(pd);
-        $http.post($scope.urlServer + "api/planningDetail/addPlanningDetail", $scope.pd, config).then(
+    };
+    
+    $scope.addSowingDetailClick = function(){
+        $scope.sw = {};
+    };
+    
+    
+    $scope.cropInfoList = [];
+    $scope.ciData = {
+        "crop": null,
+        "cropType": null,
+        "cropVariety": null,
+        "remarks": null
+    };
+    $scope.addCropInfo = function(ci, cropType){
+        $scope.ciData.crop = ci.crop;
+        $scope.ciData.cropType = cropType;
+        $scope.ciData.cropVariety = ci.cropVariety;
+        $scope.ciData.remarks = ci.remarks;
+        $scope.cropInfoList.push($scope.ciData);
+        
+        
+    };
+    
+    $scope.removeRow = function (index) {
+        var name = $scope.cropInfoList[index].crop.cropName;
+        if ($window.confirm("Do you want to delete: " + name)) {
+            $scope.cropInfoList.splice(index, 1);
+        }
+    };
+    
+    $scope.addSowingDetail = function(sw){
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+        
+        $scope.sw.sowingDate = new Date(sw.sowingDate);
+        $scope.sw.estHarvestDate = new Date(sw.estHarvestDate);
+        $scope.sowingData = {
+            "sowingFarmLandPlanning": null,
+            "sowingFarmLandPlanningCropList": null
+        };
+        $scope.sowingData.sowingFarmLandPlanning = $scope.sw;
+        $scope.sowingData.sowingFarmLandPlanningCropList = $scope.cropInfoList;
+        console.log($scope.sowingData);
+        $http.post($scope.urlServer + "api/sowing/addSowingPlanning", $scope.sowingData, config).then(
             function(response){
                 switch(response.data.messageType){
                     case 'success':

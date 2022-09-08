@@ -201,7 +201,7 @@ app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams
     };
     
     $scope.addPlanningDetailClick = function(){
-        $scope.pd = "";
+        $scope.pd={};
     };
     
     $scope.addPlanningDetail = function(pd){
@@ -223,7 +223,7 @@ app.controller('planningCtrl', function (serverURL, $scope, $http, NgTableParams
                     case 'success':
                         $scope.message("SUCCESS", response.data.message, "success");
                         $("#addOrEditPlanningDetail").modal("hide");
-                        $scope.pd = "";
+                        $scope.pd = {};
                         $scope.loadAllPlanningDetail();
                         break;
                     case 'error':

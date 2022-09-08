@@ -10,15 +10,15 @@ public class SowingFarmLandPlanningCrop {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "farm_land_planning_id")
     private SowingFarmLandPlanning farmLandPlanning;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "crop_id")
     private CropList crop;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "crop_variety_id")
     private CropVarietyDetail cropVariety;
 
