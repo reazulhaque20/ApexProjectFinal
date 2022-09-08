@@ -444,7 +444,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">Planning Farmland List</h4>
+                                    <h4 class="mb-sm-0 font-size-18">Sowing List</h4>
                                 </div>
                             </div>
                         </div>
@@ -454,54 +454,48 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Planning Farmland List</h4>
+                                        <h4 class="card-title">Sowing List</h4>
                                         <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
-                                                data-bs-target="#addOrEditPlanningDetail" ng-click="addPlanningDetailClick()">Add
+                                                data-bs-target="#addOrEditSowingDetail" ng-click="addSowingDetailClick()">Add
                                             Planning Detail</button>
                                     </div>
                                     <div class="card-body">
 
                                         <table ng-table="tableParams" class="table" show-filter="true">
-                                            <tr ng-repeat="pD in $data">
+                                            <tr ng-repeat="sD in $data">
                                                 <td align="center" data-title="'SN'">{{ (tableParams.page() - 1) *
                                                                         tableParams.count() +
                                                                         $index + 1}}</td>
-                                                <td align="center" data-title="'LAND'"
-                                                    filter="{ landId : 'text' }" sortable="landId">
-                                                    {{ pD.planningCode}}</td>
-                                                <td align="center" data-title="'TOTAL AREA'"
-                                                    filter="{ landId : 'text' }" sortable="landId">
-                                                    {{ pD.land.landName}}</td>
                                                 <td align="center" data-title="'LOCATION'"
                                                     filter="{ contId: 'text' }" sortable="contId">
-                                                    {{ pD.contract.contractCode}}</td>
+                                                    {{ sD.farmLandPlanning.farmer.farmerLocation.locationName}}</td>
                                                 <td align="center" data-title="'OFFICE NAME'"
-                                                    filter="{ totalArea: 'text' }" sortable="totalArea">
-                                                    {{ pD.land.landSize}}</td>
+                                                    filter="{ totalArea: 'text' }" sortable="officeName">
+                                                    {{ sD.farmLandPlanning.farmer.officeName}}</td>
                                                 <td align="center" data-title="'APO NAME'"
                                                     filter="{ location: 'text' }" sortable="location">
-                                                    {{ pD.land.landLocation.locationName}}</td>
+                                                    {{ sD.farmLandPlanning.farmer.fieldOfficer}}</td>
                                                 <td align="center" data-title="'FARMER NAME'"
                                                     filter="{ officeName: 'text' }" sortable="officeName">
-                                                    {{ pD.office.officeName}}</td>
+                                                    {{ sD.farmLandPlanning.farmer.farmerName}}</td>
                                                 <td align="center" data-title="'MOBILE NO'"
                                                     filter="{ apoName: 'text' }" sortable="apoName">
-                                                    {{ pD.officer.officerName}}</td>
+                                                    {{ sD.farmLandPlanning.farmer.mobile}}</td>
                                                 <td align="center" data-title="'SEASON'"
                                                     filter="{ farmerName: 'text' }" sortable="farmerName">
-                                                    {{ pD.farmer.farmerName}}</td>
+                                                    {{ sD.farmLandPlanning.season.seasonName}}</td>
                                                 <td align="center" data-title="'CROP VARIETY'"
                                                     filter="{ nid: 'text' }" sortable="nid">
-                                                    {{ pD.farmer.nid}}</td>
+                                                    {{ sD.cropVariety.varietyName}}</td>
                                                 <td align="center" data-title="'SOWING DATE'"
                                                     filter="{ mobileNo: 'text' }" sortable="mobileNo">
-                                                    {{ pD.farmer.mobile}}</td>
+                                                    {{ sD.farmLandPlanning.sowingDate}}</td>
                                                 <td align="center" data-title="'EST. HARVEST DATE'" 
                                                     filter="{ mobileNo: 'text' }" sortable="mobileNo">
-                                                    {{ pD.farmer.mobile}}</td>
-                                                <td align="center" data-title="'Action'"><button type="button"
-                                                                                                 ng-click="editPlanningDetail(pD)" data-bs-toggle="modal"
-                                                                                                 data-bs-target="#addOrEditPlanningDetail"
+                                                    {{ sD.farmLandPlanning.estHarvestDate}}</td>
+                                                <td align="center" data-title="'Action'" ng-show="false"><button type="button"
+                                                                                                 ng-click="editSowingDetail(sD)" data-bs-toggle="modal"
+                                                                                                 data-bs-target="#addOrEditSowingDetail"
                                                                                                  class="btn btn-success">Edit</button>&nbsp;<button type="button"
                                                                                                  class="btn btn-danger">Delete</button></td>
                                             </tr>
@@ -519,13 +513,13 @@
 
             <!--  Extra Large modal example -->
             
-             <div id="addOrEditPlanningDetail" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
+             <div id="addOrEditSowingDetail" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
                  aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel" ng-if="!pd.id">Add Farmland Planning Details </h5>
-                            <h5 class="modal-title" id="staticBackdropLabel" ng-if="pd.id">Update Farmland Planning Details </h5>
+                            <h5 class="modal-title" id="staticBackdropLabel" ng-if="!sw.id">Add Sowing Details </h5>
+                            <h5 class="modal-title" id="staticBackdropLabel" ng-if="sw.id">Update Sowing Details </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form class="modal-body" id="AddNewProjectMasterDetails">
@@ -545,7 +539,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group select2-sm">
                                                 <label class="form-label label-sm">Farm Name : </label>
-                                                <select class="form-control GlobalSelect" name="farmDetail" required ng-model="sw.farmDetail">
+                                                <select class="form-control GlobalSelect" name="farmDetail" required ng-model="sw.farm">
                                                     <option value="">Select Farm</option>
                                                     <option ng-repeat="farmDetail in farmDetailList" ng-value="farmDetail">{{farmDetail.farmName}}</option>
                                                 </select>
@@ -565,7 +559,7 @@
                                         <div class="col-md-12">
                                             <small class="inputGroupTitle-sm">Farm Crop Informations </small>
                                         </div>
-                                        <table id="farm-crop-info-details" class="table table-striped cus-default-table mb-0">
+<!--                                        <table id="farm-crop-info-details" class="table table-striped cus-default-table mb-0">
                                             <thead class="table-light">
                                                <tr>
                                                   <th style="width: 2%;">SN</th>
@@ -606,7 +600,87 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                        </table>
+                                        </table>-->
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="form-label label-sm">CROP : </label>
+            <select class="form-control form-select" ng-model="ci.crop" ng-change="loadCropsVarietyByCropName(ci.crop.cropName)">
+                <option value="">Select a Crop</option>
+                <option ng-repeat="crop in cropList" ng-value="crop">{{crop.cropName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="form-label label-sm">CROP TYPE: </label>
+            <select class="form-control form-select" ng-model="cropType">
+                <option value="">Select a Crop Type</option>
+                <option ng-value="Main Crop">Main Crop</option>
+                <option ng-value="Inter Crop">Inter Crop</option>
+                <option ng-value="Border Crop">Border Crop</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="form-label label-sm">CROP VARIETY : </label>
+            <select class="form-control form-select" ng-model="ci.cropVariety">
+                <option value="">Select a Crop Variety</option>
+                <option ng-repeat="cv in cropVarietyList" ng-value="cv">{{cv.varietyName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="form-label label-sm">REMARKS : </label>
+            <input class="form-control" type="text" ng-model="ci.remarks" >
+        </div>
+    </div>
+    
+    <div class="col-md-2">
+        <div class="form-group">
+            <span><br></span>
+            <button type="button" class="btn btn-primary"
+                    ng-click="addCropInfo(ci, cropType)"><i
+                    class="glyphicon glyphicon-plus"></i>&nbsp;Add
+                </button>
+        </div>
+    </div>
+    
+    <br> <hr>
+    
+    <table id="addFamilyMember" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+
+                                                                    <th>Crop</th>
+                                                                    <th>Crop Type</th>
+                                                                    <th>Crop Variety</th>
+                                                                    <th>Remarks</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tbl_family_member">
+                                                                
+                                                                <tr ng-repeat="cI in cropInfoList track by $index"
+                                                                    ng-show="cI.crop.cropName != null">
+                                                                    <td style="display:none;">{{ cI.id}}</td>
+                                                                    <td>{{ cI.crop.cropName}}</td>
+                                                                    <td>{{ cI.cropType}}</td>
+                                                                    <td>{{ cI.cropVariety.varietyName}}</td>
+                                                                    <td>{{ cI.remarks }}</td>
+                                                                    <td><a class="btn btn-xs delete-record"
+                                                                           ng-click="removeRow($index)"><i
+                                                                                class="fa fa-trash"
+                                                                                aria-hidden="true"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+    
+</div>
 
                                         <div class="col-md-12">
                                             <small class="inputGroupTitle-sm">Farm Other Informations </small>
@@ -696,11 +770,11 @@
                                 <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i
                                         class="mdi mdi-close"></i> Close</button>
                                 <button type="button" class="btn btn-success" ng-if="!sw.id"
-                                        ng-click="addFarmLandPlanning(sw)"><i class="mdi mdi-check-decagram-outline"></i> ADD
-                                    FARM LAND PLANNING</button>
+                                        ng-click="addSowingDetail(sw)"><i class="mdi mdi-check-decagram-outline"></i> ADD
+                                   SOWING DETAIL</button>
                                 <button type="button" class="btn btn-success" ng-click="updateFarmLandPlanning(sw)"
                                         ng-if="sw.id"><i class="mdi mdi-check-decagram-outline"></i> UPDATE
-                                    FARM LAND PLANNING</button>
+                                    SOWING DETAIL</button>
                             </div>
                         </div>
                     </div><!-- /.modal-content -->

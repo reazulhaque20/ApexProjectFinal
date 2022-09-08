@@ -4,13 +4,22 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/F:/XAMPP7.4/htdocs/ui/Agro_ERP/sowing/sowing_details.jsp</file>
-            <file>file:/F:/XAMPP7.4/htdocs/ui/views/dashboard.html</file>
+            <file>file:/F:/XAMPP7.4/htdocs/ui/views/master_data/divisionList.html</file>
+            <file>file:/F:/XAMPP7.4/htdocs/ui/views/master_data/cropVarietyDetail.html</file>
+            <file>file:/F:/XAMPP7.4/htdocs/ui/views/master_data/farmer_input_category.html</file>
             <file>file:/F:/XAMPP7.4/htdocs/ui/assets/js/angularjs/controller/sowingController.js</file>
             <file>file:/F:/XAMPP7.4/htdocs/ui/assets/js/angularjs/controller/planningController.js</file>
+            <file>file:/F:/XAMPP7.4/htdocs/ui/views/farm_land.html</file>
+            <file>file:/F:/XAMPP7.4/htdocs/ui/views/dashboard.html</file>
+            <file>file:/F:/XAMPP7.4/htdocs/ui/views/master_data/upazillaList.html</file>
+            <file>file:/F:/XAMPP7.4/htdocs/ui/assets/js/angularjs/controller/contractController.js</file>
+            <file>file:/F:/XAMPP7.4/htdocs/ui/assets/js/angularjs/controller/farmerController.js</file>
+            <file>file:/F:/XAMPP7.4/htdocs/ui/views/master_data/cropGradeList.html</file>
+            <file>file:/F:/XAMPP7.4/htdocs/ui/views/contract.html</file>
             <file>file:/F:/XAMPP7.4/htdocs/ui/views/planning.html</file>
             <file>file:/F:/XAMPP7.4/htdocs/ui/Agro_ERP/sowing/new_sowing.jsp</file>
+            <file>file:/F:/XAMPP7.4/htdocs/ui/assets/js/angularjs/controller/cropGradeController.js</file>
             <file>file:/F:/XAMPP7.4/htdocs/ui/views/sowing.html</file>
-            <file>file:/F:/XAMPP7.4/htdocs/ui/assets/js/angularjs/app.js</file>
             <file>file:/F:/XAMPP7.4/htdocs/ui/views/farmer.html</file>
         </group>
     </open-files>
