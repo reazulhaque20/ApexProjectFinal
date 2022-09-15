@@ -32,6 +32,7 @@ app.controller('districtCtrl', function (serverURL, $scope, $http, NgTableParams
         } else {
             $scope.urlUI += "/";
         }
+        $scope.urlUI = serverURL;
     }
 
     $scope.getServerURL();
@@ -113,11 +114,11 @@ app.controller('districtCtrl', function (serverURL, $scope, $http, NgTableParams
 
     $scope.logout = function () {
         $window.sessionStorage.clear();
-        $window.location.href = $scope.urlUI + 'ui/views/index.html';
+        $window.location.href = $scope.urlUI + 'index.html';
     }
 
     $scope.goToLogin = function () {
-        $window.location.href = $scope.urlUI + 'ui/views/index.html';
+        $window.location.href = $scope.urlUI + 'index.html';
     }
 
     $scope.loadInitData = function () {

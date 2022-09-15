@@ -32,6 +32,8 @@ app.controller('cropCtrl', function (serverURL, $scope, $http, NgTableParams, $w
         }else{
             $scope.urlUI += "/";
         }
+
+        $scope.urlUI = serverURL;
     }
 
     $scope.getServerURL();
@@ -94,11 +96,11 @@ app.controller('cropCtrl', function (serverURL, $scope, $http, NgTableParams, $w
 
     $scope.logout = function () {
         $window.sessionStorage.clear();
-        $window.location.href = $scope.urlUI + 'ui/views/index.html';
+        $window.location.href = $scope.urlUI + 'index.html';
     }
 
     $scope.goToLogin = function () {
-        $window.location.href = $scope.urlUI + 'ui/views/index.html';
+        $window.location.href = $scope.urlUI + 'index.html';
     }
 
     $scope.loadInitData = function () {

@@ -32,6 +32,7 @@ app.controller('dashCtrl', function (serverURL, $scope, $window) {
         }else{
             $scope.urlUI += "/";
         }
+        $scope.urlUI = serverURL;
     }
 
     $scope.getServerURL();

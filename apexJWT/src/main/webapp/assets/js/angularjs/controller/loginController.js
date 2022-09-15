@@ -37,6 +37,7 @@ console.log(serverURL);
         }else{
             $scope.urlUI += "/";
         }
+        $scope.urlUI = serverURL;
     }
 
     $scope.getServerURL();

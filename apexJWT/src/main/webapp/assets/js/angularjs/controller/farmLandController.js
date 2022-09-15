@@ -31,6 +31,7 @@ app.controller('farmLandController', function(serverURL, $scope, $http, NgTableP
         }else{
             $scope.urlUI += "/";
         }
+        $scope.urlUI = serverURL;
     };
     
     $scope.getSessionConfig = function(){
@@ -240,11 +241,11 @@ app.controller('farmLandController', function(serverURL, $scope, $http, NgTableP
     
     $scope.logout = function () {
         $window.sessionStorage.clear();
-        $window.location.href = $scope.urlUI + 'ui/views/index.html';
+        $window.location.href = $scope.urlUI + 'index.html';
     };
 
     $scope.goToLogin = function () {
-        $window.location.href = $scope.urlUI + 'ui/views/index.html';
+        $window.location.href = $scope.urlUI + 'index.html';
     };
     
     

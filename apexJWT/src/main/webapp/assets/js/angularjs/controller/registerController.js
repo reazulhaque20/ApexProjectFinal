@@ -35,11 +35,14 @@ app.controller('registerCtrl', function (serverURL, $scope, $http, $window, Swee
         }else{
             $scope.urlUI += "/";
         }
+        $scope.urlUI = serverURL;
     }
 
     $scope.getServerURL();
     $scope.getUiURL();
-
+    $scope.goToLogin = function () {
+        $window.location.href = $scope.urlUI + 'index.html';
+    };
     $scope.getUserInfo = function (userId, userName) {
 
         if (angular.isUndefined(userId)) {
@@ -97,6 +100,7 @@ app.controller('registerCtrl', function (serverURL, $scope, $http, $window, Swee
                     switch (response.data.message) {
                         case 'SUCCESS':
                             $scope.message("SUCCESS", "User Created Successfully", "success");
+                            $scope.goToLogin();
                             break;
                         case 'EXIST':
                             $scope.message("WARNING", "User Already Exist", "warning");
