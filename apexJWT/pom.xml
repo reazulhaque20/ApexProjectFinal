@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.apex</groupId>
-    <artifactId>apexJWT</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>aal</artifactId>
+<!--    <version>0.0.1-SNAPSHOT</version>-->
     <name>apexJWT</name>
     <description>apexJWT</description>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -97,6 +97,11 @@
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
             <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

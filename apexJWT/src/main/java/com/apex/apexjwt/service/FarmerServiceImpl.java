@@ -29,7 +29,7 @@ public class FarmerServiceImpl implements FarmerService{
 
     @Override
     public List<FarmerDetailResponse> getAllFarmer() {
-
+        log.info("Collecting All Farmer List.");
         FarmerDetailResponseList farmerDetailResponseList = new FarmerDetailResponseList();
         FarmerDetailResponse farmerDetailResponse = new FarmerDetailResponse();
         List<FarmerDetailResponse> farmerDetailResponses = new ArrayList<>();
@@ -44,7 +44,7 @@ public class FarmerServiceImpl implements FarmerService{
             farmerDetailResponses.add(farmerDetailResponse);
 
         }
-
+        log.info("Returning All Farmer List.");
         return farmerDetailResponses;
     }
 
