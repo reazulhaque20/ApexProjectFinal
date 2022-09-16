@@ -1,4 +1,4 @@
-app.controller('officerListCtrl', function (serverURL, $scope, $http, NgTableParams, $window, SweetAlert) {
+app.controller('officerListCtrl', function (serverURL, uiURL, $scope, $http, NgTableParams, $window, SweetAlert) {
 
     $scope.urlServer = "";
     $scope.urlUI = "";
@@ -32,7 +32,7 @@ app.controller('officerListCtrl', function (serverURL, $scope, $http, NgTablePar
         }else{
             $scope.urlUI += "/";
         }
-        $scope.urlUI = serverURL;
+        $scope.urlUI = uiURL;
     }
 
     $scope.getServerURL();

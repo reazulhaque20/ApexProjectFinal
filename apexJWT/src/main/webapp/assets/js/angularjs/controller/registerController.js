@@ -1,4 +1,4 @@
-app.controller('registerCtrl', function (serverURL, $scope, $http, $window, SweetAlert) {
+app.controller('registerCtrl', function (serverURL, uiURL, $scope, $http, $window, SweetAlert) {
 
     $scope.message = function (title, msg, type) {
         SweetAlert.swal(title, msg, type);
@@ -35,7 +35,7 @@ app.controller('registerCtrl', function (serverURL, $scope, $http, $window, Swee
         }else{
             $scope.urlUI += "/";
         }
-        $scope.urlUI = serverURL;
+        $scope.urlUI = uiURL;
     }
 
     $scope.getServerURL();

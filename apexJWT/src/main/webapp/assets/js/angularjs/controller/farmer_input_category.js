@@ -1,4 +1,4 @@
-app.controller('farmerInputCatCtrl', function (serverURL, $scope, $http, NgTableParams, $window, SweetAlert) {
+app.controller('farmerInputCatCtrl', function (serverURL, uiURL, $scope, $http, NgTableParams, $window, SweetAlert) {
 
     $scope.urlServer = "";
     $scope.urlUI = "";
@@ -32,7 +32,7 @@ app.controller('farmerInputCatCtrl', function (serverURL, $scope, $http, NgTable
         }else{
             $scope.urlUI += "/";
         }
-        $scope.urlUI = serverURL;
+        $scope.urlUI = uiURL;
     }
 
     $scope.getServerURL();

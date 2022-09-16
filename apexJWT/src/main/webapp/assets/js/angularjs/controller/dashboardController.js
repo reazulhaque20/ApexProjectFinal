@@ -1,4 +1,4 @@
-app.controller('dashCtrl', function (serverURL, $scope, $window) {
+app.controller('dashCtrl', function (serverURL, uiURL, $scope, $window) {
 
     $scope.urlServer = "";
     $scope.urlUI = "";
@@ -32,7 +32,7 @@ app.controller('dashCtrl', function (serverURL, $scope, $window) {
         }else{
             $scope.urlUI += "/";
         }
-        $scope.urlUI = serverURL;
+        $scope.urlUI = uiURL;
     }
 
     $scope.getServerURL();

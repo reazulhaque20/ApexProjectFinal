@@ -1,8 +1,8 @@
 var app = angular.module('myApp', ['ngTable', 'oitozero.ngSweetAlert']);
 
 
-app.value('serverURL', 'http://localhost:9090/aal/');
-app.value('uiURL','http://localhost:9090/aal/');
+app.value('serverURL', 'http://119.148.31.69:9090/aal/');
+app.value('uiURL','http://119.148.31.69/aal/');
 
 // .config(function ($httpProvider) {
 //     $httpProvider.interceptors.push(function ($q) {

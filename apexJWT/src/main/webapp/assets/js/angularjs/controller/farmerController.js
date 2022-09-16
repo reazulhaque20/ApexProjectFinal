@@ -1,4 +1,4 @@
-app.controller('farmerCtrl', function (serverURL, $scope, $http, NgTableParams, $window, SweetAlert, farmerFactory) {
+app.controller('farmerCtrl', function (serverURL, uiURL, $scope, $http, NgTableParams, $window, SweetAlert, farmerFactory) {
 
     $scope.urlServer = "";
     $scope.urlUI = "";
@@ -32,7 +32,7 @@ app.controller('farmerCtrl', function (serverURL, $scope, $http, NgTableParams, 
         }else{
             $scope.urlUI += "/";
         }
-        $scope.urlUI = serverURL;
+        $scope.urlUI = uiURL;
     };
 
     $scope.getServerURL();

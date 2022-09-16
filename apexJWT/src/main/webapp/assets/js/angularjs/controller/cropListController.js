@@ -1,4 +1,4 @@
-app.controller('cropCtrl', function (serverURL, $scope, $http, NgTableParams, $window, SweetAlert) {
+app.controller('cropCtrl', function (serverURL, uiURL, $scope, $http, NgTableParams, $window, SweetAlert) {
 
     $scope.urlServer = "";
     $scope.urlUI = "";
@@ -33,7 +33,7 @@ app.controller('cropCtrl', function (serverURL, $scope, $http, NgTableParams, $w
             $scope.urlUI += "/";
         }
 
-        $scope.urlUI = serverURL;
+        $scope.urlUI = uiURL;
     }
 
     $scope.getServerURL();

@@ -1,4 +1,4 @@
-app.controller('farmLandController', function(serverURL, $scope, $http, NgTableParams, $window, SweetAlert){
+app.controller('farmLandController', function(serverURL, uiURL, $scope, $http, NgTableParams, $window, SweetAlert){
     $scope.urlServer = "";
     $scope.urlUI = "";
     $scope.getServerURL = function () {
@@ -31,7 +31,7 @@ app.controller('farmLandController', function(serverURL, $scope, $http, NgTableP
         }else{
             $scope.urlUI += "/";
         }
-        $scope.urlUI = serverURL;
+        $scope.urlUI = uiURL;
     };
     
     $scope.getSessionConfig = function(){
