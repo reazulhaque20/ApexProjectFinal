@@ -765,3 +765,6 @@ Caused by: java.lang.ClassNotFoundException: javax.servlet.Filter
 2022-09-17 19:22:47.450 INFO [http-nio-9099-exec-2] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-09-17 19:22:47.454 INFO [http-nio-9099-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)] - Initializing Servlet 'dispatcherServlet'
 2022-09-17 19:22:47.467 INFO [http-nio-9099-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)] - Completed initialization in 9 ms
+2022-09-17 19:29:29.798 INFO [SpringApplicationShutdownHook] [org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.destroy(AbstractEntityManagerFactoryBean.java:651)] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-09-17 19:29:29.822 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350)] - HikariPool-1 - Shutdown initiated...
+2022-09-17 19:29:30.909 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352)] - HikariPool-1 - Shutdown completed.
