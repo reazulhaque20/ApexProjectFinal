@@ -2,6 +2,7 @@ package com.apex.apexjwt.service;
 
 import com.apex.apexjwt.model.Dropdown;
 import com.apex.apexjwt.repository.DropdownRepo;
+import com.apex.apexjwt.response.AnyType;
 import com.apex.apexjwt.response.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,14 @@ public class DropdownServiceImpl implements DropdownService{
 
 
     @Override
-    public List<Dropdown> getAllDropDownList() {
-        return dropdownRepo.findAll();
+    public AnyType getAllDropDownList() {
+        AnyType anyType = new AnyType();
+        anyType.setValue1(1L);
+        anyType.setValue2(10L);
+        anyType.setTotalRows(dropdownRepo.findAll().stream().count());
+        anyType.setNowShowing(1L);
+        anyType.setAnytypeObject(dropdownRepo.findAll());
+        return anyType;
     }
 
     @Override

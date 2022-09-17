@@ -1,6 +1,7 @@
 package com.apex.apexjwt.controller;
 
 import com.apex.apexjwt.model.Dropdown;
+import com.apex.apexjwt.response.AnyType;
 import com.apex.apexjwt.response.Response;
 import com.apex.apexjwt.service.DropdownService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ public class DropDownController {
     private final DropdownService dropdownService;
 
     @GetMapping("/getAllDropDownList")
-    public List<Dropdown> getAllDropDownList(){
+    public AnyType getAllDropDownList(){
         return dropdownService.getAllDropDownList();
     }
 

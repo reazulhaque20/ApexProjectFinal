@@ -603,3 +603,165 @@
 2022-09-17 14:24:29.791 INFO [SpringApplicationShutdownHook] [org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.destroy(AbstractEntityManagerFactoryBean.java:651)] - Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-09-17 14:24:29.792 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350)] - HikariPool-1 - Shutdown initiated...
 2022-09-17 14:24:29.817 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352)] - HikariPool-1 - Shutdown completed.
+2022-09-17 19:05:07.946 INFO [main] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55)] - Starting ApexJwtApplication using Java 1.8.0_291 on Reazuls-MacBook-Air.local with PID 1593 (/Users/reazulhaque/Documents/GitHub/ApexProject/apexJWT/target/classes started by reazulhaque in /Users/reazulhaque/Documents/GitHub/ApexProject/apexJWT)
+2022-09-17 19:05:07.951 INFO [main] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:640)] - No active profile set, falling back to 1 default profile: "default"
+2022-09-17 19:05:08.315 WARN [main] [org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:591)] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.apex.apexjwt.ApexJwtApplication]; nested exception is org.springframework.core.NestedIOException: Failed to load class [javax.servlet.Filter]; nested exception is java.lang.ClassNotFoundException: javax.servlet.Filter
+2022-09-17 19:05:08.351 ERROR [main] [org.springframework.boot.SpringApplication.reportFailure(SpringApplication.java:830)] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.apex.apexjwt.ApexJwtApplication]; nested exception is org.springframework.core.NestedIOException: Failed to load class [javax.servlet.Filter]; nested exception is java.lang.ClassNotFoundException: javax.servlet.Filter
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:189) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740) ~[spring-boot-2.6.7.jar:2.6.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415) ~[spring-boot-2.6.7.jar:2.6.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) ~[spring-boot-2.6.7.jar:2.6.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312) ~[spring-boot-2.6.7.jar:2.6.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-2.6.7.jar:2.6.7]
+	at com.apex.apexjwt.ApexJwtApplication.main(ApexJwtApplication.java:22) ~[classes/:?]
+Caused by: org.springframework.core.NestedIOException: Failed to load class [javax.servlet.Filter]; nested exception is java.lang.ClassNotFoundException: javax.servlet.Filter
+	at org.springframework.context.annotation.ConfigurationClassParser.asSourceClass(ConfigurationClassParser.java:693) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser$SourceClass.getInterfaces(ConfigurationClassParser.java:1024) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processInterfaces(ConfigurationClassParser.java:386) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:332) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:304) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:207) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:175) ~[spring-context-5.3.19.jar:5.3.19]
+	... 12 more
+Caused by: java.lang.ClassNotFoundException: javax.servlet.Filter
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382) ~[?:1.8.0_291]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418) ~[?:1.8.0_291]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:355) ~[?:1.8.0_291]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351) ~[?:1.8.0_291]
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_291]
+	at java.lang.Class.forName(Class.java:348) ~[?:1.8.0_291]
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:284) ~[spring-core-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.asSourceClass(ConfigurationClassParser.java:690) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser$SourceClass.getInterfaces(ConfigurationClassParser.java:1024) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processInterfaces(ConfigurationClassParser.java:386) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:332) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:304) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:207) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:175) ~[spring-context-5.3.19.jar:5.3.19]
+	... 12 more
+2022-09-17 19:06:45.227 INFO [main] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55)] - Starting ApexJwtApplication using Java 1.8.0_291 on Reazuls-MacBook-Air.local with PID 1626 (/Users/reazulhaque/Documents/GitHub/ApexProject/apexJWT/target/classes started by reazulhaque in /Users/reazulhaque/Documents/GitHub/ApexProject/apexJWT)
+2022-09-17 19:06:45.231 INFO [main] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:640)] - No active profile set, falling back to 1 default profile: "default"
+2022-09-17 19:06:45.680 WARN [main] [org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:591)] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.apex.apexjwt.ApexJwtApplication]; nested exception is org.springframework.core.NestedIOException: Failed to load class [javax.servlet.Filter]; nested exception is java.lang.ClassNotFoundException: javax.servlet.Filter
+2022-09-17 19:06:45.716 ERROR [main] [org.springframework.boot.SpringApplication.reportFailure(SpringApplication.java:830)] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.apex.apexjwt.ApexJwtApplication]; nested exception is org.springframework.core.NestedIOException: Failed to load class [javax.servlet.Filter]; nested exception is java.lang.ClassNotFoundException: javax.servlet.Filter
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:189) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740) ~[spring-boot-2.6.7.jar:2.6.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415) ~[spring-boot-2.6.7.jar:2.6.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) ~[spring-boot-2.6.7.jar:2.6.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312) ~[spring-boot-2.6.7.jar:2.6.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-2.6.7.jar:2.6.7]
+	at com.apex.apexjwt.ApexJwtApplication.main(ApexJwtApplication.java:22) ~[classes/:?]
+Caused by: org.springframework.core.NestedIOException: Failed to load class [javax.servlet.Filter]; nested exception is java.lang.ClassNotFoundException: javax.servlet.Filter
+	at org.springframework.context.annotation.ConfigurationClassParser.asSourceClass(ConfigurationClassParser.java:693) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser$SourceClass.getInterfaces(ConfigurationClassParser.java:1024) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processInterfaces(ConfigurationClassParser.java:386) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:332) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:304) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:207) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:175) ~[spring-context-5.3.19.jar:5.3.19]
+	... 12 more
+Caused by: java.lang.ClassNotFoundException: javax.servlet.Filter
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382) ~[?:1.8.0_291]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418) ~[?:1.8.0_291]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:355) ~[?:1.8.0_291]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351) ~[?:1.8.0_291]
+	at java.lang.Class.forName0(Native Method) ~[?:1.8.0_291]
+	at java.lang.Class.forName(Class.java:348) ~[?:1.8.0_291]
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:284) ~[spring-core-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.asSourceClass(ConfigurationClassParser.java:690) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser$SourceClass.getInterfaces(ConfigurationClassParser.java:1024) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processInterfaces(ConfigurationClassParser.java:386) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:332) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:304) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:250) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:207) ~[spring-context-5.3.19.jar:5.3.19]
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:175) ~[spring-context-5.3.19.jar:5.3.19]
+	... 12 more
+2022-09-17 19:12:49.960 INFO [main] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55)] - Starting ApexJwtApplication using Java 1.8.0_291 on Reazuls-MacBook-Air.local with PID 1714 (/Users/reazulhaque/Documents/GitHub/ApexProject/apexJWT/target/classes started by reazulhaque in /Users/reazulhaque/Documents/GitHub/ApexProject/apexJWT)
+2022-09-17 19:12:49.971 INFO [main] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:640)] - No active profile set, falling back to 1 default profile: "default"
+2022-09-17 19:12:51.997 INFO [main] [org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132)] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-17 19:12:52.348 INFO [main] [org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201)] - Finished Spring Data repository scanning in 335 ms. Found 49 JPA repository interfaces.
+2022-09-17 19:12:55.159 INFO [main] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108)] - Tomcat initialized with port(s): 9099 (http)
+2022-09-17 19:12:55.196 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-9099"]
+2022-09-17 19:12:55.199 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2022-09-17 19:12:55.199 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-09-17 19:12:55.760 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2022-09-17 19:12:55.761 INFO [main] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290)] - Root WebApplicationContext: initialization completed in 5704 ms
+2022-09-17 19:12:57.477 INFO [main] [org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation(LogHelper.java:31)] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-17 19:12:57.567 INFO [main] [org.hibernate.Version.logVersion(Version.java:44)] - HHH000412: Hibernate ORM core version 5.6.8.Final
+2022-09-17 19:12:57.733 INFO [main] [org.hibernate.annotations.common.reflection.java.JavaReflectionManager.<clinit>(JavaReflectionManager.java:56)] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-17 19:12:57.841 WARN [main] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1042)] - HikariPool-1 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2022-09-17 19:12:57.841 WARN [main] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1092)] - HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2022-09-17 19:12:57.842 INFO [main] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110)] - HikariPool-1 - Starting...
+2022-09-17 19:12:58.414 INFO [main] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123)] - HikariPool-1 - Start completed.
+2022-09-17 19:12:58.447 INFO [main] [org.hibernate.dialect.Dialect.<init>(Dialect.java:175)] - HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2022-09-17 19:13:00.579 INFO [main] [org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator.initiateService(JtaPlatformInitiator.java:52)] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-17 19:13:00.595 INFO [main] [org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:437)] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-17 19:13:01.931 WARN [main] [org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor(JpaBaseConfiguration.java:219)] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-17 19:13:04.546 INFO [main] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping.<init>(WelcomePageHandlerMapping.java:53)] - Adding welcome page: class path resource [static/index.html]
+2022-09-17 19:13:06.089 INFO [main] [org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58)] - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-09-17 19:13:06.144 INFO [main] [org.springframework.security.web.DefaultSecurityFilterChain.<init>(DefaultSecurityFilterChain.java:55)] - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@376ba8e3, org.springframework.security.web.context.SecurityContextPersistenceFilter@179dc2, org.springframework.security.web.header.HeaderWriterFilter@4664fef, org.springframework.web.filter.CorsFilter@5434de8, org.springframework.security.web.authentication.logout.LogoutFilter@4b9187de, com.apex.apexjwt.configuration.JwtRequestFilter@697f4085, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3a089620, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1313dea8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2c84d6c4, org.springframework.security.web.session.SessionManagementFilter@3cd3cf6b, org.springframework.security.web.access.ExceptionTranslationFilter@1b8d0c21, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@426753a6]
+2022-09-17 19:13:07.162 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-9099"]
+2022-09-17 19:13:07.189 INFO [main] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220)] - Tomcat started on port(s): 9099 (http) with context path '/aal'
+2022-09-17 19:13:07.214 INFO [main] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61)] - Started ApexJwtApplication in 18.354 seconds (JVM running for 19.857)
+2022-09-17 19:13:16.997 INFO [http-nio-9099-exec-1] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-17 19:13:16.999 INFO [http-nio-9099-exec-1] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)] - Initializing Servlet 'dispatcherServlet'
+2022-09-17 19:13:17.001 INFO [http-nio-9099-exec-1] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)] - Completed initialization in 2 ms
+2022-09-17 19:13:54.040 INFO [http-nio-9099-exec-4] [com.apex.apexjwt.controller.JwtController.createJwtToken(JwtController.java:36)] - Date: Sat Sep 17 19:13:54 BDT 2022 JWTRequest: JwtRequest(userName=admin, password=admin)
+2022-09-17 19:16:31.530 INFO [SpringApplicationShutdownHook] [org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.destroy(AbstractEntityManagerFactoryBean.java:651)] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-09-17 19:16:31.555 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350)] - HikariPool-1 - Shutdown initiated...
+2022-09-17 19:16:31.657 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352)] - HikariPool-1 - Shutdown completed.
+2022-09-17 19:21:02.438 INFO [main] [org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55)] - Starting ApexJwtApplication using Java 1.8.0_291 on Reazuls-MacBook-Air.local with PID 1777 (/Users/reazulhaque/Documents/GitHub/ApexProject/apexJWT/target/classes started by reazulhaque in /Users/reazulhaque/Documents/GitHub/ApexProject/apexJWT)
+2022-09-17 19:21:02.450 INFO [main] [org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:640)] - No active profile set, falling back to 1 default profile: "default"
+2022-09-17 19:21:04.576 INFO [main] [org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:132)] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-09-17 19:21:04.929 INFO [main] [org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:201)] - Finished Spring Data repository scanning in 336 ms. Found 49 JPA repository interfaces.
+2022-09-17 19:21:07.688 INFO [main] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:108)] - Tomcat initialized with port(s): 9099 (http)
+2022-09-17 19:21:07.721 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing ProtocolHandler ["http-nio-9099"]
+2022-09-17 19:21:07.724 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting service [Tomcat]
+2022-09-17 19:21:07.725 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-09-17 19:21:08.201 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring embedded WebApplicationContext
+2022-09-17 19:21:08.203 INFO [main] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:290)] - Root WebApplicationContext: initialization completed in 5661 ms
+2022-09-17 19:21:10.155 INFO [main] [org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation(LogHelper.java:31)] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-17 19:21:10.226 INFO [main] [org.hibernate.Version.logVersion(Version.java:44)] - HHH000412: Hibernate ORM core version 5.6.8.Final
+2022-09-17 19:21:10.414 INFO [main] [org.hibernate.annotations.common.reflection.java.JavaReflectionManager.<clinit>(JavaReflectionManager.java:56)] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-17 19:21:10.505 WARN [main] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1042)] - HikariPool-1 - maxLifetime is less than 30000ms, setting to default 1800000ms.
+2022-09-17 19:21:10.505 WARN [main] [com.zaxxer.hikari.HikariConfig.validateNumerics(HikariConfig.java:1092)] - HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2022-09-17 19:21:10.505 INFO [main] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:110)] - HikariPool-1 - Starting...
+2022-09-17 19:21:12.015 INFO [main] [com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:123)] - HikariPool-1 - Start completed.
+2022-09-17 19:21:12.059 INFO [main] [org.hibernate.dialect.Dialect.<init>(Dialect.java:175)] - HHH000400: Using dialect: org.hibernate.dialect.Oracle12cDialect
+2022-09-17 19:21:14.270 INFO [main] [org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator.initiateService(JtaPlatformInitiator.java:52)] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-17 19:21:14.284 INFO [main] [org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:437)] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-09-17 19:21:15.614 WARN [main] [org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor(JpaBaseConfiguration.java:219)] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-09-17 19:21:18.422 INFO [main] [org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping.<init>(WelcomePageHandlerMapping.java:53)] - Adding welcome page: class path resource [static/index.html]
+2022-09-17 19:21:20.018 INFO [main] [org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver.<init>(EndpointLinksResolver.java:58)] - Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-09-17 19:21:20.091 INFO [main] [org.springframework.security.web.DefaultSecurityFilterChain.<init>(DefaultSecurityFilterChain.java:55)] - Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@54353bb1, org.springframework.security.web.context.SecurityContextPersistenceFilter@5bd11ad6, org.springframework.security.web.header.HeaderWriterFilter@28ba90c1, org.springframework.web.filter.CorsFilter@3a837f7, org.springframework.security.web.authentication.logout.LogoutFilter@4f8186a5, com.apex.apexjwt.configuration.JwtRequestFilter@7bd76b79, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4f55da9b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5080c40e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@13ea9afc, org.springframework.security.web.session.SessionManagementFilter@60ee1a29, org.springframework.security.web.access.ExceptionTranslationFilter@10e28d97, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@12b4a53d]
+2022-09-17 19:21:21.392 INFO [main] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Starting ProtocolHandler ["http-nio-9099"]
+2022-09-17 19:21:21.422 INFO [main] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:220)] - Tomcat started on port(s): 9099 (http) with context path '/aal'
+2022-09-17 19:21:21.463 INFO [main] [org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61)] - Started ApexJwtApplication in 20.284 seconds (JVM running for 21.806)
+2022-09-17 19:22:47.450 INFO [http-nio-9099-exec-2] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-17 19:22:47.454 INFO [http-nio-9099-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)] - Initializing Servlet 'dispatcherServlet'
+2022-09-17 19:22:47.467 INFO [http-nio-9099-exec-2] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)] - Completed initialization in 9 ms
