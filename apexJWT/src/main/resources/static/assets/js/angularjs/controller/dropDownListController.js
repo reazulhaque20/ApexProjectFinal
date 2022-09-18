@@ -65,10 +65,10 @@ app.controller('dropDownCtrl', function (serverURL, uiURL, $scope, $http, NgTabl
                 'Authorization': 'Bearer ' + $scope.token
             }
         }
-        $http.get($scope.urlServer + "api/dropdown/getAllDropDownList", config).then(
+        $http.get($scope.urlServer + "api/dropdown/getAllDropDownList?draw=1&start=1&length=500&search=", config).then(
             function (response) {
                 console.log(response);
-                var data = response.data;
+                var data = response.data.data;
                 $scope.tableParams = new NgTableParams({
                     page: 1,            // show first page
                     count: 5           // count per page

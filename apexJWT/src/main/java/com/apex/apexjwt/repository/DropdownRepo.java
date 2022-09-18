@@ -13,4 +13,7 @@ public interface DropdownRepo extends JpaRepository<Dropdown, Long> {
 
     @Query("SELECT u FROM Dropdown u WHERE u.dropdownName=:dropDownName")
     List<Dropdown> getDropdownListByName(@Param("dropDownName") String dropDownName);
+
+    @Query(value = "SELECT dd.* FROM Dropdown dd WHERE dd.dropdown_name like :search or dd.dropdown_value like :search OFFSET :start ROWS FETCH NEXT :length ROWS ONLY", nativeQuery = true)
+    List<Dropdown> getDropdownList(@Param("start") Long start, @Param("length") Long length, @Param("search") String search);
 }

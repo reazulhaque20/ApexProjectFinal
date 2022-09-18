@@ -9,7 +9,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.apex.apexjwt")
 @OpenAPIDefinition(info = @Info(title = "ApexJWT API", version = "2.0", description = "API Information"))
 public class ApexJwtApplication extends SpringBootServletInitializer {
 

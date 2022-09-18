@@ -85,4 +85,7 @@ public class FarmerDetail {
 
     @Column(name = "status", length = 10)
     private String status;
+
+    @Column(name = "disease", length = 50)
+    private String disease;
 }

@@ -161,7 +161,7 @@
                         </li>
                         <li>
                             <a href="javascript: void(0);" class="has-arrow"><i
-                                    class="mdi mdi-account-cowboy-hat-outline"></i><span data-key="t-pages">Farmer
+                                    class="mdi mdi-account-cowboy-hat-outline"></i><span data-key="t-pages">Farmer/User
                                     Profile</span></a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="farmer.html" data-key="t-starter-page">Farmers List</a></li>
@@ -763,19 +763,14 @@
                                                         </script>
                                                         <div class="form-group">
                                                             <label class="form-label label-sm">Blood Group: </label>
-<!--                                                            <select class="form-control bootSelect" name="blood_group"
-                                                                    id="blood_group" ng-model="f_detail.bloodGroup">
-                                                                <option value="A+">A+</option>
-                                                                <option value="A-">A-</option>
-                                                                <option value="B+">B+</option>
-                                                                <option value="B-">B-</option>
-                                                                <option value="AB+">AB+</option>
-                                                                <option value="AB-">AB-</option>
-                                                                <option value="O+">O+</option>
-                                                                <option value="O-">O-</option>
-                                                            </select>-->
                                                             <select class="form-select form-control" id="bloodGroupList" ng-model="f_detail.bloodGroup">
                                                                 <option ng-repeat="bloodGroup in bloodGroupList" value="{{bloodGroup.dropdownText}}">{{bloodGroup.dropdownText}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">Disease: </label>
+                                                            <select class="form-select form-control" id="bloodGroupList" ng-model="f_detail.disease">
+                                                                <option ng-repeat="disease in diseases" value="{{disease.dropdownText}}">{{disease.dropdownText}}</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">

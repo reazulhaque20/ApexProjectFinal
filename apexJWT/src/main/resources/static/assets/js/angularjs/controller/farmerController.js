@@ -189,6 +189,26 @@ app.controller('farmerCtrl', function (serverURL, uiURL, $scope, $http, NgTableP
         }
     };
 
+    $scope.loadAllDisease = function () {
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + $scope.token
+            }
+        };
+
+        $http.get($scope.urlServer + "api/dropdown/getDropdownListByName/diseases", config).then(
+            function (response) {
+                console.log(response.data);
+                $scope.diseases = response.data;
+            },
+            function (errResponse) {
+                $scope.message("!ERROR!", "Unknown Error", "error");
+            }
+        );
+    };
+
     $scope.logout = function () {
         $window.sessionStorage.clear();
         $window.location.href = $scope.urlUI + 'index.html';
@@ -205,6 +225,7 @@ app.controller('farmerCtrl', function (serverURL, uiURL, $scope, $http, NgTableP
         $scope.loadAllLocationData();
         $scope.loadAllUnions();
         $scope.loadMartialStatus();
+        $scope.loadAllDisease();
     };
 
     $scope.addFarmer = function (f_detail, f_members, ff_detail) {

@@ -2,6 +2,7 @@ package com.apex.apexjwt.service;
 
 import com.apex.apexjwt.model.Dropdown;
 import com.apex.apexjwt.repository.DropdownRepo;
+import com.apex.apexjwt.request.DataTableRequest;
 import com.apex.apexjwt.response.AnyType;
 import com.apex.apexjwt.response.Response;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +18,20 @@ public class DropdownServiceImpl implements DropdownService{
 
 
     @Override
-    public AnyType getAllDropDownList() {
+    public AnyType getAllDropDownList(DataTableRequest dataTableRequest) {
         AnyType anyType = new AnyType();
-        anyType.setValue1(1L);
-        anyType.setValue2(10L);
-        anyType.setTotalRows(dropdownRepo.findAll().stream().count());
-        anyType.setNowShowing(1L);
-        anyType.setAnytypeObject(dropdownRepo.findAll());
+        if (dataTableRequest.getSearch().equalsIgnoreCase("null")) dataTableRequest.setSearch("");
+        List<Dropdown> dropDownList = dropdownRepo.getDropdownList(dataTableRequest.getStart(), dataTableRequest.getLength(), "%" + dataTableRequest.getSearch() + "%");
+        anyType.setDraw(dataTableRequest.getDraw());
+        Long total = 0L;
+        if(dataTableRequest.getSearch().isEmpty() || dataTableRequest.getSearch().equalsIgnoreCase("null")) {
+            total = dropdownRepo.count();
+        }else{
+            total = dropDownList.stream().count();
+        }
+        anyType.setRecordsTotal(total);
+        anyType.setRecordsFiltered(total);
+        anyType.setData(dropDownList);
         return anyType;
     }
 

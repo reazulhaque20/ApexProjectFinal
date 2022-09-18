@@ -10,9 +10,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AnyType<T> {
-    private Long value1;
-    private Long value2;
-    private Long totalRows;
-    private Long nowShowing;
-    List<T> anytypeObject = new ArrayList<>();
+    private Long draw;
+//    private Long value2;
+    private Long recordsTotal;
+    private Long recordsFiltered;
+    List<T> data = new ArrayList<>();
 }
