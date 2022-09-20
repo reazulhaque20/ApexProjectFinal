@@ -36,6 +36,11 @@ public class DropdownServiceImpl implements DropdownService{
     }
 
     @Override
+    public List<Dropdown> getAllDropDownListDt(){
+        return dropdownRepo.findAll();
+    }
+
+    @Override
     public List<Dropdown> getDropdownListByName(String dropDownName) {
         return dropdownRepo.getDropdownListByName(dropDownName);
     }

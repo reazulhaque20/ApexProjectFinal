@@ -10,6 +10,7 @@ import java.util.List;
 public interface DropdownService {
 
     AnyType getAllDropDownList(DataTableRequest dataTableRequest);
+    List<Dropdown> getAllDropDownListDt();
     List<Dropdown> getDropdownListByName(String dropDownName);
     Response addDropDown(Dropdown dropdown);
     Response updateDropDown(Dropdown dropdown);

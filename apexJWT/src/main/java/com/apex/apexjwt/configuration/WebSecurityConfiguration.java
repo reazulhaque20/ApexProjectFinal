@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -42,7 +43,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.cors();
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/authenticate", "/api/auth/**", "/api/user/**", "/swagger-ui/**", "/api-docs/**", "/logout/**", "/actuator/**", "/api/farmer/uploadImage/**", "aal/*.html", "aal/assets/**", "aal/master_data/**", "aal/users/**", "aal/*", "/**").permitAll()
+                .antMatchers("/authenticate", "/api/auth/**", "/api/user/**", "/swagger-ui/**", "/api-docs/**", "/logout/**", "/actuator/**", "/**", "/resources/**", "/static/**" ).permitAll()
                 .antMatchers("/authenticate", "/api/auth/**", "/api/user/**", "/swagger-ui/**", "/api-docs/**", "/logout/**", "/actuator/**").permitAll()
                 .antMatchers(HttpHeaders.ALLOW).permitAll()
                 .anyRequest().authenticated()
@@ -59,6 +60,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 ;
 
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Override
+    public void configure(WebSecurity webSecurity) throws Exception{
+        webSecurity
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**");
     }
 
     @Bean

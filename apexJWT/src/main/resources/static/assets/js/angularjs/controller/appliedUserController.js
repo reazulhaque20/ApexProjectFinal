@@ -1,4 +1,4 @@
-app.controller('appliedUserCtrl', function (serverURL, $scope, $http, NgTableParams) {
+app.controller('appliedUserCtrl', function (serverURL, $scope, $http, ngTableParams) {
 
     $scope.getAppliedUserData = function () {
         $scope.urlServer = serverURL;//protocol + "//" + host + ":" + "8081" + "/";
@@ -6,7 +6,7 @@ app.controller('appliedUserCtrl', function (serverURL, $scope, $http, NgTablePar
             function (response) {
                 console.log(response);
                 var data = response.data.userInfoList;
-                $scope.tableParams = new NgTableParams({
+                $scope.tableParams = new ngTableParams({
                     page: 1,            // show first page
                     count: 5           // count per page
                 }, {

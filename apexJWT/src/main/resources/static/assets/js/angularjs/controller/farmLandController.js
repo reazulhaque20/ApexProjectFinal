@@ -1,4 +1,4 @@
-app.controller('farmLandController', function(serverURL, uiURL, $scope, $http, NgTableParams, $window, SweetAlert){
+app.controller('farmLandController', function(serverURL, uiURL, $scope, $http, ngTableParams, $window, SweetAlert){
     $scope.urlServer = "";
     $scope.urlUI = "";
     $scope.getServerURL = function () {
@@ -359,7 +359,7 @@ app.controller('farmLandController', function(serverURL, uiURL, $scope, $http, N
                     console.log(response.data);
                     $scope.farmLandDetails = response.data;
                     var data = response.data;
-                    $scope.tableParams = new NgTableParams({
+                    $scope.tableParams = new ngTableParams({
                         page: 1,
                         count: 5
                     },{

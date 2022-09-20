@@ -1,4 +1,4 @@
-app.controller('supplierListCtrl', function (serverURL, uiURL, $scope, $http, NgTableParams, $window, SweetAlert) {
+app.controller('supplierListCtrl', function (serverURL, uiURL, $scope, $http, ngTableParams, $window, SweetAlert) {
 
     $scope.urlServer = "";
     $scope.urlUI = "";
@@ -69,7 +69,7 @@ app.controller('supplierListCtrl', function (serverURL, uiURL, $scope, $http, Ng
             function (response) {
                 console.log(response);
                 var data = response.data;
-                $scope.tableParams = new NgTableParams({
+                $scope.tableParams = new ngTableParams({
                     page: 1,            // show first page
                     count: 5           // count per page
                 }, {

@@ -1,4 +1,4 @@
-app.controller('contractCtrl', function (serverURL, uiURL, $scope, $http, NgTableParams, $window, SweetAlert) {
+app.controller('contractCtrl', function (serverURL, uiURL, $scope, $http, ngTableParams, $window, SweetAlert) {
 
     $scope.urlServer = "";
     $scope.urlUI = "";

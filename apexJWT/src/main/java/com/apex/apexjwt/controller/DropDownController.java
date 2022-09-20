@@ -25,6 +25,12 @@ public class DropDownController {
         return dropdownService.getAllDropDownList(dataTableRequest);
     }
 
+    @GetMapping("/getAllDropDownListDt")
+    public List<Dropdown> getAllDropDownList(){
+
+        return dropdownService.getAllDropDownListDt();
+    }
+
     @GetMapping("/testAdd")
     public String testAdd(){
         Dropdown dropdown = new Dropdown();
