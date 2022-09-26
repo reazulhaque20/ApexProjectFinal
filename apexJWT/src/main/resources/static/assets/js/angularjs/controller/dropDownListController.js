@@ -221,7 +221,7 @@ app.controller('dropDownCtrl', function (serverURL, uiURL, $scope, $timeout, $q,
     }
 
     $scope.loadInitData = function () {
-        $scope.loadAllDropDownList();
+        $scope.loadAllDropDownList123();
     }
 
     $scope.addDropDown = function (dd) {

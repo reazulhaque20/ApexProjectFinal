@@ -345,58 +345,58 @@
                                 </div>
                                 <div class="card-body">
 
-                                    <table ng-table="tableParams" class="table" show-filter="false">
-                                        <tr ng-repeat="dd in $data">
-                                            <td align="center" data-title="'SN'">{{ (tableParams.page() - 1) *
-                                                tableParams.count() +
-                                                $index + 1 }}
-                                            </td>
-                                            <td align="center" data-title="'Dropdown Name'"
-                                                filter="{ dropdownName : 'text' }" sortable="dropdownName">
-                                                {{ dd.dropdownName }}</td>
-                                            <td align="center" data-title="'Dropdown Text'"
-                                                filter="{ dropdownText : 'text' }" sortable="dropdownText">
-                                                {{ dd.dropdownText }}</td>
-                                            <td align="center" data-title="'Dropdown Value'"
-                                                filter="{ dropdownValue : 'text' }" sortable="dropdownValue">
-                                                {{ dd.dropdownValue }}</td>
-                                            <td align="center" data-title="'Status'"
-                                                filter="{ status: 'text' }" sortable="status">
-                                                {{ dd.status }}</td>
+<!--                                    <table ng-table="tableParams" class="table" show-filter="false">-->
+<!--                                        <tr ng-repeat="dd in $data">-->
+<!--                                            <td align="center" data-title="'SN'">{{ (tableParams.page() - 1) *-->
+<!--                                                tableParams.count() +-->
+<!--                                                $index + 1 }}-->
+<!--                                            </td>-->
+<!--                                            <td align="center" data-title="'Dropdown Name'"-->
+<!--                                                filter="{ dropdownName : 'text' }" sortable="dropdownName">-->
+<!--                                                {{ dd.dropdownName }}</td>-->
+<!--                                            <td align="center" data-title="'Dropdown Text'"-->
+<!--                                                filter="{ dropdownText : 'text' }" sortable="dropdownText">-->
+<!--                                                {{ dd.dropdownText }}</td>-->
+<!--                                            <td align="center" data-title="'Dropdown Value'"-->
+<!--                                                filter="{ dropdownValue : 'text' }" sortable="dropdownValue">-->
+<!--                                                {{ dd.dropdownValue }}</td>-->
+<!--                                            <td align="center" data-title="'Status'"-->
+<!--                                                filter="{ status: 'text' }" sortable="status">-->
+<!--                                                {{ dd.status }}</td>-->
 
-                                            <td align="center" data-title="'Action'"><button type="button"
-                                                    ng-click="editDropDown(dd)" data-bs-toggle="modal"
+<!--                                            <td align="center" data-title="'Action'"><button type="button"-->
+<!--                                                    ng-click="editDropDown(dd)" data-bs-toggle="modal"-->
+<!--                                                    data-bs-target="#addOrEditDropDown"-->
+<!--                                                    class="btn btn-success">Edit</button>&nbsp;<button type="button"-->
+<!--                                                    class="btn btn-danger">Delete</button></td>-->
+<!--                                        </tr>-->
+<!--                                    </table>-->
+                                    <table id="tableDD" datatable="ng" dt-options="dataTableOptions" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>SL</th>
+                                                <th>DropDown Name</th>
+                                                <th>DropDown Text</th>
+                                                <th>DropDown Value</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="dropDown in dropDownListDt">
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ dropDown.dropdownName }}</td>
+                                                <td>{{ dropDown.dropdownText }}</td>
+                                                <td>{{ dropDown.dropdownValue }}</td>
+                                                <td>{{ dropDown.status }}</td>
+                                                <td align="center" data-title="'Action'"><button type="button"
+                                                    ng-click="editDropDown(dropDown)" data-bs-toggle="modal"
                                                     data-bs-target="#addOrEditDropDown"
                                                     class="btn btn-success">Edit</button>&nbsp;<button type="button"
-                                                    class="btn btn-danger">Delete</button></td>
-                                        </tr>
+                                                                                                       class="btn btn-danger">Delete</button></td>
+                                            </tr>
+                                        </tbody>
                                     </table>
-<!--                                    <table id="tableDD" datatable="ng" dt-options="dataTableOptions" class="table table-striped table-bordered">-->
-<!--                                        <thead>-->
-<!--                                            <tr>-->
-<!--                                                <th>SL</th>-->
-<!--                                                <th>DropDown Name</th>-->
-<!--                                                <th>DropDown Text</th>-->
-<!--                                                <th>DropDown Value</th>-->
-<!--                                                <th>Status</th>-->
-<!--                                                <th>Action</th>-->
-<!--                                            </tr>-->
-<!--                                        </thead>-->
-<!--&lt;!&ndash;                                        <tbody>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <tr ng-repeat="dropDown in dropDownListDt">&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <td>{{ $index + 1 }}</td>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <td>{{ dropDown.dropdownName }}</td>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <td>{{ dropDown.dropdownText }}</td>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <td>{{ dropDown.dropdownValue }}</td>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <td>{{ dropDown.status }}</td>&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <td align="center" data-title="'Action'"><button type="button"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                    ng-click="editDropDown(dropDown)" data-bs-toggle="modal"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                    data-bs-target="#addOrEditDropDown"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                    class="btn btn-success">Edit</button>&nbsp;<button type="button"&ndash;&gt;-->
-<!--&lt;!&ndash;                                                                                                       class="btn btn-danger">Delete</button></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            </tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </tbody>&ndash;&gt;-->
-<!--                                    </table>-->
                                 </div>
                             </div>
                         </div>

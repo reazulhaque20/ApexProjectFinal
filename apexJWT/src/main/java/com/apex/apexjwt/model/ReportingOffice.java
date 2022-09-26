@@ -3,6 +3,7 @@ package com.apex.apexjwt.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.apex.apexjwt.model.ZoneList;
 
 import javax.persistence.*;
 
@@ -23,20 +24,7 @@ public class ReportingOffice {
     @Column(name = "status", length = 10)
     private String status;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getOfficeName() {
-        return officeName;
-    }
-
-    public void setOfficeName(String officeName) {
-        this.officeName = officeName;
-    }
+    private String address;
+    private Long zone;
 
 }

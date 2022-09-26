@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 public class AnyType<T> {
     private Long draw;
-//    private Long value2;
     private Long recordsTotal;
     private Long recordsFiltered;
     List<T> data = new ArrayList<>();
