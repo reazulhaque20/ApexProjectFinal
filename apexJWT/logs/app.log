@@ -32,3 +32,6 @@
 2022-09-26 17:20:29.290 INFO [RMI TCP Connection(3)-192.168.6.176] [org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-09-26 17:20:29.290 INFO [RMI TCP Connection(3)-192.168.6.176] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)] - Initializing Servlet 'dispatcherServlet'
 2022-09-26 17:20:29.291 INFO [RMI TCP Connection(3)-192.168.6.176] [org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)] - Completed initialization in 1 ms
+2022-09-26 17:24:51.237 INFO [SpringApplicationShutdownHook] [org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.destroy(AbstractEntityManagerFactoryBean.java:651)] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-09-26 17:24:51.239 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350)] - HikariPool-1 - Shutdown initiated...
+2022-09-26 17:24:51.261 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352)] - HikariPool-1 - Shutdown completed.
