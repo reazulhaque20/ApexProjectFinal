@@ -76,9 +76,9 @@ console.log(serverURL);
                     $scope.message("!ERROR!", response.data.message, "error");
                     return;
                 }
-                $window.sessionStorage.setItem("token", response.data.jwtToken);
-                $window.sessionStorage.setItem("userName", response.data.user.userName);
-                $window.sessionStorage.setItem("userRole", response.data.user.roles[0].roleName);
+                $window.localStorage.setItem("token", response.data.jwtToken);
+                $window.localStorage.setItem("userName", response.data.user.userName);
+                $window.localStorage.setItem("userRole", response.data.user.roles[0].roleName);
                 $window.location.href = $scope.urlServer + 'dashboard.html';
             },
             function (errResponse) {

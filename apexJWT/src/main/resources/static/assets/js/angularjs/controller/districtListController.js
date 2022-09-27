@@ -161,7 +161,7 @@ app.controller('districtCtrl', function (serverURL, uiURL, $scope, $http, ngTabl
                     console.log(errResponse);
                 }
         );
-    }
+    };
 
     $scope.editDistrict = function (dis) {
         $scope.dis = dis;
