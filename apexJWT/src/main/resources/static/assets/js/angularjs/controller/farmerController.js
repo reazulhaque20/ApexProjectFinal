@@ -48,9 +48,9 @@ app.controller('farmerCtrl', function (serverURL, uiURL, $scope, $http, ngTableP
     $scope.getJWTToken = function () {
 
         // console.log($window.sessionStorage.getItem("token"));
-        $scope.token = $window.sessionStorage.getItem("token");
-        $scope.userName = $window.sessionStorage.getItem("userName");
-        $scope.userRole = $window.sessionStorage.getItem("userRole");
+        $scope.token = $window.localStorage.getItem("token");
+        $scope.userName = $window.localStorage.getItem("userName");
+        $scope.userRole = $window.localStorage.getItem("userRole");
 
     };
 
