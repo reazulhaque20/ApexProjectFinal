@@ -208,3 +208,6 @@ oracle.jdbc.OracleDatabaseException: ORA-00904: "REPORTINGO0_"."ZONE": invalid i
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.62.jar:9.0.62]
 	at java.lang.Thread.run(Thread.java:748) ~[?:1.8.0_202]
 2022-10-31 13:02:08.463 INFO [http-nio-9099-exec-2] [org.springdoc.api.AbstractOpenApiResource.getOpenApi(AbstractOpenApiResource.java:355)] - Init duration for springdoc-openapi is: 498 ms
+2022-10-31 13:04:02.874 INFO [SpringApplicationShutdownHook] [org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.destroy(AbstractEntityManagerFactoryBean.java:651)] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-10-31 13:04:02.876 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:350)] - HikariPool-1 - Shutdown initiated...
+2022-10-31 13:04:03.604 INFO [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:352)] - HikariPool-1 - Shutdown completed.
