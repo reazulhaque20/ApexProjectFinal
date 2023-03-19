@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.apex</groupId>
-    <artifactId>aal</artifactId>
+    <artifactId>user</artifactId>
 <!--    <version>0.0.1-SNAPSHOT</version>-->
     <name>apexJWT</name>
     <description>apexJWT</description>
@@ -110,7 +110,7 @@
     </dependencies>
 
     <build>
-        <finalName>aal</finalName>
+        <finalName>user</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -1,6 +1,6 @@
 package com.apex.apexjwt.response;
 
-import com.apex.apexjwt.model.User;
+import com.apex.apexjwt.model.UsersInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JwtResponse {
-    private User user;
+    private UsersInfo user;
     private String jwtToken;
     private String message;
 }

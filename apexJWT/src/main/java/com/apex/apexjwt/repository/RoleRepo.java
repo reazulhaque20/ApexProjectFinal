@@ -6,14 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface RoleRepo extends JpaRepository<Role, Long> {
+public interface RoleRepo extends JpaRepository<Role, Integer> {
 
-    @Query("SELECT u FROM Role u WHERE u.roleName=:roleName")
-    Role findRoleByRoleName(@Param("roleName") String roleName);
-
-    @Query("SELECT u FROM Role u")
-    List<Role> findAllRoles();
+    @Query("SELECT U FROM Role U WHERE U.roleName=:roleName")
+    Role getRoleByRoleName(@Param("roleName") String roleName);
 }

@@ -1,17 +1,18 @@
 package com.apex.apexjwt.controller;
 
+import com.apex.apexjwt.model.UsersInfo;
 import com.apex.apexjwt.request.JwtRequest;
-import com.apex.apexjwt.response.JwtResponse;
-import com.apex.apexjwt.model.User;
 import com.apex.apexjwt.request.UserRequest;
+import com.apex.apexjwt.response.JwtResponse;
 import com.apex.apexjwt.response.Response;
 import com.apex.apexjwt.response.UserInfoResponse;
 import com.apex.apexjwt.service.JwtService;
 import com.apex.apexjwt.service.UserInfoService;
-import com.apex.apexjwt.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -24,11 +25,9 @@ import java.util.Date;
 public class JwtController {
 
     private final JwtService jwtService;
-    private final UserService userService;
     private final UserInfoService userInfoService;
-
-    private final BCryptPasswordEncoder bcryptEncoder;
-
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/authenticate")
     public JwtResponse createJwtToken(@RequestBody JwtRequest jwtRequest) throws Exception{
@@ -39,18 +38,18 @@ public class JwtController {
             return jwtResponse;
         }else{
 
-            User user = jwtService.findUserByUserName(jwtRequest.getUserName());
+            UsersInfo user = jwtService.findUserByUserName(jwtRequest.getUserName());
             if(user == null){
                 jwtResponse.setMessage("User Name Not Found.");
                 log.error("Login: " + new Date() + "User Name Not Found.");
                 return jwtResponse;
             }else {
-                if(!user.isEnable()){
+                if(!user.getStatus().equalsIgnoreCase("A")){
                     jwtResponse.setMessage("User Not Enabled.");
                     log.error("Login: " + new Date() + "User Not Enabled.");
                     return jwtResponse;
                 }
-                if(!bcryptEncoder.matches(jwtRequest.getPassword(), user.getPassword())){
+                if(!passwordEncoder.matches(jwtRequest.getPassword(), user.getPassword())){
                     jwtResponse.setMessage("Password Not Matched.");
                     log.error("Login: " + new Date() + "Password Not Matched.");
                     return jwtResponse;
@@ -65,7 +64,7 @@ public class JwtController {
     public Response registerNewUser(@RequestBody UserRequest userRequest){
         log.info("Date: " + new Date() + " Register User Request: " + userRequest);
         Response response = new Response();
-        User user = userService.findUserByUserId(userRequest.getUserId());
+        UsersInfo user = userInfoService.getUserByUserName(userRequest.getUserId());
         if(user != null){
             response.setMessage("EXIST");
             return response;
@@ -76,16 +75,16 @@ public class JwtController {
         }
         user.setUserId(userRequest.getUserId());
         user.setUserName(userRequest.getUserId());
-        user.setEmpName(userRequest.getUserName());
+        user.setEmployeeName(userRequest.getUserName());
         user.setDesignation(userRequest.getDesignation());
         user.setDepartment(userRequest.getDepartment());
-        user.setReportingTo(userRequest.getReportingTo());
-        user.setExtNo(userRequest.getExtNo());
+//        user.setReportingTo(userRequest.getReportingTo());
+//        user.setExtNo(userRequest.getExtNo());
         user.setPassword(userRequest.getPassword());
-        user.setEnable(false);
+        user.setStatus("A");
 
-        User userCreated = userService.registerNewUser(user, "User");
-        if(userCreated.getId() != null){
+        String msg = userInfoService.addUser(user);
+        if(msg.equalsIgnoreCase("SUCCESS")){
             response.setMessage("SUCCESS");
         }else {
             response.setMessage("ERROR");
@@ -96,12 +95,12 @@ public class JwtController {
 
 
 
-    @PostMapping("/getUserInfo/{userId}")
-    public UserInfoResponse getUserInfo(@PathVariable("userId") String userId){
-        log.info("Date: " + new Date() + " User Info: " + userId);
+    @PostMapping("/getUserInfo/{userName}")
+    public UserInfoResponse getUserInfo(@PathVariable("userName") String userName){
+        log.info("Date: " + new Date() + " User Info: " + userName);
         UserInfoResponse userInfoResponse = new UserInfoResponse();
-        userInfoResponse.setUserInfo(userInfoService.findByUserId(userId));
-        User user = userService.findUserByUserId(userId);
+        userInfoResponse.setUserInfo(userInfoService.getUserByUserName(userName));
+        UsersInfo user = userInfoService.getUserByUserName(userName);
 
         if(user != null){
             userInfoResponse.setMessage("EXIST");
